@@ -1,26 +1,19 @@
-//var greetings = require('./src/greetings');
-//alert(greetings('Jose'));
-
 var _ = require('underscore');
+var Marionette = require('backbone.marionette');
 var $ = require('jquery');
-var Backbone = require('backbone');
-Backbone.$ = $;
 var TableCollection = require('./src/model/TableCollection');
 
-var App = Backbone.View.extend({
-   el: $('body'), // attaches `this.el` to an existing element.
 
+var ListView = Marionette.ItemView.extend({
    initialize: function(){
       _.bindAll(this, 'render'); // fixes loss of context for 'this' within methods
 
       var tables = new TableCollection();
 
-//      this.render(); // not all views are self-rendering. This one is.
-
       var that = this;
       tables.fetch({
         success: function () {
-            console.log(tables);
+            console.log(tables.toJSON());
             that.render();
         }
       });
@@ -31,4 +24,28 @@ var App = Backbone.View.extend({
    }
 });
 
-var app = new App();
+
+var AppLayoutView = Marionette.LayoutView.extend({
+   template: "#layout",
+
+   regions: {
+      elements: "#elements"
+   },
+
+   onBeforeShow: function() {
+      this.showChildView('elements', new ListView());
+   }
+});
+
+
+var app = new Marionette.Application();
+
+app.addRegions({
+    appRegion: '#app'
+});
+
+app.addInitializer(function(options) {
+    app.appRegion.show(new AppLayoutView());
+});
+
+app.start();
