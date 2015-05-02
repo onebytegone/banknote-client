@@ -1,296 +1,180 @@
-{
-    "sto_usr_income_entries": [{
-        "amount": 10,
-        "date": "1\/8",
-        "name": "gift"
-    }, {
-        "amount": 300,
-        "date": "3\/5",
-        "name": "Paycheck"
-    }, {
-        "amount": 100,
-        "date": "3\/15",
-        "name": "Interest"
-    }],
-    "arr_usr_income_per_fund": {
-        "food": [{
+[
+   {
+      "id": "sto_usr_income_entries",
+      "entries": [
+         {
             "amount": 10,
-            "date": "1\/1"
-        }, {
-            "amount": 100,
-            "date": "3\/1"
-        }],
-        "rent": [{
+            "date": "1\/8",
+            "name": "gift"
+         }, {
             "amount": 300,
-            "date": "3\/1"
-        }]
-    },
-    "sto_usr_expense_entries": [{
-        "amount": 10,
-        "date": "2\/25",
-        "name": "Hamburger"
-    }, {
-        "amount": 10,
-        "date": "3\/10",
-        "name": "Lunch"
-    }, {
-        "amount": 40,
-        "date": "3\/7",
-        "name": "Dinner out"
-    }, {
-        "amount": 100,
-        "date": "4\/12",
-        "name": "Rent"
-    }],
-    "arr_usr_fund_draw": {
-        "food": [{
-            "amount": 50,
-            "date": "3\/1"
-        }, {
-            "amount": 2,
-            "date": "2\/1"
-        }],
-        "rent": [{
+            "date": "3\/5",
+            "name": "Paycheck"
+         }, {
             "amount": 100,
-            "date": "4\/1"
-        }]
-    },
-    "arr_usr_fund_initial": {
-        "food": [{
-            "amount": 2,
-            "date": "0\/0"
-        }, {
-            "amount": 10,
-            "date": "1\/1"
-        }, {
-            "amount": 100,
-            "date": "3\/1"
-        }],
-        "rent": [{
-            "date": "0\/0"
-        }, {
-            "amount": 300,
-            "date": "3\/1"
-        }]
-    },
-    "arr_usr_account_initial": {
-        "food": [{
-            "amount": 100,
-            "date": "0\/0"
-        }],
-        "rent": [{
-            "amount": 100,
-            "date": "0\/0"
-        }]
-    },
-    "arr_usr_account_route": {
-        "checking": [{
-            "amount": 15,
-            "date": "1\/10"
-        }],
-        "savings": [{
-            "amount": 40,
-            "date": "4\/20"
-        }]
-    },
-    "arr_usr_account_draws": {
-        "checking": [{
-            "amount": 5,
-            "date": "1\/10"
-        }],
-        "savings": [{
-            "amount": 20,
-            "date": "4\/20"
-        }]
-    },
-    "arr_usr_account_eom": {
-        "checking": [{
-            "amount": 100,
-            "date": "1\/1"
-        }],
-        "savings": [{
-            "amount": 100,
-            "date": "2\/1"
-        }]
-    },
-    "sto_zero": [{
-        "date": "0\/0"
-    }, {
-        "date": "1\/1"
-    }, {
-        "date": "2\/1"
-    }, {
-        "date": "3\/1"
-    }, {
-        "date": "4\/1"
-    }, {
-        "date": "5\/1"
-    }, {
-        "date": "6\/1"
-    }, {
-        "date": "7\/1"
-    }, {
-        "date": "8\/1"
-    }, {
-        "date": "9\/1"
-    }, {
-        "date": "10\/1"
-    }, {
-        "date": "11\/1"
-    }, {
-        "date": "12\/1"
-    }],
-    "sto_income_total": [{
-        "amount": 10
-    }, {
-        "amount": 400
-    }],
-    "sto_assigned_income": [{
-        "amount": 10
-    }, {
-        "amount": 400
-    }],
-    "sto_unassigned_income": [
-        [], {
-            "amount": -400
-        }, {
-            "amount": 400
-        }
-    ],
-    "sto_account_total": [{
-        "amount": 15
-    }, {
-        "amount": 40
-    }],
-    "sto_unassigned_to_account": [{
-        "amount": -5
-    }, {
-        "amount": 400
-    }, {
-        "amount": -40
-    }],
-    "sto_expense_total": [{
-        "amount": 10
-    }, {
-        "amount": 50
-    }, {
-        "amount": 100
-    }],
-    "sto_total_fund_draw": [{
-        "amount": 52
-    }, {
-        "amount": 100
-    }],
-    "sto_unassigned_expenses": [{
-            "amount": -42
-        }, {
-            "amount": 50
-        },
-        []
-    ],
-    "arr_fund_values": {
-        "food": [{
-            "amount": 2,
-            "date": "0\/0"
-        }, {
-            "amount": 10,
-            "date": "1\/1"
-        }, {
-            "amount": 100,
-            "date": "3\/1"
-        }],
-        "rent": [{
-            "date": "0\/0"
-        }, {
-            "amount": 300,
-            "date": "3\/1"
-        }]
-    },
-    "arr_fund_net": {
-        "food": [{
-            "amount": 2
-        }, {
-            "amount": 10
-        }, {
-            "amount": 100
-        }],
-        "rent": [
-            [], {
-                "amount": 300
-            }
-        ]
-    },
-    "arr_fund_gross": {
-        "food": [{
-                "amount": 2
+            "date": "3\/15",
+            "name": "Interest"
+         }
+      ]
+   },
+   {
+      "id": "arr_usr_income_per_fund",
+      "entries": {
+         "food": [
+            {
+               "amount": 10,
+               "date": "1\/1"
             },
-            [],
-            []
-        ],
+            {
+               "amount": 100,
+               "date": "3\/1"
+            }
+         ],
         "rent": [
-            [],
-            []
-        ]
-    },
-    "arr_sto_account_change": {
-        "checking": [{
-            "amount": 10
-        }],
-        "savings": [{
-            "amount": 20
-        }]
-    },
-    "arr_sto_accounts": {
+            {
+               "amount": 300,
+               "date": "3\/1"
+            }
+         ]
+      }
+   },
+   {
+      "id": "sto_usr_expense_entries",
+      "entries": [
+         {
+            "amount": 10,
+            "date": "2\/25",
+            "name": "Hamburger"
+         }, {
+            "amount": 10,
+            "date": "3\/10",
+            "name": "Lunch"
+         }, {
+            "amount": 40,
+            "date": "3\/7",
+            "name": "Dinner out"
+         }, {
+            "amount": 100,
+            "date": "4\/12",
+            "name": "Rent"
+         }
+      ]
+   },
+   {
+      "id": "arr_usr_fund_draw",
+      "entries": {
+         "food": [
+            {
+               "amount": 50,
+               "date": "3\/1"
+            },
+            {
+               "amount": 2,
+               "date": "2\/1"
+            }
+         ],
+         "rent": [
+            {
+               "amount": 100,
+               "date": "4\/1"
+            }
+         ]
+      }
+   },
+   {
+      "id": "arr_usr_fund_initial",
+      "entries": {
+         "food": [
+            {
+               "amount": 2,
+               "date": "0\/0"
+            },
+            {
+               "amount": 10,
+               "date": "1\/1"
+            },
+            {
+               "amount": 100,
+               "date": "3\/1"
+            }
+         ],
+         "rent": [
+            {
+               "date": "0\/0"
+            },
+            {
+               "amount": 300,
+               "date": "3\/1"
+            }
+         ]
+      }
+   },
+   {
+      "id": "arr_usr_account_initial",
+      "entries": {
+        "food": [
+            {
+               "amount": 100,
+               "date": "0\/0"
+            }
+         ],
+         "rent": [
+            {
+               "amount": 100,
+               "date": "0\/0"
+            }
+         ]
+      }
+   },
+   {
+      "id": "arr_usr_account_route",
+      "entries": {
         "checking": [
-            [], {
-                "amount": 10
-            }, {
-                "amount": 10
-            }, {
-                "amount": 10
-            }, {
-                "amount": 10
-            }, {
-                "amount": 10
-            }, {
-                "amount": 10
-            }, {
-                "amount": 10
-            }, {
-                "amount": 10
-            }, {
-                "amount": 10
-            }, {
-                "amount": 10
-            }, {
-                "amount": 10
-            }, {
-                "amount": 10
+            {
+               "amount": 15,
+               "date": "1\/10"
             }
-        ],
-        "savings": [
-            [],
-            [],
-            [],
-            [], {
-                "amount": 20
-            }, {
-                "amount": 20
-            }, {
-                "amount": 20
-            }, {
-                "amount": 20
-            }, {
-                "amount": 20
-            }, {
-                "amount": 20
-            }, {
-                "amount": 20
-            }, {
-                "amount": 20
-            }, {
-                "amount": 20
+         ],
+         "savings": [
+            {
+               "amount": 40,
+               "date": "4\/20"
             }
-        ]
-    }
-}
+         ]
+      }
+   },
+   {
+      "id": "arr_usr_account_draws",
+      "entries": {
+        "checking": [
+            {
+               "amount": 5,
+               "date": "1\/10"
+            }
+         ],
+         "savings": [
+            {
+               "amount": 20,
+               "date": "4\/20"
+            }
+         ]
+      }
+   },
+   {
+      "id": "arr_usr_account_eom",
+      "entries": {
+        "checking": [
+            {
+               "amount": 100,
+               "date": "1\/1"
+            }
+         ],
+         "savings": [
+            {
+               "amount": 100,
+               "date": "2\/1"
+            }
+         ]
+      }
+   }
+]
