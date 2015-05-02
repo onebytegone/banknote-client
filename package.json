@@ -4,7 +4,8 @@
   "description": "JS client for Banknote",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "browserify app.js -o compiled/bundle.js"
   },
   "repository": {
     "type": "git",
@@ -18,8 +19,10 @@
   "homepage": "https://github.com/onebytegone/banknote-client",
   "dependencies": {
     "backbone": "^1.1.2",
-    "browserify": "^10.0.0",
     "jquery": "^2.1.4",
     "underscore": "^1.8.3"
+  },
+  "devDependencies": {
+    "browserify": "^10.0.0"
   }
 }
