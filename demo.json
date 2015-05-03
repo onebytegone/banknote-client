@@ -1,180 +1,19 @@
 [
    {
-      "id": "sto_usr_income_entries",
-      "entries": [
+      "name": "Account EOM",
+      "rows": [
          {
-            "amount": 10,
-            "date": "1\/8",
-            "name": "gift"
-         }, {
-            "amount": 300,
-            "date": "3\/5",
-            "name": "Paycheck"
-         }, {
-            "amount": 100,
-            "date": "3\/15",
-            "name": "Interest"
+            "classes": "header",
+            "values": [ "", "Jan", "Feb", "Mar", "April", "May", "June", "July", "Aug", "Sept", "Oct", "Nov", "Dec" ]
+         },
+         {
+            "classes": "",
+            "values": [ "checking", "100", "", "", "", "", "", "", "", "", "", "", "" ]
+         },
+         {
+            "classes": "",
+            "values": [ "savings", "", { "classes": "flag", "value": "100" }, "", "", "", "", "", "", "", "", "", "" ]
          }
       ]
-   },
-   {
-      "id": "arr_usr_income_per_fund",
-      "entries": {
-         "food": [
-            {
-               "amount": 10,
-               "date": "1\/1"
-            },
-            {
-               "amount": 100,
-               "date": "3\/1"
-            }
-         ],
-        "rent": [
-            {
-               "amount": 300,
-               "date": "3\/1"
-            }
-         ]
-      }
-   },
-   {
-      "id": "sto_usr_expense_entries",
-      "entries": [
-         {
-            "amount": 10,
-            "date": "2\/25",
-            "name": "Hamburger"
-         }, {
-            "amount": 10,
-            "date": "3\/10",
-            "name": "Lunch"
-         }, {
-            "amount": 40,
-            "date": "3\/7",
-            "name": "Dinner out"
-         }, {
-            "amount": 100,
-            "date": "4\/12",
-            "name": "Rent"
-         }
-      ]
-   },
-   {
-      "id": "arr_usr_fund_draw",
-      "entries": {
-         "food": [
-            {
-               "amount": 50,
-               "date": "3\/1"
-            },
-            {
-               "amount": 2,
-               "date": "2\/1"
-            }
-         ],
-         "rent": [
-            {
-               "amount": 100,
-               "date": "4\/1"
-            }
-         ]
-      }
-   },
-   {
-      "id": "arr_usr_fund_initial",
-      "entries": {
-         "food": [
-            {
-               "amount": 2,
-               "date": "0\/0"
-            },
-            {
-               "amount": 10,
-               "date": "1\/1"
-            },
-            {
-               "amount": 100,
-               "date": "3\/1"
-            }
-         ],
-         "rent": [
-            {
-               "date": "0\/0"
-            },
-            {
-               "amount": 300,
-               "date": "3\/1"
-            }
-         ]
-      }
-   },
-   {
-      "id": "arr_usr_account_initial",
-      "entries": {
-        "food": [
-            {
-               "amount": 100,
-               "date": "0\/0"
-            }
-         ],
-         "rent": [
-            {
-               "amount": 100,
-               "date": "0\/0"
-            }
-         ]
-      }
-   },
-   {
-      "id": "arr_usr_account_route",
-      "entries": {
-        "checking": [
-            {
-               "amount": 15,
-               "date": "1\/10"
-            }
-         ],
-         "savings": [
-            {
-               "amount": 40,
-               "date": "4\/20"
-            }
-         ]
-      }
-   },
-   {
-      "id": "arr_usr_account_draws",
-      "entries": {
-        "checking": [
-            {
-               "amount": 5,
-               "date": "1\/10"
-            }
-         ],
-         "savings": [
-            {
-               "amount": 20,
-               "date": "4\/20"
-            }
-         ]
-      }
-   },
-   {
-      "id": "arr_usr_account_eom",
-      "entries": {
-        "checking": [
-            {
-               "amount": 100,
-               "date": "1\/1"
-            }
-         ],
-         "savings": [
-            {
-               "amount": 100,
-               "date": "2\/1"
-            }
-         ]
-      }
    }
 ]

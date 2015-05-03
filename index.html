@@ -18,7 +18,23 @@
    </script>
 
    <script type="text/template" id="template-slice">
-      <h3>slice</h3>
+      <h3><%- name %></h3>
+      <table>
+      <% _.each( rows, function( item ){ %>
+         <tr class="<%- item.classes %>">
+            <% _.each( item.values, function( value ){ %>
+               <% if (typeof value === 'object') { %>
+                  <td class="<%- value.classes %>">
+                     <%- value.value %>
+               <% } else { %>
+                  <td>
+                     <%- value %>
+               <% } %>
+               </td>
+            <% }); %>
+         </tr>
+      <% }); %>
+      </table>
    </script>
 
    <script src="compiled/bundle.js"></script>
