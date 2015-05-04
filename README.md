@@ -1,7 +1,7 @@
+## NOTE: this is in progress
+
 # banknote-client
-JS client for Banknote
-
-
+The is the clientside app for Banknote
 
 ## Build
 ```
