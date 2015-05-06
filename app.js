@@ -1,14 +1,7 @@
 var _ = require('underscore');
 var Marionette = require('backbone.marionette');
 var TableCollection = require('./src/model/TableCollection'),
-    ListItem = require('./src/view/ListItem');
-
-
-var ListView = Marionette.CompositeView.extend({
-   template: '#template-itemlist',
-   childView: ListItem,
-   childViewContainer: '#items'
-});
+    ListView = require('./src/view/ListView');
 
 
 var PageLayout = Marionette.LayoutView.extend({
