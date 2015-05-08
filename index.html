@@ -20,7 +20,7 @@
    <script type="text/template" id="template-slice">
       <h3><%- name %></h3>
       <table>
-      <% _.each( rows, function( item ){ %>
+      <% _.each( rows.rows, function( item ){ %>
          <tr class="<%- item.classes %>">
             <% _.each( item.values, function( value ){ %>
                <% if (typeof value === 'object') { %>

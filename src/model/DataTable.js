@@ -1,11 +1,12 @@
-var $ = require('jquery');
-var Backbone = require('backbone');
-Backbone.$ = $;
+var NestedModel = require('./NestedModel'),
+    TableRows = require('./TableRows');
 
-var DataTable = Backbone.Model.extend({
-   parse : function(response, options){
-      console.log(response);
-      return response;
+var DataTable = NestedModel.extend({
+   template: {
+      'rows': TableRows
+   },
+   parse : function(response){
+      return this._super( { 'rows': response } );
    }
 });
 
