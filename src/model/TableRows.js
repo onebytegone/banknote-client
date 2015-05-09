@@ -1,4 +1,3 @@
-var $ = require('jquery');
 var Backbone = require('backbone');
 
 var TableRows = Backbone.Model.extend({
