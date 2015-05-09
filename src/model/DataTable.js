@@ -1,12 +1,19 @@
 var NestedModel = require('./NestedModel'),
-    TableRows = require('./TableRows');
+    TableRows = require('./TableRows'),
+    Backbone = require('backbone');
 
 var DataTable = NestedModel.extend({
    template: {
-      'rows': TableRows
+      'rows': TableRows,
+      'column': Backbone.Model
    },
+
+   columnSpec: function() {
+      return [];
+   },
+
    parse : function(response){
-      return this._super( { 'rows': response } );
+      return this._super( { 'rows': response, 'column': this.columnSpec() } );
    }
 });
 
