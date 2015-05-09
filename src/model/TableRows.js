@@ -1,6 +1,5 @@
 var $ = require('jquery');
 var Backbone = require('backbone');
-Backbone.$ = $;
 
 var TableRows = Backbone.Model.extend({
    parse : function(response, options){
