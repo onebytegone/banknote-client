@@ -3,7 +3,8 @@
 # banknote-client
 The is the clientside app for Banknote
 
-## Build
+## Setup
 ```
-npm run build
+npm install
+grunt
 ```

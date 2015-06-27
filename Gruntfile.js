@@ -2,10 +2,26 @@ module.exports = function(grunt) {
 
    grunt.initConfig({
       jshint: {
-         files: ['Gruntfile.js', 'src/**/*.js', 'test/**/*.js'],
+         files: ['Gruntfile.js', 'src/**/*.js'],
          options: {
             globals: {
                jQuery: true
+            }
+         }
+      },
+      browserify: {
+         js: {
+            options: {
+               browserifyOptions: {
+                  debug: true
+               },
+            },
+            files: {
+              'compiled/bundle.js' : [
+                  'shim/marionette_shim.js',
+                  'shim/backbone-super_shim.js',
+                  'app.js'
+               ]
             }
          }
       },
@@ -17,7 +33,8 @@ module.exports = function(grunt) {
 
    grunt.loadNpmTasks('grunt-contrib-jshint');
    grunt.loadNpmTasks('grunt-contrib-watch');
+   grunt.loadNpmTasks('grunt-browserify');
 
-   grunt.registerTask('default', ['jshint']);
+   grunt.registerTask('default', ['jshint', 'browserify']);
 
 };

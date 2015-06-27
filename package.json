@@ -4,8 +4,7 @@
   "description": "JS client for Banknote",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "browserify shim/marionette_shim.js shim/backbone-super_shim.js app.js -o compiled/bundle.js"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
@@ -27,6 +26,7 @@
   "devDependencies": {
     "browserify": "^10.0.0",
     "grunt": "^0.4.5",
+    "grunt-browserify": "^3.8.0",
     "grunt-contrib-jshint": "^0.11.2",
     "grunt-contrib-watch": "^0.6.1"
   }
