@@ -25,6 +25,14 @@ module.exports = function(grunt) {
             }
          }
       },
+      exorcise: {
+         bundle: {
+            options: {},
+            files: {
+               'compiled/bundle.map': ['compiled/bundle.js'],
+            }
+         }
+      },
       watch: {
          files: ['<%= jshint.files %>'],
          tasks: ['jshint']
@@ -34,7 +42,8 @@ module.exports = function(grunt) {
    grunt.loadNpmTasks('grunt-contrib-jshint');
    grunt.loadNpmTasks('grunt-contrib-watch');
    grunt.loadNpmTasks('grunt-browserify');
+   grunt.loadNpmTasks('grunt-exorcise');
 
-   grunt.registerTask('default', ['jshint', 'browserify']);
+   grunt.registerTask('default', ['jshint', 'browserify', 'exorcise']);
 
 };
