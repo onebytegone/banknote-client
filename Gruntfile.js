@@ -15,6 +15,9 @@ module.exports = function(grunt) {
                browserifyOptions: {
                   debug: true
                },
+               alias: {
+                  'config': './src/config.js'
+               }
             },
             files: {
               'compiled/bundle.js' : [
