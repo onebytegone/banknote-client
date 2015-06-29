@@ -7,7 +7,6 @@ var ListView = Marionette.CompositeView.extend({
    childView: ListItem,
 
    attachHtml: function(collectionView, itemView){
-      console.log("asfds");
       collectionView.$('tbody').append(itemView.el);
    }
 });
