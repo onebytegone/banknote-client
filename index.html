@@ -11,30 +11,22 @@
       <div id="elements"></div>
    </script>
 
-
-   <script type="text/template" id="template-itemlist">
-      <h2>list</h2>
-      <div id="items"></div>
+   <script type="text/template" id="template-listview">
+      <thead>
+         <tr class='header'>
+            <th>Date</th>
+            <th>Item</th>
+            <th>Amount</th>
+         </tr>
+      </thead>
+      <tbody>
+      </tbody>
    </script>
 
-   <script type="text/template" id="template-slice">
-      <h3><%- name %></h3>
-      <table>
-      <% _.each( rows.rows, function( item ){ %>
-         <tr class="<%- item.classes %>">
-            <% _.each( item.values, function( value ){ %>
-               <% if (typeof value === 'object') { %>
-                  <td class="<%- value.classes %>">
-                     <%- value.value %>
-               <% } else { %>
-                  <td>
-                     <%- value %>
-               <% } %>
-               </td>
-            <% }); %>
-         </tr>
-      <% }); %>
-      </table>
+   <script type="text/template" id="template-listitem">
+      <td><%= date %></td>
+      <td><%= name %></td>
+      <td><%= amount.get() %></td>
    </script>
 
    <script src="compiled/bundle.js"></script>
