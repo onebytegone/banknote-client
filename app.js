@@ -26,6 +26,17 @@ app.addInitializer(function(options) {
       model: options.model
    });
 
+   dataSetView.on("add:click", function(args){
+      var model = args.model;
+      var date = new Date();
+
+      model.get('entries').add(new AmountEntry({
+         amount: new MoneyStack(Math.random() * 300),
+         name: '#####',
+         date: (date.getMonth() + 1) + "/" + date.getDate()
+      }));
+   });
+
    layout.elements.show(dataSetView);
    dataSetView.getRegion('rendered').show(listView);
 });

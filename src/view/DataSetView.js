@@ -5,6 +5,10 @@ var DataSetView = Marionette.LayoutView.extend({
 
    regions: {
       rendered: "#rendered"
+   },
+
+   triggers: {
+      "click .add": "add:click"
    }
 });
 
