@@ -11,6 +11,11 @@
       <div id="elements"></div>
    </script>
 
+   <script type="text/template" id="template-dataset">
+      <div><%= name %> <a href="#">Add</a></div>
+      <div id="rendered"></div>
+   </script>
+
    <script type="text/template" id="template-listview">
       <thead>
          <tr class='header'>
@@ -26,7 +31,7 @@
    <script type="text/template" id="template-listitem">
       <td><%= date %></td>
       <td><%= name %></td>
-      <td><%= amount.get() %></td>
+      <td><%= amount.readable() %></td>
    </script>
 
    <script src="compiled/bundle.js"></script>
