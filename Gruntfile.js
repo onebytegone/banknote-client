@@ -1,6 +1,17 @@
 module.exports = function(grunt) {
 
    grunt.initConfig({
+      sass: {
+         options: {
+            sourceMap: true,
+            outputStyle: 'compressed'
+         },
+         dist: {
+            files: {
+               'combined_files/css/styles.css': 'sass/main.scss'
+            }
+         }
+      },
       jshint: {
          files: ['Gruntfile.js', 'app.js', 'src/**/*.js'],
          options: {
@@ -46,7 +57,8 @@ module.exports = function(grunt) {
    grunt.loadNpmTasks('grunt-contrib-watch');
    grunt.loadNpmTasks('grunt-browserify');
    grunt.loadNpmTasks('grunt-exorcise');
+   grunt.loadNpmTasks('grunt-sass');
 
-   grunt.registerTask('default', ['jshint', 'browserify', 'exorcise']);
+   grunt.registerTask('default', ['sass:dist', 'jshint', 'browserify', 'exorcise']);
 
 };
