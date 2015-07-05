@@ -1,6 +1,5 @@
 .DS_Store
 node_modules
-compiled
 config.js
-combined_files
+dist
 
