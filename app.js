@@ -8,15 +8,15 @@ var Marionette = require('backbone.marionette'),
     AmountEntryCollection = require('./src/model/AmountEntryCollection');
 
 
-var app = new Marionette.Application();
+var Banknote = new Marionette.Application();
 
-app.addRegions({
-    appRegion: '#app'
+Banknote.addRegions({
+    central: '#app',
 });
 
-app.addInitializer(function(options) {
+Banknote.addInitializer(function(options) {
    var layout = new MainLayout();
-   app.appRegion.show(layout);
+   Banknote.central.show(layout);
 
    var listView = new ListView({
       collection: options.model.get('entries')
@@ -34,14 +34,14 @@ app.addInitializer(function(options) {
          amount: new MoneyStack(Math.random() * 300),
          name: '#####',
          date: (date.getMonth() + 1) + "/" + date.getDate()
-      }));
+      }));*/
    });
 
    layout.elements.show(dataSetView);
    dataSetView.getRegion('rendered').show(listView);
 });
 
-app.start({
+Banknote.start({
    model: new AmountDataSet({
       name: 'Expenses',
       entries: new AmountEntryCollection([
