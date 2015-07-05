@@ -5,13 +5,16 @@ var Marionette = require('backbone.marionette'),
     DataSetView = require('./src/view/DataSetView'),
     AmountDataSet = require('./src/model/AmountDataSet'),
     AmountEntry = require('./src/model/AmountEntry'),
-    AmountEntryCollection = require('./src/model/AmountEntryCollection');
+    AmountEntryCollection = require('./src/model/AmountEntryCollection'),
+    AddEntryForm = require('./src/view/AddEntryForm'),
+    RegionModal = require('./src/common/RegionModal.js');
 
 
 var Banknote = new Marionette.Application();
 
 Banknote.addRegions({
     central: '#app',
+    modal: RegionModal
 });
 
 Banknote.addInitializer(function(options) {
@@ -27,6 +30,16 @@ Banknote.addInitializer(function(options) {
    });
 
    dataSetView.on("add:click", function(args){
+      var view = new AddEntryForm({
+         model : new AmountEntry()
+      });
+      Banknote.modal.present(view);
+
+      view.on("form:submit", function(data){
+         console.log(data);
+         view.trigger("dialog:close");
+      });
+      /*
       var model = args.model;
       var date = new Date();
 

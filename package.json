@@ -20,6 +20,8 @@
     "backbone": "^1.1.2",
     "backbone-super": "^1.0.4",
     "backbone.marionette": "^2.4.1",
+    "backbone.syphon": "^0.6.0",
+    "bootstrap": "^3.3.5",
     "jquery": "^2.1.4",
     "underscore": "^1.8.3",
     "moneystack": "git+https://github.com/onebytegone/MoneyStack.git#ff97a6d"
