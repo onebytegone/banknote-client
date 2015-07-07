@@ -3,7 +3,7 @@ var Marionette = require('backbone.marionette'),
     $ = require('jquery');
 
 var RegionModal = Marionette.Region.extend({
-  el: "#modal",
+   el: "#modal",
 
    constructor: function(){
       _.bindAll(this, 'getEl', 'showModal', 'hideModal');
