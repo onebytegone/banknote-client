@@ -77,6 +77,7 @@ module.exports = function(grunt) {
               '<%= project.dist.js %>/bundle.js' : [
                   'shim/marionette_shim.js',
                   'shim/backbone-super_shim.js',
+                  'shim/bootstrap_shim.js',
                   'app.js'
                ]
             }
