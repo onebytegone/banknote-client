@@ -7,7 +7,7 @@ var Marionette = require('backbone.marionette'),
     AmountEntry = require('./src/model/AmountEntry'),
     AmountEntryCollection = require('./src/model/AmountEntryCollection'),
     AddEntryForm = require('./src/view/AddEntryForm'),
-    RegionModal = require('./src/common/RegionModal.js');
+    RegionModal = require('./src/common/modal/RegionModal.js');
 
 
 var Banknote = new Marionette.Application();
