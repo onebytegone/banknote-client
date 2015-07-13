@@ -15,7 +15,7 @@ var RegionModal = Marionette.Region.extend({
       layout.getRegion('content').show(view);
 
       var buttons = new ModalButtonView();
-      buttons.addButton('Close', 'btn-default');
+      buttons.addButton('Close', 'btn-default', {'dismiss': 'modal'});
       buttons.addButton('Save', 'btn-primary');
       layout.getRegion('buttons').show(buttons);
    }
