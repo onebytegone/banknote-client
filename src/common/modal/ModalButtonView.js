@@ -4,8 +4,8 @@ var ModalButtonView = Marionette.ItemView.extend({
    tagName: 'div',
    template: false,
 
-   addButton: function(name) {
-      this.$el.append("<h1>BUTTON</h1>");
+   addButton: function(name, classes) {
+      this.$el.append('<button type="button" class="btn ' + classes + '">' + name + '</button>');
    }
 });
 
