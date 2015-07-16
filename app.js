@@ -43,16 +43,10 @@ Banknote.addInitializer(function(options) {
             label: 'Save',
             classes: 'btn-primary',
             handler: function() {
-               //TODO: pull form data
-
                var model = args.model;
-               var date = new Date();
-
-               model.get('entries').add(new AmountEntry({
-                  amount: new MoneyStack(Math.random() * 300),
-                  name: '#####',
-                  date: (date.getMonth() + 1) + "/" + date.getDate()
-               }));
+               var formData = view.getFormData();
+               formData.amount = new MoneyStack(formData.amount);
+               model.get('entries').add(new AmountEntry(formData));
             }
          }
       ];
