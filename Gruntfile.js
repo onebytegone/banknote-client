@@ -1,12 +1,6 @@
 module.exports = function(grunt) {
    require('time-grunt')(grunt);
-
-   grunt.loadNpmTasks('grunt-contrib-jshint');
-   grunt.loadNpmTasks('grunt-contrib-watch');
-   grunt.loadNpmTasks('grunt-contrib-copy');
-   grunt.loadNpmTasks('grunt-browserify');
-   grunt.loadNpmTasks('grunt-exorcise');
-   grunt.loadNpmTasks('grunt-sass');
+   require('jit-grunt')(grunt);
 
    grunt.initConfig({
       project: {
@@ -105,5 +99,5 @@ module.exports = function(grunt) {
       }
    });
 
-   grunt.registerTask('default', ['copy:cssToSass', 'sass:dist', 'jshint', 'browserify', 'exorcise']);
+   grunt.registerTask('default', ['newer:copy:cssToSass', 'sass:dist', 'newer:jshint', 'browserify', 'exorcise']);
 };
