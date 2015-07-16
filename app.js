@@ -33,21 +33,30 @@ Banknote.addInitializer(function(options) {
       var view = new AddEntryForm({
          model : new AmountEntry()
       });
-      Banknote.modal.present(view);
 
-      view.on("form:submit", function(data){
-         console.log(data);
-         view.trigger("dialog:close");
-      });
-      /*
-      var model = args.model;
-      var date = new Date();
+      var buttons = [
+         {
+            label: 'Close',
+            data: {'dismiss': 'modal'}
+         },
+         {
+            label: 'Save',
+            classes: 'btn-primary',
+            handler: function() {
+               //TODO: pull form data
 
-      model.get('entries').add(new AmountEntry({
-         amount: new MoneyStack(Math.random() * 300),
-         name: '#####',
-         date: (date.getMonth() + 1) + "/" + date.getDate()
-      }));*/
+               var model = args.model;
+               var date = new Date();
+
+               model.get('entries').add(new AmountEntry({
+                  amount: new MoneyStack(Math.random() * 300),
+                  name: '#####',
+                  date: (date.getMonth() + 1) + "/" + date.getDate()
+               }));
+            }
+         }
+      ];
+      Banknote.modal.present(view, buttons);
    });
 
    layout.elements.show(dataSetView);

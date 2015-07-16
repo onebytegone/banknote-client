@@ -1,6 +1,7 @@
 var Marionette = require('backbone.marionette'),
     RegionModalLayout = require('./RegionModalLayout.js'),
-    ModalButtonView = require('./ModalButtonView.js');
+    ModalButtonView = require('./ModalButtonView.js'),
+    _ = require('underscore');
 
 var RegionModal = Marionette.Region.extend({
    el: "#modal",
@@ -9,19 +10,29 @@ var RegionModal = Marionette.Region.extend({
       this.$el.modal('show');
    },
 
-   present: function(view) {
+   present: function(view, buttonSpecs) {
       var layout = new RegionModalLayout();
-      layout.events = {
-         'click .save': function() {
-            console.log('save');
-         }
-      };
       this.show(layout);
       layout.getRegion('content').show(view);
 
       var buttons = new ModalButtonView();
-      buttons.addButton('Close', 'btn-default', {'dismiss': 'modal'});
-      buttons.addButton('Save', 'btn-primary save');
+
+      var baseButtonSpec = {
+         label: 'Button',
+         classes: 'btn-default',
+         data: {},
+         handler: function() {}
+      };
+
+      _.map(buttonSpecs, function(spec) {
+         var fullSpec = _.extend(baseButtonSpec, spec);
+         buttons.addButton(
+            fullSpec.label,
+            fullSpec.classes,
+            fullSpec.data,
+            fullSpec.handler
+         );
+      });
       layout.getRegion('buttons').show(buttons);
    }
 });
