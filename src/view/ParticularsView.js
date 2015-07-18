@@ -1,7 +1,7 @@
 var Marionette = require('backbone.marionette');
 
-var DataSetView = Marionette.LayoutView.extend({
-   template: "#template-dataset",
+var ParticularsView = Marionette.LayoutView.extend({
+   template: "#template-particulars",
 
    regions: {
       rendered: ".jsRendered"
@@ -12,4 +12,4 @@ var DataSetView = Marionette.LayoutView.extend({
    }
 });
 
-module.exports = DataSetView;
+module.exports = ParticularsView;

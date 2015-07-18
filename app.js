@@ -2,7 +2,7 @@ var Marionette = require('backbone.marionette'),
     MoneyStack = require('moneystack'),
     MainLayout = require('./src/view/MainLayout'),
     ListView = require('./src/view/ListView'),
-    DataSetView = require('./src/view/DataSetView'),
+    ParticularsView = require('./src/view/ParticularsView'),
     AmountDataSet = require('./src/model/AmountDataSet'),
     AmountEntry = require('./src/model/AmountEntry'),
     AmountEntryCollection = require('./src/model/AmountEntryCollection'),
@@ -25,11 +25,11 @@ Banknote.addInitializer(function(options) {
       collection: options.model.get('entries')
    });
 
-   var dataSetView = new DataSetView({
+   var particulars = new ParticularsView({
       model: options.model
    });
 
-   dataSetView.on("add:click", function(args){
+   particulars.on("add:click", function(args){
       var view = new AddEntryForm({
          model : new AmountEntry()
       });
@@ -54,8 +54,8 @@ Banknote.addInitializer(function(options) {
       Banknote.modal.present(view, buttons);
    });
 
-   layout.elements.show(dataSetView);
-   dataSetView.getRegion('rendered').show(listView);
+   layout.elements.show(particulars);
+   particulars.getRegion('rendered').show(listView);
 });
 
 Banknote.start({
