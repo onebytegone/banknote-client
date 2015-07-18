@@ -13,7 +13,7 @@ To build the needed files, run:
 ```
 cp src/config.demo.js src/config.js
 npm install
-grunt
+grunt build-all
 ```
 
 

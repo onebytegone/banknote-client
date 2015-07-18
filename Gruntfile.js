@@ -99,5 +99,6 @@ module.exports = function(grunt) {
       }
    });
 
-   grunt.registerTask('default', ['newer:copy:cssToSass', 'sass:dist', 'newer:jshint', 'browserify', 'exorcise']);
+   grunt.registerTask('default', ['sass:dist', 'newer:jshint', 'browserify', 'exorcise']);
+   grunt.registerTask('build-all', ['newer:copy:cssToSass', 'default']);
 };
