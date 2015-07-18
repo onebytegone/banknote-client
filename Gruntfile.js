@@ -94,7 +94,7 @@ module.exports = function(grunt) {
          }
       },
       watch: {
-         files: ['<%= jshint.files %>', 'index.html'],
+         files: ['<%= project.src.sass %>/**/*.scss', '<%= jshint.files %>', 'index.html'],
          tasks: ['default']
       }
    });
