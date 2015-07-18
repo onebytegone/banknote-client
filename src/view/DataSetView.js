@@ -4,7 +4,7 @@ var DataSetView = Marionette.LayoutView.extend({
    template: "#template-dataset",
 
    regions: {
-      rendered: "#rendered"
+      rendered: ".jsRendered"
    },
 
    triggers: {

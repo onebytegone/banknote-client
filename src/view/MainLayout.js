@@ -5,7 +5,7 @@ var MainLayout = Marionette.LayoutView.extend({
    template: "#template-main",
 
    regions: {
-      elements: "#elements"
+      elements: ".jsElements"
    }
 });
 

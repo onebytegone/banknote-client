@@ -3,6 +3,7 @@ var Marionette = require('backbone.marionette'),
 
 var ListView = Marionette.CompositeView.extend({
    tagName: 'table',
+   className: 'table',
    template: '#template-listview',
    childView: ListItem,
 
