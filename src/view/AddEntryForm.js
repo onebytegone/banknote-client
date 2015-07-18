@@ -5,12 +5,15 @@ var AddEntryForm = Marionette.ItemView.extend({
    template: "#form-addentry",
    title: "Add Entry",
 
-   events: {
-      "click button.js-submit": "submitClicked"
+   submitAction: function () {
+      this.trigger('on:submit', Syphon.serialize(this));
    },
 
-   getFormData: function () {
-      return Syphon.serialize(this);
+   getSubmitAction: function() {
+      var self = this;
+      return function () {
+         self.submitAction();
+      };
    }
 });
 

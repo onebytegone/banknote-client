@@ -34,6 +34,11 @@ Banknote.addInitializer(function(options) {
          model : new AmountEntry()
       });
 
+      view.on('on:submit', function(data) {
+         data.amount = new MoneyStack(data.amount);
+         args.model.get('entries').add(new AmountEntry(data));
+      });
+
       var buttons = [
          {
             label: 'Close',
@@ -42,14 +47,10 @@ Banknote.addInitializer(function(options) {
          {
             label: 'Save',
             classes: 'btn-primary',
-            handler: function() {
-               var model = args.model;
-               var formData = view.getFormData();
-               formData.amount = new MoneyStack(formData.amount);
-               model.get('entries').add(new AmountEntry(formData));
-            }
+            handler: view.getSubmitAction()
          }
       ];
+
       Banknote.modal.present(view, buttons);
    });
 
