@@ -5,6 +5,15 @@ var AddEntryForm = Marionette.ItemView.extend({
    template: "#form-addentry",
    title: "Add Entry",
 
+   onRender: function () {
+      // Load with today's date
+      var now = new Date();
+      var day = ('0' + now.getDate()).slice(-2);
+      var month = ('0' + (now.getMonth() + 1)).slice(-2);
+      var today = now.getFullYear() + '-' + month + '-' +  day;
+      this.$el.find("input[type=date]").val(today);
+   },
+
    submitAction: function () {
       this.trigger('on:submit', Syphon.serialize(this));
    },

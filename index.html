@@ -39,17 +39,17 @@
 
    <script type="text/template" id="form-addentry">
       <form>
-        <div>
+        <div class="form-group">
           <label for="addentry-date">Date:</label>
-          <input id="addentry-date" name="date" type="date" value="<%- date %>"/>
+          <input id="addentry-date" class="form-control" name="date" type="date" value="<%- date %>"/>
         </div>
-        <div>
+        <div class="form-group">
           <label for="addentry-name">Name:</label>
-          <input id="addentry-name" name="name" type="text" value="<%- name %>"/>
+          <input id="addentry-name" class="form-control" name="name" type="text" value="<%- name %>"/>
         </div>
-        <div>
+        <div class="form-group">
           <label for="addentry-amount">Amount:</label>
-          <input id="addentry-amount" name="amount" type="text" value="<%- amount.get() %>"/>
+          <input id="addentry-amount" class="form-control" name="amount" type="text" value="<%- amount.get() %>"/>
         </div>
       </form>
     </script>
