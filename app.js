@@ -13,8 +13,8 @@ var Marionette = require('backbone.marionette'),
 var Banknote = new Marionette.Application();
 
 Banknote.addRegions({
-    central: '#app',
-    modal: RegionModal
+   central: '#app',
+   modal: RegionModal
 });
 
 Banknote.addInitializer(function(options) {
