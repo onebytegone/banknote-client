@@ -1,4 +1,5 @@
-var Marionette = require('backbone.marionette'),
+var Backbone = require('backbone'),
+    Marionette = require('backbone.marionette'),
     RegionModalLayout = require('./RegionModalLayout.js'),
     ModalButtonView = require('./ModalButtonView.js'),
     _ = require('underscore');
@@ -10,8 +11,12 @@ var RegionModal = Marionette.Region.extend({
       this.$el.modal('show');
    },
 
-   present: function(view, buttonSpecs) {
+   present: function(title, view, buttonSpecs) {
+
       var layout = new RegionModalLayout();
+      layout.model = new Backbone.Model({
+        'title': title
+      });
       this.show(layout);
       layout.getRegion('content').show(view);
 

@@ -51,7 +51,7 @@ Banknote.addInitializer(function(options) {
          }
       ];
 
-      Banknote.modal.present(view, buttons);
+      Banknote.modal.present("Add expense", view, buttons);
    });
 
    layout.elements.show(particulars);
