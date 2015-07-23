@@ -3,7 +3,7 @@ var Backbone = require('backbone'),
     MoneyStack = require('moneystack'),
     MainLayout = require('./src/view/MainLayout'),
     ParticularsCollection = require('./src/view/ParticularsCollection'),
-    AmountDataSet = require('./src/model/AmountDataSet'),
+    ParticularsModel = require('./src/model/ParticularsModel'),
     AmountEntry = require('./src/model/AmountEntry'),
     AmountEntryCollection = require('./src/model/AmountEntryCollection'),
     RegionModal = require('./src/common/modal/RegionModal.js');
@@ -28,9 +28,9 @@ Banknote.addInitializer(function(options) {
 
 Banknote.start({
    tables: [
-      new AmountDataSet({
+      new ParticularsModel({
          name: 'Expenses',
-         entries: new AmountEntryCollection([
+         dataset: new AmountEntryCollection([
             new AmountEntry({
                amount: new MoneyStack(4),
                name: 'Electric',
@@ -43,9 +43,9 @@ Banknote.start({
             })
          ])
       }),
-      new AmountDataSet({
+      new ParticularsModel({
          name: 'Income',
-         entries: new AmountEntryCollection([
+         dataset: new AmountEntryCollection([
             new AmountEntry({
                amount: new MoneyStack(4),
                name: 'Interest',

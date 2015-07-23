@@ -1,6 +1,5 @@
 var Marionette = require('backbone.marionette'),
     MoneyStack = require('moneystack'),
-    ListView = require('./ListView'),
     AddEntryForm = require('./AddEntryForm'),
     AmountEntry = require('../model/AmountEntry');
 
@@ -19,10 +18,10 @@ var ParticularsView = Marionette.LayoutView.extend({
    onRender: function() {
       var self = this;
 
-      var listView = new ListView({
-         'collection': this.model.get('entries')
+      var display = new (this.model.get('displayType'))({
+         'collection': this.model.get('dataset')
       });
-      this.getRegion('rendered').show(listView);
+      this.getRegion('rendered').show(display);
 
       this.on("add:click", function(args){
          var view = new AddEntryForm({
