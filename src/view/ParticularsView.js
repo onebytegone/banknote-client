@@ -30,7 +30,7 @@ var ParticularsView = Marionette.LayoutView.extend({
 
          view.on('on:submit', function(data) {
             data.amount = new MoneyStack(data.amount);
-            self.model.get('entries').add(new AmountEntry(data));
+            self.model.get('dataset').add(new AmountEntry(data));
          });
 
          var buttons = [
