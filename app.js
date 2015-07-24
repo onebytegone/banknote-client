@@ -6,7 +6,8 @@ var Backbone = require('backbone'),
     ParticularsModel = require('./src/model/ParticularsModel'),
     AmountEntry = require('./src/model/AmountEntry'),
     AmountEntryCollection = require('./src/model/AmountEntryCollection'),
-    RegionModal = require('./src/common/modal/RegionModal.js');
+    RegionModal = require('./src/common/modal/RegionModal.js'),
+    ListView = require('./src/view/table/ListView');
 
 
 var Banknote = new Marionette.Application();
@@ -41,7 +42,8 @@ Banknote.start({
                name: 'Lunch',
                date: '5/4'
             })
-         ])
+         ]),
+         displayType: ListView
       }),
       new ParticularsModel({
          name: 'Income',
@@ -56,7 +58,8 @@ Banknote.start({
                name: 'Paycheck',
                date: '3/4'
             })
-         ])
+         ]),
+         displayType: ListView
       })
    ]
 });
