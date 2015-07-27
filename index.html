@@ -35,18 +35,9 @@
       <thead>
          <tr>
             <th></th>
-            <th>January</th>
-            <th>February</th>
-            <th>March</th>
-            <th>April</th>
-            <th>May</th>
-            <th>June</th>
-            <th>July</th>
-            <th>August</th>
-            <th>September</th>
-            <th>October</th>
-            <th>November</th>
-            <th>December</th>
+            <% _.each(months, function(month){ %>
+               <th><%= month %></th>
+            <% }); %>
          </tr>
       </thead>
       <tbody>
