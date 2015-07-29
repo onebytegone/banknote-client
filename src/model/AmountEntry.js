@@ -7,6 +7,10 @@ var AmountEntry = Backbone.Model.extend({
       name: '',
       date: '',
       category: ''
+   },
+
+   getDateOfMonth: function () {
+      return (new Date(this.get('date')).getMonth() + 1) + '/1';
    }
 });
 
