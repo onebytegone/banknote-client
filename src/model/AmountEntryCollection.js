@@ -5,7 +5,12 @@ var Backbone = require('backbone'),
 var AmountEntryCollection = Backbone.Collection.extend({
    model: AmountEntry,
 
-   yearlyTotal: function() {
+   /**
+    * Returns the sum of all the amounts of stored entries
+    *
+    * @return MoneyStack
+    */
+   sumEntries: function() {
       var value = this.reduce(function(carry, entry) {
          return carry.plus(entry.get('amount'));
       }, new MoneyStack(0));

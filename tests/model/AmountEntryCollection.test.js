@@ -43,4 +43,9 @@ describe('AmountEntryCollection', function() {
       expect(output['first'].length).to.be(2);
       expect(output['second'].length).to.be(1);
    });
+
+   it('should return a summed total', function() {
+      var output = basicList.sumEntries();
+      expect(output.get()).to.be(15);
+   });
 });
