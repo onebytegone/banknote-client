@@ -44,6 +44,17 @@ describe('AmountEntryCollection', function() {
       expect(output['second'].length).to.be(1);
    });
 
+   it('should return a monthly summary', function() {
+      var output = basicList.monthlySummary();
+      expect(output.length).to.be(3);
+      expect(output.at(0).get('date')).to.be('1/1');
+      expect(output.at(0).get('amount').get()).to.be(5);
+      expect(output.at(1).get('date')).to.be('3/1');
+      expect(output.at(1).get('amount').get()).to.be(3);
+      expect(output.at(2).get('date')).to.be('11/1');
+      expect(output.at(2).get('amount').get()).to.be(7);
+   });
+
    it('should return a summed total', function() {
       var output = basicList.sumEntries();
       expect(output.get()).to.be(15);

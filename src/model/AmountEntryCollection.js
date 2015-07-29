@@ -1,4 +1,5 @@
 var Backbone = require('backbone'),
+    _ = require('underscore'),
     AmountEntry = require('./AmountEntry'),
     MoneyStack = require('moneystack');
 
@@ -41,6 +42,32 @@ var AmountEntryCollection = Backbone.Collection.extend({
          }
          return carry;
       }, {});
+   },
+
+   /**
+    * Creates a collection with a entry for each month. The
+    * value in the entry is the sum of the amounts for that
+    * month. The date will be for the first.
+    *
+    * @return AmountEntryCollection
+    */
+   monthlySummary: function() {
+      var output = new AmountEntryCollection();
+
+      var monthlyCollections = this.collectionsByFilter(function(entry) {
+         return entry.getDateOfMonth();
+      });
+
+      var summedEntries = _.map(monthlyCollections, function(collection, key) {
+         return new AmountEntry({
+            'date': key,
+            'amount': collection.sumEntries()
+         });
+      });
+
+      output.add(summedEntries);
+
+      return output;
    }
 });
 
