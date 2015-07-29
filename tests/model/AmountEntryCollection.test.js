@@ -1,50 +1,35 @@
 var expect = require('expect.js'),
     _ = require('underscore'),
-    AmountEntryCollection = require('../../src/model/AmountEntryCollection');
+    AmountEntryCollection = require('../../src/model/AmountEntryCollection'),
+    MoneyStack = require('moneystack');
 
 describe('AmountEntryCollection', function() {
+   var basicList = new AmountEntryCollection([
+      {
+         'date': '1/2',
+         'category': 'first',
+         'amount': new MoneyStack(4)
+      },
+      {
+         'date': '3/1',
+         'category': 'first',
+         'name': 'misc',
+         'amount': new MoneyStack(3)
+      },
+      {
+         'date': '1/4',
+         'category': 'second',
+         'amount': new MoneyStack(1)
+      },
+      {
+         'date': '11/12',
+         'category': 'notused',
+         'amount': new MoneyStack(7)
+      }
+   ]);
+
    it('should return a properly filtered set', function() {
-      var source = new AmountEntryCollection([
-         {
-            'date': '1/2',
-            'category': 'first'
-         },
-         {
-            'date': '3/1',
-            'category': 'first',
-            'name': 'misc'
-         },
-         {
-            'date': '1/2',
-            'category': 'second'
-         },
-         {
-            'date': '11/12',
-            'category': 'notused'
-         }
-      ]);
-
-      var target = {
-         'first': new AmountEntryCollection([
-            {
-               'date': '1/2',
-               'category': 'first'
-            },
-            {
-               'date': '3/1',
-               'category': 'first',
-               'name': 'misc'
-            }
-         ]),
-         'second': new AmountEntryCollection([
-            {
-               'date': '1/2',
-               'category': 'second'
-            }
-         ])
-      };
-
-      var output = source.collectionsByFilter(function(entry) {
+      var output = basicList.collectionsByFilter(function(entry) {
          var category = entry.get('category');
          if (category === 'notused') {
             return null;
