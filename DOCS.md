@@ -30,3 +30,35 @@ A place for random tidbits about banknote.
     * Date
     * Category _(optional)_
     * Name _(optional)_
+
+
+## Proposed Data Storage Options
+
+This are some possible options for persisting the app data.
+
+### Local storage
+
+   + can load data automatically on page load
+   + easy to use
+   - not shared between devices
+   - can be reset at any time
+   - can't be backed up by user easily
+   - no versioning
+
+
+### Local file that is imported
+
+   + can be backed up and placed in version control by user
+   + can be sync with Dropbox
+   + user can encrypt if desired
+   ? how importing would work
+   ? how would do on mobile
+
+
+### Store data on Dropbox
+
+   + auto syncing for user
+   + some versioning by Dropbox
+   - requires Dropbox account
+   - adds complexity to app
+   - user cannot encrypt file, would have to be handled by app
