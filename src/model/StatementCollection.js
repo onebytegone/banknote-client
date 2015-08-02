@@ -10,7 +10,7 @@ var StatementCollection = Backbone.Collection.extend({
       return _.reduce(collectionList, function(carry, collection, key) {
          carry.add(new Statement({
             'key': key,
-            'collection': collection
+            'entries': collection
          }));
 
          return carry;

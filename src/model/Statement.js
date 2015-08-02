@@ -3,8 +3,8 @@ var Backbone = require('backbone'),
 
 var Statement = Backbone.Model.extend({
    defaults: {
-      tag: '',
-      collection: new AmountEntryCollection()
+      key: '',
+      entries: new AmountEntryCollection()
    }
 });
 
