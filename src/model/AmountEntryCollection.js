@@ -65,7 +65,36 @@ var AmountEntryCollection = Backbone.Collection.extend({
          });
       });
 
-      output.add(summedEntries);
+      var getLastMonthListed = function (entries) {
+         var lastItem = _.last(entries);
+         return lastItem ? lastItem.getMonth() : 0;
+      };
+
+      /**
+       * `startingMonth` and `endingMonth` are inclusive
+       */
+      var generateMissingMonths = function (startingMonth, endingMonth) {
+         return _.map(_.range(startingMonth, endingMonth+1), function (month) {
+            return new AmountEntry({
+               'date': month + '/1'
+            });
+         });
+      };
+
+      // Fill in missing months
+      var filledSet = _.reduce(summedEntries, function(carry, entry) {
+         var missingMonths = generateMissingMonths(getLastMonthListed(carry)+1, entry.getMonth()-1);
+         carry = carry.concat(missingMonths);
+
+         carry.push(entry);
+         return carry;
+      }, []);
+
+      if (filledSet.length < 12) {
+         filledSet = filledSet.concat(generateMissingMonths(getLastMonthListed(filledSet)+1, 12));
+      }
+
+      output.add(filledSet);
 
       return output;
    }
