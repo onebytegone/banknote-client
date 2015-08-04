@@ -38,10 +38,19 @@
             <% _.each(months, function(month){ %>
                <th><%= month %></th>
             <% }); %>
+            <th>Total</th>
          </tr>
       </thead>
       <tbody>
       </tbody>
+   </script>
+
+   <script type="text/template" id="template-monthlytablerow">
+      <td><%= key %></td>
+      <% entries.monthlySummary().each(function(entry){ %>
+         <td><%= entry.get('amount').readable() %></td>
+      <% }); %>
+      <td><%= entries.sumEntries().readable() %></td>
    </script>
 
    <script type="text/template" id="template-listitem">

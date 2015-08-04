@@ -1,9 +1,9 @@
 var TableBones = require('./TableBones'),
-    ListItem = require('../ListItem');
+    MonthlyTableRow = require('./rows/MonthlyTableRow');
 
 var MonthlyTable = TableBones.extend({
    template: '#template-monthlytable',
-   childView: ListItem,
+   childView: MonthlyTableRow,
 
    templateHelpers: function () {
       return {
