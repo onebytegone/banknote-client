@@ -6,6 +6,7 @@ var ParticularsModel = Backbone.Model.extend({
       dataset: new AmountEntryCollection(),
       name: '',
       displayType: null,
+      editable: true,
    }
 });
 
