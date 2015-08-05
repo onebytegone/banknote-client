@@ -1,6 +1,11 @@
 #app {
-   max-width: 800px;
+   display: inline-block;
+   padding: 0 16px 50px 16px;
    margin: 0 auto;
+   text-align: left;
+   @include respond-to(medium) {
+      padding: 0 80px 80px 80px;
+   }
 }
 
 .apptitle {
