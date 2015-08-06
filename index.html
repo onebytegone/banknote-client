@@ -38,7 +38,9 @@
             <% _.each(months, function(month){ %>
                <th><%= month %></th>
             <% }); %>
+            <% if(getOption('showsTotal')) { %>
             <th>Total</th>
+            <% } %>
          </tr>
       </thead>
       <tbody>
@@ -50,7 +52,9 @@
       <% entries.monthlySummary().each(function(entry){ %>
          <td class="<%= addClassByAmount(entry.get('amount')) %>"><%= entry.get('amount').readable() %></td>
       <% }); %>
-      <td><%= entries.sumEntries().readable() %></td>
+      <% if(getOption('showsTotal')) { %>
+         <td><%= entries.sumEntries().readable() %></td>
+      <% } %>
    </script>
 
    <script type="text/template" id="template-listitem">

@@ -4,8 +4,14 @@ var TableBones = require('./TableBones'),
 var MonthlyTable = TableBones.extend({
    template: '#template-monthlytable',
    childView: MonthlyTableRow,
+   childViewOptions: function() {
+      return {
+         'showsTotal': this.options.showsTotal
+      };
+   },
 
    templateHelpers: function () {
+      var self = this;
       return {
          months: [
             'January',
@@ -20,7 +26,10 @@ var MonthlyTable = TableBones.extend({
             'October',
             'November',
             'December'
-         ]
+         ],
+         getOption: function(option) {
+            return self.options[option];
+         }
       };
    }
 });
