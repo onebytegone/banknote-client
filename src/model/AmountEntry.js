@@ -6,7 +6,7 @@ var AmountEntry = Backbone.Model.extend({
       amount: new MoneyStack(),
       name: '',
       date: '',
-      category: ''
+      category: 'unknown'
    },
 
    getDateOfMonth: function () {
