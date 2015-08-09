@@ -8,6 +8,8 @@ A place for random tidbits about banknote.
  
     A collection of Statement's. Used to represent a grouping of data such as the yearly summary of income by source per month.
 
+    A `StatementCollection` is used for representing a set of +1 dimensional data. `Statement` adds this additional dimension of information.
+
 
   * `Statement`
     
