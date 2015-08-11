@@ -31,6 +31,12 @@
       </tbody>
    </script>
 
+   <script type="text/template" id="template-listitem">
+      <td><%= date %></td>
+      <td><%= name %></td>
+      <td><%= amount.readable() %></td>
+   </script>
+
    <script type="text/template" id="template-monthlytable">
       <thead>
          <tr>
@@ -55,12 +61,6 @@
       <% if(getOption('showsTotal')) { %>
          <td><%= entries.sumEntries().readable() %></td>
       <% } %>
-   </script>
-
-   <script type="text/template" id="template-listitem">
-      <td><%= date %></td>
-      <td><%= name %></td>
-      <td><%= amount.readable() %></td>
    </script>
 
    <script type="text/template" id="form-addentry">
