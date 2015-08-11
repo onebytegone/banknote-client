@@ -63,6 +63,23 @@
       <% } %>
    </script>
 
+   <script type="text/template" id="template-monthlysummary">
+      <thead>
+         <tr>
+            <% _.each(months, function(month){ %>
+               <th><%= month %></th>
+            <% }); %>
+         </tr>
+      </thead>
+      <tbody>
+         <tr class="output"></tr>
+      </tbody>
+   </script>
+
+   <script type="text/template" id="template-monthlysummaryrow">
+      <%= amount.readable() %>
+   </script>
+
    <script type="text/template" id="form-addentry">
       <form>
         <div class="form-group">
