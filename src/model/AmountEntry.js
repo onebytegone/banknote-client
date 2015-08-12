@@ -14,7 +14,14 @@ var AmountEntry = Backbone.Model.extend({
    },
 
    getMonth: function () {
-      return new Date(this.get('date')).getMonth() + 1;
+      var dateStr = this.get('date');
+
+      // Custom handling for 'mm/dd'
+      if (dateStr.match( /\d{1,2}\/\d{1,2}/i)) {
+         return parseInt(dateStr.split('/')[0]);
+      }
+
+      return new Date(dateStr).getMonth() + 1;
    }
 });
 
