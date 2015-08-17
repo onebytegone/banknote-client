@@ -4,8 +4,14 @@ var TableBones = Marionette.CompositeView.extend({
    tagName: 'table',
    className: 'table',
 
+   /**
+    * This is the selector used to find the element
+    * that the child views should be appended to
+    */
+   targetElement: 'tbody',
+
    attachHtml: function(collectionView, itemView){
-      collectionView.$('tbody').append(itemView.el);
+      collectionView.$(this.targetElement).append(itemView.el);
    }
 });
 

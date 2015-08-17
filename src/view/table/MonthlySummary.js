@@ -5,10 +5,7 @@ var $ = require('jquery'),
 var MonthlySummary = MonthlyTable.extend({
    template: '#template-monthlysummary',
    childView: MonthlySummaryRow,
-
-   attachHtml: function(collectionView, itemView) {
-      collectionView.$('.output').append(itemView.el);
-   }
+   targetElement: '.output'
 });
 
 module.exports = MonthlySummary;
