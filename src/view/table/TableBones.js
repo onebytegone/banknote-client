@@ -5,7 +5,7 @@ var TableBones = Marionette.CompositeView.extend({
    className: 'table',
    childViewOptions: function() {
       return {
-         'showsTotal': this.options.showsTotal
+         'sharedOptions': this.options.sharedOptions
       };
    },
 
@@ -26,7 +26,7 @@ var TableBones = Marionette.CompositeView.extend({
       var self = this;
       return {
          getOption: function(option) {
-            return self.options[option];
+            return self.options.sharedOptions[option];
          }
       };
    }
