@@ -22,6 +22,7 @@
     "backbone.marionette": "^2.4.1",
     "backbone.syphon": "^0.6.0",
     "bootstrap": "^3.3.5",
+    "font-awesome": "^4.4.0",
     "jquery": "^2.1.4",
     "moneystack": "git+https://github.com/onebytegone/MoneyStack.git#81d579a9f3",
     "underscore": "^1.8.3"
