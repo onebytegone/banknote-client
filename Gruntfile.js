@@ -15,7 +15,8 @@ module.exports = function(grunt) {
          dist: {
             root: 'dist',
             css: '<%= project.dist.root %>/css',
-            js: '<%= project.dist.root %>/js'
+            js: '<%= project.dist.root %>/js',
+            fonts: '<%= project.dist.root %>/fonts'
          }
       },
       copy: {
@@ -29,6 +30,17 @@ module.exports = function(grunt) {
                   dest: '<%= project.lib.node %>',
                   filter: 'isFile',
                   ext: '.scss'
+               }
+            ]
+         },
+         // Copy font-awesome fonts
+         fonts: {
+            files: [
+               {
+                  expand: true,
+                  cwd: '<%= project.lib.node %>/font-awesome/fonts',
+                  src: '*',
+                  dest: '<%= project.dist.fonts %>'
                }
             ]
          }
@@ -100,5 +112,5 @@ module.exports = function(grunt) {
    });
 
    grunt.registerTask('default', ['sass:dist', 'newer:jshint', 'browserify', 'exorcise']);
-   grunt.registerTask('build-all', ['newer:copy:cssToSass', 'default']);
+   grunt.registerTask('build-all', ['newer:copy:cssToSass', 'newer:copy:fonts', 'default']);
 };
