@@ -29,4 +29,5 @@ This is the log for what needs to be completed on `banknote-client`. Mostly this
 
   * Dropbox integration
   * Encryption
+  * Per Year support
   * Graphs (http://www.chartjs.org/)
