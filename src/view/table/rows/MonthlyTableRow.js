@@ -11,6 +11,9 @@ var MonthlyTableRow = Marionette.ItemView.extend({
          },
          getOption: function(option) {
             return self.options[option];
+         },
+         getSharedOption: function(option) {
+            return self.options.sharedOptions[option];
          }
       };
    }

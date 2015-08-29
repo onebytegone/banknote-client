@@ -5,7 +5,6 @@ This is the log for what needs to be completed on `banknote-client`. Mostly this
 
 ## Now
 
-  * FIX: Total not totaling on `MonthlyTable`
   * Assign table (Allows value to be assigned to an account)
     * UI
     * Functionality
