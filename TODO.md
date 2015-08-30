@@ -17,7 +17,6 @@ This is the log for what needs to be completed on `banknote-client`. Mostly this
 ## Low Priority
 
   * Add more color
-  * Remove "add" text, only use icon
   * Clean up extra log messages
   * File import/export
     * Format for data needs to be defined
