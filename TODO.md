@@ -12,6 +12,8 @@ This is the log for what needs to be completed on `banknote-client`. Mostly this
   * Scrolling for `ListView` table
   * Controllers for each table section (Defines all operations for the model)
     * Auto updating (Source was adjusted, re-calculate and display)
+    * Build prototype controller for Income summary
+      * Build base class for controllers
   * Add proper headers to code files
 
 ## Low Priority
