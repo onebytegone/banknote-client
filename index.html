@@ -15,7 +15,7 @@
    </script>
 
    <script type="text/template" id="template-particulars">
-      <div class="header"><%= name %><% if (editable) { %> <a href="#" class="add"><i class="fa fa-plus"></i></a><% } %></div>
+      <div class="header"><%- name %><% if (editable) { %> <a href="#" class="add"><i class="fa fa-plus"></i></a><% } %></div>
       <div class="jsRendered"></div>
    </script>
 
@@ -32,9 +32,9 @@
    </script>
 
    <script type="text/template" id="template-listitem">
-      <td><%= date %></td>
-      <td><%= name %></td>
-      <td><%= amount.readable() %></td>
+      <td><%- date %></td>
+      <td><%- name %></td>
+      <td><%- amount.readable() %></td>
    </script>
 
    <script type="text/template" id="template-monthlytable">
@@ -42,7 +42,7 @@
          <tr>
             <th></th>
             <% _.each(months, function(month){ %>
-               <th><%= month %></th>
+               <th><%- month %></th>
             <% }); %>
             <% if(getOption('showsTotal')) { %>
             <th>Total</th>
@@ -54,12 +54,12 @@
    </script>
 
    <script type="text/template" id="template-monthlytablerow">
-      <td><%= key %></td>
+      <td><%- key %></td>
       <% entries.each(function(entry){ %>
-         <td class="<%= addClassByAmount(entry.get('amount')) %>"><%= entry.get('amount').readable() %></td>
+         <td class="<%- addClassByAmount(entry.get('amount')) %>"><%- entry.get('amount').readable() %></td>
       <% }); %>
       <% if(getSharedOption('showsTotal')) { %>
-         <td><%= entries.sumEntries().readable() %></td>
+         <td><%- entries.sumEntries().readable() %></td>
       <% } %>
    </script>
 
@@ -67,7 +67,7 @@
       <thead>
          <tr>
             <% _.each(months, function(month){ %>
-               <th><%= month %></th>
+               <th><%- month %></th>
             <% }); %>
          </tr>
       </thead>
@@ -77,7 +77,7 @@
    </script>
 
    <script type="text/template" id="template-monthlysummaryrow">
-      <%= amount.readable() %>
+      <%- amount.readable() %>
    </script>
 
    <script type="text/template" id="form-addentry">
