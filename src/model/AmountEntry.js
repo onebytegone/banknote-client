@@ -1,3 +1,11 @@
+/**
+ * `AmountEntry` is used to store the data for a single
+ * event. An event can be a single expense, income amount,
+ * or a total such as income for a month.
+ *
+ * Copyright 2015 Ethan Smith
+ */
+
 var Backbone = require('backbone'),
     MoneyStack = require('moneystack');
 

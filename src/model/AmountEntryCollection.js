@@ -1,3 +1,11 @@
+/**
+ * `AmountEntryCollection` is a set of `AmountEntry`s. For example,
+ * this can represent a list of all expenses or a subset such as
+ * the expenses for a month.
+ *
+ * Copyright 2015 Ethan Smith
+ */
+
 var Backbone = require('backbone'),
     _ = require('underscore'),
     AmountEntry = require('./AmountEntry'),
