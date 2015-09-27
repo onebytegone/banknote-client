@@ -1,19 +1,70 @@
-[
-   {
-      "name": "Account EOM",
-      "rows": [
+{
+   "income": [
+      {
+         "amount": 200,
+         "name": "Paycheck",
+         "date": "3/4",
+         "category": "paycheck"
+      }
+   ],
+   "expenses": [
+      {
+         "amount": 200,
+         "name": "Water",
+         "date": "1/4",
+         "category": "bills"
+      }
+   ],
+   "routing": [
+      {
+         "date": "1/1",
+         "amount": 40,
+         "source": "supersavings",
+         "target": "food"
+      }
+   ],
+   "accounts": [
+      {
+         "name": "Super Savings",
+         "key": "supersavings",
+         "type": "savings"
+      },
+      {
+         "name": "Chipper Checks",
+         "key": "chipperchecks",
+         "type": "checking"
+      }
+   ],
+   "funds": [
+      {
+         "name": "Food",
+         "key": "food"
+      }
+   ],
+   "categories": {
+      "income": [
          {
-            "classes": "header",
-            "values": [ "", "Jan", "Feb", "Mar", "April", "May", "June", "July", "Aug", "Sept", "Oct", "Nov", "Dec" ]
+            "name": "Paycheck",
+            "key": "paycheck",
+            "id": 0
          },
          {
-            "classes": "",
-            "values": [ "checking", "100", "", "", "", "", "", "", "", "", "", "", "" ]
+            "name": "Interest",
+            "key": "interest",
+            "id": 1
+         }
+      ],
+      "expenses": [
+         {
+            "name": "Miscellaneous",
+            "key": "misc",
+            "id": 0
          },
          {
-            "classes": "",
-            "values": [ "savings", "", { "classes": "flag", "value": "100" }, "", "", "", "", "", "", "", "", "", "" ]
+            "name": "Bills",
+            "key": "bills",
+            "id": 1
          }
       ]
    }
-]
+}
