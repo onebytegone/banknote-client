@@ -5,10 +5,10 @@ ControlBones = function() { };
 ControlBones.prototype = {};
 
 /**
- * This is called to reload the view using
+ * This is called to render the view using
  * the latest data from the model.
  */
-ControlBones.prototype.reload = function() {
+ControlBones.prototype.render = function() {
    // noop
 };
 
