@@ -17,6 +17,12 @@ var AmountEntry = Backbone.Model.extend({
       category: 'unknown'
    },
 
+   initialize: function(){
+      if (!(this.get('amount') instanceof MoneyStack)) {
+         this.set('amount', new MoneyStack(this.get('amount')));
+      }
+   },
+
    getDateOfMonth: function () {
       return this.getMonth() + '/1';
    },
