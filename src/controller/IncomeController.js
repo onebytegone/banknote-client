@@ -2,9 +2,11 @@ var _ = require('underscore'),
     ControlBones = require('./ControlBones'),
     AmountEntry = require('../model/AmountEntry'),
     AmountEntryCollection = require('../model/AmountEntryCollection'),
+    ParticularsModel = require('../model/ParticularsModel'),
     StatementCollection = require('../model/StatementCollection'),
     StatementsByCategory = require('../model/operations/statements/StatementsByCategory'),
-    TotalByMonth = require('../model/operations/entries/TotalByMonth');
+    TotalByMonth = require('../model/operations/entries/TotalByMonth'),
+    MonthlyTable = require('../view/table/MonthlyTable');
 
 
 var IncomeController = ControlBones.extend({
@@ -28,7 +30,12 @@ var IncomeController = ControlBones.extend({
          return carry;
       }, new StatementCollection());
 
-      //TODO: render monthly
+      return new ParticularsModel({
+         name: 'Income Totals',
+         dataset: monthly,
+         displayType: MonthlyTable,
+         editable: false
+      });
    }
 });
 
