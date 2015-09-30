@@ -1,13 +1,16 @@
+/**
+ * Main entrypoint for banknote.
+ *
+ * Copyright 2015 Ethan Smith
+ */
+
 var Backbone = require('backbone'),
     Marionette = require('backbone.marionette'),
-    MoneyStack = require('moneystack'),
+    $ = require('jquery'),
     MainLayout = require('./src/view/MainLayout'),
-    ParticularsCollection = require('./src/view/ParticularsCollection'),
-    ParticularsModel = require('./src/model/ParticularsModel'),
-    AmountEntry = require('./src/model/AmountEntry'),
-    AmountEntryCollection = require('./src/model/AmountEntryCollection'),
     RegionModal = require('./src/common/modal/RegionModal.js'),
-    ListView = require('./src/view/table/ListView');
+    ParticularsCollection = require('./src/view/ParticularsCollection'),
+    IncomeController = require('./src/controller/IncomeController');
 
 
 var Banknote = new Marionette.Application();
@@ -27,41 +30,12 @@ Banknote.addInitializer(function(options) {
    layout.elements.show(particularsCollection);
 });
 
-Banknote.start({
-   tables: [
-      new ParticularsModel({
-         name: 'Expenses',
-         dataset: new AmountEntryCollection([
-            new AmountEntry({
-               amount: new MoneyStack(4),
-               name: 'Electric',
-               date: '5/2'
-            }),
-            new AmountEntry({
-               amount: new MoneyStack(12),
-               name: 'Lunch',
-               date: '5/4'
-            })
-         ]),
-         displayType: ListView
-      }),
-      new ParticularsModel({
-         name: 'Income',
-         dataset: new AmountEntryCollection([
-            new AmountEntry({
-               amount: new MoneyStack(4),
-               name: 'Interest',
-               date: '1/2'
-            }),
-            new AmountEntry({
-               amount: new MoneyStack(200),
-               name: 'Paycheck',
-               date: '3/4'
-            })
-         ]),
-         displayType: ListView
-      })
-   ]
+var income = new IncomeController();
+$.getJSON('demo.json', function(data) {
+   var tables = [];
+
+   tables.push(income.render(data));
+   Banknote.start({ 'tables': tables});
 });
 
 // Make Banknote available globally
