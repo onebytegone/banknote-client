@@ -1,7 +1,15 @@
 var _ = require('underscore'),
     ControlBones;
 
-ControlBones = function() { };
+ControlBones = function(options) {
+   var self = this;
+
+   // Copy all options to object
+   _.each(options, function(value, key) {
+      self[key] = value;
+   });
+};
+
 ControlBones.prototype = {};
 
 /**
