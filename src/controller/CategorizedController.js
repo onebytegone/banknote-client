@@ -9,14 +9,12 @@ var _ = require('underscore'),
     MonthlyTable = require('../view/table/MonthlyTable');
 
 
-var IncomeController = ControlBones.extend({
+var CategorizedController = ControlBones.extend({
+   title: 'Categorized Table',
+   source: 'fieldnamehere',
+
    render: function(data) {
-      console.log('IncomeController:');
-      console.log(data);
-
-      var income = data.income;
-
-      var collection = new AmountEntryCollection(_.map(income, function(note) {
+      var collection = new AmountEntryCollection(_.map(data[this.source], function(note) {
          return new AmountEntry(note);
       }));
 
@@ -31,7 +29,7 @@ var IncomeController = ControlBones.extend({
       }, new StatementCollection());
 
       return new ParticularsModel({
-         name: 'Income Totals',
+         name: this.title,
          dataset: monthly,
          displayType: MonthlyTable,
          editable: false
@@ -39,4 +37,4 @@ var IncomeController = ControlBones.extend({
    }
 });
 
-module.exports = IncomeController;
+module.exports = CategorizedController;

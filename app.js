@@ -10,7 +10,7 @@ var Backbone = require('backbone'),
     MainLayout = require('./src/view/MainLayout'),
     RegionModal = require('./src/common/modal/RegionModal.js'),
     ParticularsCollection = require('./src/view/ParticularsCollection'),
-    IncomeController = require('./src/controller/IncomeController');
+    CategorizedController = require('./src/controller/CategorizedController');
 
 
 var Banknote = new Marionette.Application();
@@ -30,7 +30,11 @@ Banknote.addInitializer(function(options) {
    layout.elements.show(particularsCollection);
 });
 
-var income = new IncomeController();
+var income = new CategorizedController({
+       title: 'Income Totals',
+       source: 'income'
+    });
+
 $.getJSON('demo.json', function(data) {
    var tables = [];
 
