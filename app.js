@@ -35,10 +35,17 @@ var income = new CategorizedController({
        source: 'income'
     });
 
+var expenses = new CategorizedController({
+       title: 'Expenses',
+       source: 'expenses'
+    });
+
 $.getJSON('demo.json', function(data) {
    var tables = [];
 
    tables.push(income.render(data));
+   tables.push(expenses.render(data));
+
    Banknote.start({ 'tables': tables});
 });
 
