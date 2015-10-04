@@ -7,6 +7,7 @@
 var Backbone = require('backbone'),
     Marionette = require('backbone.marionette'),
     $ = require('jquery'),
+    _ = require('underscore'),
     MainLayout = require('./src/view/MainLayout'),
     RegionModal = require('./src/common/modal/RegionModal.js'),
     ParticularsCollection = require('./src/view/ParticularsCollection'),
@@ -30,23 +31,23 @@ Banknote.addInitializer(function(options) {
    layout.elements.show(particularsCollection);
 });
 
-var income = new CategorizedController({
-       title: 'Income Totals',
-       source: 'income'
-    });
-
-var expenses = new CategorizedController({
-       title: 'Expenses',
-       source: 'expenses'
-    });
+var controllers = [
+   new CategorizedController({
+      title: 'Income Totals',
+      source: 'income'
+   }),
+   new CategorizedController({
+      title: 'Expenses',
+      source: 'expenses'
+   })
+];
 
 $.getJSON('demo.json', function(data) {
-   var tables = [];
-
-   tables.push(income.render(data));
-   tables.push(expenses.render(data));
-
-   Banknote.start({ 'tables': tables});
+   Banknote.start({
+      'tables': _.map(controllers, function(controller) {
+         return controller.render(data);
+      })
+   });
 });
 
 // Make Banknote available globally
