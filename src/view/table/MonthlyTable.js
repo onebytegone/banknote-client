@@ -24,6 +24,10 @@ var MonthlyTable = TableBones.extend({
       ];
 
       return helpers;
+   },
+
+   allowsAddButton: function() {
+      return false;
    }
 });
 

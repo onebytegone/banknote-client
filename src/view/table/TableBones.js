@@ -29,6 +29,10 @@ var TableBones = Marionette.CompositeView.extend({
             return self.options.sharedOptions[option];
          }
       };
+   },
+
+   allowsAddButton: function() {
+      return true;
    }
 });
 

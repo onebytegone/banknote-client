@@ -5,7 +5,11 @@ var $ = require('jquery'),
 var MonthlySummary = MonthlyTable.extend({
    template: '#template-monthlysummary',
    childView: MonthlySummaryRow,
-   targetElement: '.output'
+   targetElement: '.output',
+
+   allowsAddButton: function() {
+      return false;
+   }
 });
 
 module.exports = MonthlySummary;
