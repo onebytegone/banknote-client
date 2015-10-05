@@ -12,6 +12,7 @@ var _ = require('underscore'),
 var CategorizedController = ControlBones.extend({
    title: 'Categorized Table',
    source: 'fieldnamehere',
+   editable: false,
 
    render: function(data) {
       var collection = new AmountEntryCollection(_.map(data[this.source], function(note) {
@@ -32,7 +33,7 @@ var CategorizedController = ControlBones.extend({
          name: this.title,
          dataset: monthly,
          displayType: MonthlyTable,
-         editable: false
+         editable: this.editable
       });
    }
 });
