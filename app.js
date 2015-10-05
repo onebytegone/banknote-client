@@ -37,6 +37,11 @@ var controllers = [
       source: 'income'
    }),
    new CategorizedController({
+      title: 'Fund Routing',
+      source: 'routing',
+      editable: true
+   }),
+   new CategorizedController({
       title: 'Expenses',
       source: 'expenses'
    })
