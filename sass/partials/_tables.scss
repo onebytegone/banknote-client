@@ -1,0 +1,16 @@
+table {
+   &.editable {
+      td {
+         padding: 0 !important;  // Override bootstrap
+         vertical-align: middle !important;  // Override bootstrap
+      }
+      input {
+         width: 100px;
+      }
+   }
+   td.rowTag {
+      padding: 8px !important;  // Override bootstrap
+      font-weight: bold;
+   }
+}
+
