@@ -54,7 +54,7 @@
    </script>
 
    <script type="text/template" id="template-monthlytablerow">
-      <td><%- key %></td>
+      <td class="rowTag"><%- key %></td>
       <% entries.each(function(entry){ %>
          <td class="<%- addClassByAmount(entry.get('amount')) %>">
             <% if (getSharedOption('editable')) { %>
