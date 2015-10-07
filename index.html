@@ -56,7 +56,13 @@
    <script type="text/template" id="template-monthlytablerow">
       <td><%- key %></td>
       <% entries.each(function(entry){ %>
-         <td class="<%- addClassByAmount(entry.get('amount')) %>"><%- entry.get('amount').readable() %></td>
+         <td class="<%- addClassByAmount(entry.get('amount')) %>">
+            <% if (getSharedOption('editable')) { %>
+               <input value="<%- entry.get('amount').readable() %>">
+            <% } else { %>
+               <%- entry.get('amount').readable() %>
+            <% } %>
+         </td>
       <% }); %>
       <% if(shouldShowTotal()) { %>
          <td><%- entries.sumEntries().readable() %></td>
