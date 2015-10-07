@@ -19,7 +19,8 @@ var ParticularsView = Marionette.LayoutView.extend({
       var display = new (this.model.get('displayType'))({
          'collection': this.model.get('dataset'),
          'sharedOptions': {
-            'showsTotal': this.model.get('showsTotal')
+            'showsTotal': this.model.get('showsTotal'),
+            'editable': this.model.get('editable')
          }
       });
       this.model.set('display', display);
