@@ -2,7 +2,9 @@ var Marionette = require('backbone.marionette');
 
 var TableBones = Marionette.CompositeView.extend({
    tagName: 'table',
-   className: 'table',
+   className: function() {
+      return 'table ' + (this.options.sharedOptions && this.options.sharedOptions.editable ? 'editable' : '');
+   },
    childViewOptions: function() {
       return {
          'sharedOptions': this.options.sharedOptions
