@@ -44,8 +44,8 @@
             <% _.each(months, function(month){ %>
                <th><%- month %></th>
             <% }); %>
-            <% if(getOption('showsTotal')) { %>
-            <th>Total</th>
+            <% if(shouldShowTotal()) { %>
+               <th>Total</th>
             <% } %>
          </tr>
       </thead>
@@ -58,7 +58,7 @@
       <% entries.each(function(entry){ %>
          <td class="<%- addClassByAmount(entry.get('amount')) %>"><%- entry.get('amount').readable() %></td>
       <% }); %>
-      <% if(getSharedOption('showsTotal')) { %>
+      <% if(shouldShowTotal()) { %>
          <td><%- entries.sumEntries().readable() %></td>
       <% } %>
    </script>

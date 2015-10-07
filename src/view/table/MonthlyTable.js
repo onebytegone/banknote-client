@@ -6,7 +6,8 @@ var MonthlyTable = TableBones.extend({
    childView: MonthlyTableRow,
 
    templateHelpers: function () {
-      var helpers = this._super();
+      var self = this,
+          helpers = this._super();
 
       helpers.months = [
          'January',
@@ -22,6 +23,10 @@ var MonthlyTable = TableBones.extend({
          'November',
          'December'
       ];
+
+      helpers.shouldShowTotal = function() {
+         return self.options.sharedOptions.showsTotal && self.options.sharedOptions.editable === false;
+      };
 
       return helpers;
    },
