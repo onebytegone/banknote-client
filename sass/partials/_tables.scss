@@ -1,11 +1,19 @@
 table {
+   td {
+      border: 0 !important;  // Override bootstrap
+   }
    &.editable {
       td {
          padding: 0 !important;  // Override bootstrap
          vertical-align: middle !important;  // Override bootstrap
       }
       input {
-         width: 100px;
+         width: 80px;
+         border: 0;
+         margin: 2px;
+         padding: 3px 3px 3px 6px;
+         background-color: $color-editable-background;
+         border-radius: 1px;
       }
    }
    td.rowTag {
@@ -13,4 +21,3 @@ table {
       font-weight: bold;
    }
 }
-
