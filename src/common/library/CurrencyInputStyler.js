@@ -6,8 +6,15 @@ var $ = require('jquery');
    };
 
    $(document).on('focus', '.jsCurrency', function() {
-      var elem = $(this);
-      elem.val(filterSymbol(elem.val()));
+      var elem = $(this),
+          val = filterSymbol(elem.val());
+
+      // If zero value, clear input for user
+      if (parseFloat(val) === 0) {
+         val = '';
+      }
+
+      elem.val(val);
    });
 
    $(document).on('blur', '.jsCurrency', function() {
