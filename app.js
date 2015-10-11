@@ -13,6 +13,8 @@ var Backbone = require('backbone'),
     ParticularsCollection = require('./src/view/ParticularsCollection'),
     CategorizedController = require('./src/controller/CategorizedController');
 
+require('./src/common/library/CurrencyInputStyler');
+
 
 var Banknote = new Marionette.Application();
 
