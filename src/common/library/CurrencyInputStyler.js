@@ -11,10 +11,13 @@ var $ = require('jquery');
    });
 
    $(document).on('blur', '.jsCurrency', function() {
-      var elem = $(this);
+      var elem = $(this),
+          val = elem.val();
 
-      //TODO: Add value validation
+      // Trim to float, e.g. 2112.123, then format to
+      // 2 decimal places, e.g. 212.12, rounding as needed.
+      val = parseFloat(val).toFixed(2);
 
-      elem.val('$' + elem.val());
+      elem.val('$' + val);
    });
 })();
