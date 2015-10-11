@@ -23,7 +23,8 @@ var $ = require('jquery');
 
       // Trim to float, e.g. 2112.123, then format to
       // 2 decimal places, e.g. 212.12, rounding as needed.
-      val = parseFloat(val).toFixed(2);
+      val = parseFloat(val) || 0;
+      val = val.toFixed(2);
 
       elem.val('$' + val);
    });
