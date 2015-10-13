@@ -11,7 +11,8 @@ var Backbone = require('backbone'),
     MainLayout = require('./src/view/MainLayout'),
     RegionModal = require('./src/common/modal/RegionModal.js'),
     ParticularsCollection = require('./src/view/ParticularsCollection'),
-    CategorizedController = require('./src/controller/CategorizedController');
+    CategorizedController = require('./src/controller/CategorizedController'),
+    DifferenceController = require('./src/controller/DifferenceController');
 
 require('./src/common/library/CurrencyInputStyler');
 
@@ -42,6 +43,11 @@ var controllers = [
       title: 'Fund Routing',
       source: 'routing',
       editable: true
+   }),
+   new DifferenceController({
+      title: 'Non-routed Income',
+      minuend: 'income',
+      subtrahend: 'routing'
    }),
    new CategorizedController({
       title: 'Expenses',
