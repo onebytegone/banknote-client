@@ -43,7 +43,8 @@ var DifferenceController = ControlBones.extend({
       return new ParticularsModel({
          name: this.title,
          dataset: differenceMonthly,
-         displayType: MonthlySummary
+         displayType: MonthlySummary,
+         editable: false
       });
    }
 });
