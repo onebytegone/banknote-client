@@ -7,7 +7,8 @@ var ParticularsModel = Backbone.Model.extend({
       name: '',
       displayType: null,
       editable: true,
-      showsTotal: true
+      showsTotal: true,
+      classes: ''
    }
 });
 

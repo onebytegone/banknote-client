@@ -31,6 +31,8 @@ var ParticularsView = Marionette.LayoutView.extend({
    onRender: function() {
       var self = this;
 
+      this.$el.addClass(this.model.get('classes'));
+
       this.getRegion('rendered').show(this.model.get('display'));
 
       if (this.model.get('hasAddButton')) {

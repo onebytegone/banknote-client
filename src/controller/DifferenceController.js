@@ -44,7 +44,8 @@ var DifferenceController = ControlBones.extend({
          name: this.title,
          dataset: differenceMonthly,
          displayType: MonthlySummary,
-         editable: false
+         editable: false,
+         classes: 'shouldZero'
       });
    }
 });
