@@ -21,3 +21,10 @@ table {
       font-weight: bold;
    }
 }
+
+
+.shouldZero {
+   td:not(.zero) {
+      background-color: $color-didntzero-background;
+   }
+}
