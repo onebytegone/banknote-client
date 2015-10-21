@@ -9,6 +9,7 @@ var Marionette = require('backbone.marionette'),
 
 var RowLabelCell = Marionette.ItemView.extend({
    tagName: 'td',
+   className: 'rowLabel',
    render: function() {
       this.$el.html(this.model.text);
    }
