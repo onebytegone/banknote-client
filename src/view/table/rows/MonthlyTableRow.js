@@ -26,25 +26,31 @@ var MonthlyTableRow = Marionette.ItemView.extend({
           entries = this.model.get('entries'),
           label;
 
-      label = new RowLabelCell({
-         model: {
-            'text': this.model.get('key')
-         }
+      this._appendCell(RowLabelCell, {
+         'text': this.model.get('key')
       });
-      label.render();
-      this.$el.append(label.$el);
 
       if (entries) {
          entries.each(function(entry) {
-            var cell = new AmountEntryCell({
-               model: {
-                  'entry': entry.get('amount')
-               }
+            self._appendCell(AmountEntryCell, {
+               'entry': entry.get('amount')
             });
-            cell.render();
-            self.$el.append(cell.$el);
          });
       }
+
+      if (entries && self.options.sharedOptions.showsTotal && self.options.sharedOptions.editable === false) {
+         this._appendCell(AmountEntryCell, {
+            'entry': entries.sumEntries()
+         });
+      }
+   },
+
+   _appendCell: function(type, model) {
+      var cell = new type({
+         'model': model
+      });
+      cell.render();
+      this.$el.append(cell.$el);
    }
 });
 
