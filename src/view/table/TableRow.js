@@ -4,27 +4,29 @@ var Marionette = require('backbone.marionette'),
 var TableRow = Marionette.ItemView.extend({
    tagName: 'tr',
 
-   prependCellType: RowLabelCell,
-   appendCellType: RowLabelCell,
-   cellType: RowLabelCell,
+   options: {
+      prependCellType: RowLabelCell,
+      appendCellType: RowLabelCell,
+      cellType: RowLabelCell,
+   },
 
    render: function() {
       var self = this;
 
       // Render the prepended cell if the type is set
       // and we have an entry for it in the model
-      this._appendCell(this.prependCellType, this.model.get('prepended'));
+      this._appendCell(this.options.prependCellType, this.model.get('prepended'));
 
       // Render the main content for the row
       this.model.get('members').each(function(entry) {
-         self._appendCell(self.cellType, {
+         self._appendCell(self.options.cellType, {
             'entry': entry.get('amount')
          });
       });
 
       // Render the appended cell if the type is set
       // and we have an entry for it in the model
-      this._appendCell(this.appendedCellType, this.model.get('appended'));
+      this._appendCell(this.options.appendedCellType, this.model.get('appended'));
    },
 
    _appendCell: function(type, model) {
