@@ -12,7 +12,10 @@ var AmountEntryCell = Marionette.ItemView.extend({
       return this.model.entry.get() === 0 ? 'zero' : '';
    },
    render: function() {
-      this.$el.html(this.model.entry.readable());
+      this.$el.html(this._readableAmount());
+   },
+   _readableAmount: function() {
+      return this.model.entry.readable();
    }
 });
 
