@@ -11,7 +11,7 @@ var RowLabelCell = Marionette.ItemView.extend({
    tagName: 'td',
    className: 'rowLabel',
    render: function() {
-      this.$el.html(this.model.text);
+      this.$el.html(this.model.get('text'));
    }
 });
 

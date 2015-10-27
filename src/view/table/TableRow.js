@@ -19,9 +19,7 @@ var TableRow = Marionette.ItemView.extend({
 
       // Render the main content for the row
       this.model.get('members').each(function(entry) {
-         self._appendCell(self.options.cellType, {
-            'entry': entry.get('amount')
-         });
+         self._appendCell(self.options.cellType, entry);
       });
 
       // Render the appended cell if the type is set
