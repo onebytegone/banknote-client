@@ -8,7 +8,7 @@ var AmountEntryCell = require('./AmountEntryCell');
 
 var StatementSumCell = AmountEntryCell.extend({
    className: 'statementSum',
-   _readableAmount: function() {
+   _renderContent: function() {
       return this.model.get('entries').sumEntries().readable();
    }
 });

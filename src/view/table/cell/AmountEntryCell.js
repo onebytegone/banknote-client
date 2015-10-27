@@ -4,17 +4,13 @@
  * Copyright 2015 Ethan Smith
  */
 
-var Marionette = require('backbone.marionette');
+var TableCell = require('../TableCell');
 
-var AmountEntryCell = Marionette.ItemView.extend({
-   tagName: 'td',
+var AmountEntryCell = TableCell.extend({
    className: function() {
       return this.model.get('amount').get() === 0 ? 'zero' : '';
    },
-   render: function() {
-      this.$el.html(this._readableAmount());
-   },
-   _readableAmount: function() {
+   _renderContent: function() {
       return this.model.get('amount').readable();
    }
 });

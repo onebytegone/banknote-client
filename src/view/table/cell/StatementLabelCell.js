@@ -4,13 +4,12 @@
  * Copyright 2015 Ethan Smith
  */
 
-var Marionette = require('backbone.marionette');
+var TableCell = require('../TableCell');
 
-var StatementLabelCell = Marionette.ItemView.extend({
-   tagName: 'td',
+var StatementLabelCell = TableCell.extend({
    className: 'statementLabel',
-   render: function() {
-      this.$el.html(this.model.get('key'));
+   _renderContent: function() {
+      return this.model.get('key');
    }
 });
 

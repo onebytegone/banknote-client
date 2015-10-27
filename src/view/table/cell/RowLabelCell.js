@@ -4,14 +4,12 @@
  * Copyright 2015 Ethan Smith
  */
 
-var Marionette = require('backbone.marionette'),
-    $ = require('jquery');
+var TableCell = require('../TableCell');
 
-var RowLabelCell = Marionette.ItemView.extend({
-   tagName: 'td',
+var RowLabelCell = TableCell.extend({
    className: 'rowLabel',
-   render: function() {
-      this.$el.html(this.model.get('text'));
+   _renderContent: function() {
+      return this.model.get('text');
    }
 });
 
