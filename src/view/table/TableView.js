@@ -1,3 +1,9 @@
+/**
+ * A view to render the base structure for a table
+ *
+ * Copyright 2015 Ethan Smith
+ */
+
 var Marionette = require('backbone.marionette');
 
 var TableView = Marionette.CompositeView.extend({
