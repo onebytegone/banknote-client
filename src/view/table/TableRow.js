@@ -1,3 +1,10 @@
+/**
+ * Renders a set of table cells into a row. Allows rendering 
+ * prepended and appended cells for labels.
+ *
+ * Copyright 2015 Ethan Smith
+ */
+
 var Marionette = require('backbone.marionette'),
     RowLabelCell = require('./cell/RowLabelCell');
 
