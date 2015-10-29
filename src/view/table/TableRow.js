@@ -13,6 +13,8 @@ var TableRow = Marionette.ItemView.extend({
    render: function() {
       var self = this;
 
+      Marionette.triggerMethodOn(this, 'before:render', this);
+
       // Render the prepended cell if the type is set
       // and we have an entry for it in the model
       this._appendCell(this.options.prependCellType, this.model.get('prepended'));
@@ -25,6 +27,8 @@ var TableRow = Marionette.ItemView.extend({
       // Render the appended cell if the type is set
       // and we have an entry for it in the model
       this._appendCell(this.options.appendedCellType, this.model.get('appended'));
+
+      Marionette.triggerMethodOn(this, 'render', this);
    },
 
    _appendCell: function(type, model) {
