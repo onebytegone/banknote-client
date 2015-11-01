@@ -6,7 +6,7 @@
 
 var Marionette = require('backbone.marionette');
 
-var TableView = Marionette.CompositeView.extend({
+var TableView = Marionette.LayoutView.extend({
    tagName: 'table',
    template: '#template-tableview',
    regions: {
