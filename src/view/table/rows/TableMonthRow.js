@@ -31,7 +31,9 @@ var TableMonthRow = TableRow.extend({
             Backbone.Model.extend({
                'text': ''
             })
-         )
+         ),
+         'prepended': this.options.prependedModel,
+         'appended': this.options.appendedModel
       });
    }
 });
