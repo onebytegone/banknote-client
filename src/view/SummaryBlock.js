@@ -1,5 +1,6 @@
 /**
- * A view to render the base structure for a table
+ * A view to render the base structure for an element
+ * of content with an associated header.
  *
  * Copyright 2015 Ethan Smith
  */
