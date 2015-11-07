@@ -10,10 +10,7 @@ var Backbone = require('backbone'),
     _ = require('underscore'),
     MainLayout = require('./src/view/MainLayout'),
     RegionModal = require('./src/common/modal/RegionModal.js'),
-    ParticularsCollection = require('./src/view/ParticularsCollection'),
-    CategorizedController = require('./src/controller/CategorizedController'),
-    DifferenceController = require('./src/controller/DifferenceController');
-
+    CategorizedController = require('./src/controller/CategorizedController');
 require('./src/common/library/CurrencyInputStyler');
 
 
@@ -25,43 +22,15 @@ Banknote.addRegions({
 });
 
 Banknote.addInitializer(function(options) {
-   var layout = new MainLayout();
-   Banknote.central.show(layout);
-
-   var particularsCollection = new ParticularsCollection({
-      'collection' :  new Backbone.Collection(options.tables)
-   });
-   layout.elements.show(particularsCollection);
-});
-
-var controllers = [
-   new CategorizedController({
-      title: 'Income Totals',
-      source: 'income'
-   }),
-   new CategorizedController({
-      title: 'Fund Routing',
-      source: 'routing',
-      editable: true
-   }),
-   new DifferenceController({
-      title: 'Non-routed Income',
-      minuend: 'income',
-      subtrahend: 'routing'
-   }),
-   new CategorizedController({
-      title: 'Expenses',
-      source: 'expenses'
-   })
-];
-
-$.getJSON('demo.json', function(data) {
-   Banknote.start({
-      'tables': _.map(controllers, function(controller) {
-         return controller.render(data);
-      })
+   $.getJSON('demo.json', function(data) {
+      var controller = new CategorizedController({
+         title: 'Income Totals'
+      });
+      Banknote.central.show(controller.render(data.income));
    });
 });
+
+Banknote.start();
 
 // Make Banknote available globally
 global.Banknote = Banknote;
