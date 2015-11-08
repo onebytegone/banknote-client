@@ -21,15 +21,30 @@ Banknote.addRegions({
    modal: RegionModal
 });
 
+var summaryConfig = [
+   {
+      'heading': 'Income Totals',
+      'type': CategorizedController,
+      'source': 'income'
+   },
+   {
+      'heading': 'Expenses',
+      'type': CategorizedController,
+      'source': 'expenses'
+   }
+];
+
 Banknote.addInitializer(function(options) {
    $.getJSON('demo.json', function(data) {
 
-      var incomeCollection = new AmountEntryCollection(data.income);
+      _.each(summaryConfig, function(settings) {
+         var collection = new AmountEntryCollection(data[settings.source]);
 
-      var controller = new CategorizedController({
-         title: 'Income Totals'
+         var controller = new settings.type({
+            title: settings.heading
+         });
+         Banknote.central.show(controller.render(collection));
       });
-      Banknote.central.show(controller.render(incomeCollection));
    });
 });
 
