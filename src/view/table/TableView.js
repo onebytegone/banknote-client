@@ -11,7 +11,16 @@ var TableView = Marionette.CompositeView.extend({
    tagName: 'table',
    template: '#template-tableview',
    childView: TableRow,
-   childViewContainer: "tbody"
+   childViewContainer: "tbody",
+   options: {
+      header: null
+   },
+   onRender: function() {
+      if (this.options.header) {
+         this.options.header.render();
+         this.$el.find('thead').append(this.options.header.$el);
+      }
+   }
 });
 
 module.exports = TableView;

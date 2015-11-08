@@ -42,7 +42,8 @@ var CategorizedController = ControlBones.extend({
             prependCellType: StatementLabelCell,
             cellType: AmountEntryCell,
             appendCellType: StatementSumCell
-         }
+         },
+         header: self._generateHeader()
       });
 
       summary.on('show', function() {
