@@ -27,7 +27,8 @@ var CategorizedController = ControlBones.extend({
    },
 
    render: function(rawData) {
-      var categorized = this.parseData(rawData);
+      var self = this,
+          categorized = this.parseData(rawData),
           rowData = categorized.at(0);
 
       var summary = new SummaryBlock({
@@ -58,25 +59,26 @@ var CategorizedController = ControlBones.extend({
          }
       });
 
-      var row = new TableMonthRow({
-         prependedModel: new Backbone.Model(),
-         appendedModel: new Backbone.Model({
-            'text': 'Yearly'
-         })
-      });
-
       summary.on('show', function() {
          summary.content.show(table);
       });
 
       table.on('show', function() {
-         table.header.show(row);
+         table.header.show(self._generateHeader());
          table.body.show(body);
       });
 
       return summary;
    },
 
+   _generateHeader: function() {
+      return new TableMonthRow({
+         prependedModel: new Backbone.Model(),
+         appendedModel: new Backbone.Model({
+            'text': 'Yearly'
+         })
+      });
+   }
 });
 
 module.exports = CategorizedController;
