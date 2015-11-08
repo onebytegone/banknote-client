@@ -28,8 +28,7 @@ var CategorizedController = ControlBones.extend({
 
    render: function(rawData) {
       var self = this,
-          categorized = this.parseData(rawData),
-          rowData = categorized.at(0);
+          categorized = this.parseData(rawData);
 
       var summary = new SummaryBlock({
          model: new Backbone.Model({
@@ -38,18 +37,7 @@ var CategorizedController = ControlBones.extend({
       });
 
       var table = new TableView({
-         collection: new Backbone.Collection([
-            new TableRowModel({
-               prepended: rowData,
-               members: (new TotalByMonth()).run(rowData.get('entries')),
-               appended: rowData
-            }),
-            new TableRowModel({
-               prepended: rowData,
-               members: (new TotalByMonth()).run(rowData.get('entries')),
-               appended: rowData
-            })
-         ]),
+         collection: new Backbone.Collection(categorized.map(this._createRowModel)),
          childViewOptions: {
             prependCellType: StatementLabelCell,
             cellType: AmountEntryCell,
@@ -70,6 +58,14 @@ var CategorizedController = ControlBones.extend({
          appendedModel: new Backbone.Model({
             'text': 'Yearly'
          })
+      });
+   },
+
+   _createRowModel: function(row) {
+      return new TableRowModel({
+         prepended: row,
+         members: (new TotalByMonth()).run(row.get('entries')),
+         appended: row
       });
    }
 });
