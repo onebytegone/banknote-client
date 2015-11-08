@@ -10,7 +10,8 @@ var Backbone = require('backbone'),
     _ = require('underscore'),
     MainLayout = require('./src/view/MainLayout'),
     RegionModal = require('./src/common/modal/RegionModal.js'),
-    CategorizedController = require('./src/controller/CategorizedController');
+    CategorizedController = require('./src/controller/CategorizedController'),
+    AffixedView = require('./src/view/AffixedView');
 require('./src/common/library/CurrencyInputStyler');
 
 
@@ -35,6 +36,10 @@ var summaryConfig = [
 ];
 
 Banknote.addInitializer(function(options) {
+
+   var summaryContainer = new AffixedView();
+   Banknote.central.show(summaryContainer);
+
    $.getJSON('demo.json', function(data) {
 
       _.each(summaryConfig, function(settings) {
@@ -43,7 +48,7 @@ Banknote.addInitializer(function(options) {
          var controller = new settings.type({
             title: settings.heading
          });
-         Banknote.central.show(controller.render(collection));
+         summaryContainer.affix(controller.render(collection));
       });
    });
 });
