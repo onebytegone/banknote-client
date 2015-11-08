@@ -23,10 +23,15 @@ Banknote.addRegions({
 
 Banknote.addInitializer(function(options) {
    $.getJSON('demo.json', function(data) {
+
+      var incomeCollection = new AmountEntryCollection(_.map(data.income, function(note) {
+         return new AmountEntry(note);
+      }));
+
       var controller = new CategorizedController({
          title: 'Income Totals'
       });
-      Banknote.central.show(controller.render(data.income));
+      Banknote.central.show(controller.render(incomeCollection));
    });
 });
 

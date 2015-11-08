@@ -17,17 +17,13 @@ var _ = require('underscore'),
 var CategorizedController = ControlBones.extend({
    title: 'Categorized Table',
 
-   parseData: function(rawData) {
-      var collection = new AmountEntryCollection(_.map(rawData, function(note) {
-         return new AmountEntry(note);
-      }));
-
-      return (new StatementsByCategory()).run(collection);
-   },
-
-   render: function(rawData) {
+   /**
+    * @param collection AmountEntryCollection
+    * @return SummaryBlock
+    */
+   render: function(collection) {
       var self = this,
-          categorized = this.parseData(rawData);
+          categorized = (new StatementsByCategory()).run(collection);
 
       var summary = new SummaryBlock({
          model: this._createSummaryModel()
