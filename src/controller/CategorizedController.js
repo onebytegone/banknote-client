@@ -31,9 +31,7 @@ var CategorizedController = ControlBones.extend({
           categorized = this.parseData(rawData);
 
       var summary = new SummaryBlock({
-         model: new Backbone.Model({
-            'header': this.title
-         })
+         model: this._createSummaryModel()
       });
 
       var table = new TableView({
@@ -59,6 +57,12 @@ var CategorizedController = ControlBones.extend({
          appendedModel: new Backbone.Model({
             'text': 'Yearly'
          })
+      });
+   },
+
+   _createSummaryModel: function() {
+      return new Backbone.Model({
+         'header': this.title
       });
    },
 
