@@ -35,7 +35,7 @@ var CategorizedController = ControlBones.extend({
       });
 
       var table = new TableView({
-         collection: new Backbone.Collection(categorized.map(this._createRowModel)),
+         collection: this._createTableCollection(categorized),
          childViewOptions: {
             prependCellType: StatementLabelCell,
             cellType: AmountEntryCell,
@@ -60,12 +60,27 @@ var CategorizedController = ControlBones.extend({
       });
    },
 
+   /**
+    * @return Backbone.Model
+    */
    _createSummaryModel: function() {
       return new Backbone.Model({
          'header': this.title
       });
    },
 
+   /**
+    * @param collection StatementCollection
+    * @return Backbone.Collection
+    */
+   _createTableCollection: function(collection) {
+      return new Backbone.Collection(collection.map(this._createRowModel));
+   },
+
+   /**
+    * @param row Statement
+    * @return TableRowModel
+    */
    _createRowModel: function(row) {
       return new TableRowModel({
          prepended: row,
