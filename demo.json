@@ -5,6 +5,24 @@
          "name": "Paycheck",
          "date": "3/4",
          "category": "paycheck"
+      },
+      {
+         "amount": 7,
+         "name": "Bonus",
+         "date": "3/4",
+         "category": "paycheck"
+      },
+      {
+         "amount": 10,
+         "name": "Paycheck",
+         "date": "8/10",
+         "category": "paycheck"
+      },
+      {
+         "amount": 75,
+         "name": "Gift",
+         "date": "1/30",
+         "category": "gift"
       }
    ],
    "expenses": [
