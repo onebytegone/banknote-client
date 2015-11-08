@@ -37,9 +37,7 @@ var CategorizedController = ControlBones.extend({
          })
       });
 
-      var table = new TableView();
-
-      var body = new TableBody({
+      var table = new TableView({
          collection: new Backbone.Collection([
             new TableRowModel({
                prepended: rowData,
@@ -61,11 +59,6 @@ var CategorizedController = ControlBones.extend({
 
       summary.on('show', function() {
          summary.content.show(table);
-      });
-
-      table.on('show', function() {
-         table.header.show(self._generateHeader());
-         table.body.show(body);
       });
 
       return summary;

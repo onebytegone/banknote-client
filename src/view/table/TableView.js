@@ -4,15 +4,14 @@
  * Copyright 2015 Ethan Smith
  */
 
-var Marionette = require('backbone.marionette');
+var Marionette = require('backbone.marionette'),
+    TableRow = require('./TableRow');
 
-var TableView = Marionette.LayoutView.extend({
+var TableView = Marionette.CompositeView.extend({
    tagName: 'table',
    template: '#template-tableview',
-   regions: {
-      "header": "thead",
-      "body": "tbody",
-   }
+   childView: TableRow,
+   childViewContainer: "tbody"
 });
 
 module.exports = TableView;
