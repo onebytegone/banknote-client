@@ -30,6 +30,7 @@ ControlBones.extend = function(prototypeAdditions) {
    };
 
    _.extend(child, parent);
+   _.extend(child.prototype, parent.prototype);
 
    if (prototypeAdditions) {
       _.extend(child.prototype, prototypeAdditions);
