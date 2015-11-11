@@ -31,7 +31,7 @@ var AmountEntry = Backbone.Model.extend({
       var dateStr = this.get('date');
 
       // Custom handling for 'mm/dd'
-      if (dateStr.match( /\d{1,2}\/\d{1,2}/i)) {
+      if (dateStr.match(/^\d{1,2}\/\d{1,2}$/i)) {
          return parseInt(dateStr.split('/')[0]);
       }
 
