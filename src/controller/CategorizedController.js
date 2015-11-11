@@ -56,15 +56,6 @@ var CategorizedController = ControlBones.extend({
    },
 
    /**
-    * @return Backbone.Model
-    */
-   _createSummaryModel: function() {
-      return new Backbone.Model({
-         'header': this.title
-      });
-   },
-
-   /**
     * @param collection StatementCollection
     * @return Backbone.Collection
     */

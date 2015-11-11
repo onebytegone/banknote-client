@@ -1,4 +1,5 @@
 var _ = require('underscore'),
+    Backbone = require('backbone'),
     ControlBones;
 
 ControlBones = function(options) {
@@ -19,6 +20,16 @@ ControlBones.prototype = {};
 ControlBones.prototype.render = function() {
    // noop
 };
+
+
+   /**
+    * @return Backbone.Model
+    */
+ControlBones.prototype._createSummaryModel = function() {
+      return new Backbone.Model({
+         'header': this.title
+      });
+   };
 
 
 ControlBones.extend = function(prototypeAdditions) {
