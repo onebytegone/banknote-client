@@ -15,8 +15,6 @@ TotalByMonth.prototype = {
     * @return AmountEntryCollection
     */
    run: function(entries) {
-      var output = new AmountEntryCollection();
-
       var monthlyStatements = (new StatementsByFilter()).run(entries, function(entry) {
          return entry.getDateOfMonth();
       });
@@ -57,9 +55,7 @@ TotalByMonth.prototype = {
          filledSet = filledSet.concat(generateMissingMonths(getLastMonthListed(filledSet)+1, 12));
       }
 
-      output.add(filledSet);
-
-      return output;
+      return new AmountEntryCollection(filledSet);
    }
 };
 
