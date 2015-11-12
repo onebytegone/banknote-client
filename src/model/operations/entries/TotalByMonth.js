@@ -42,6 +42,12 @@ TotalByMonth.prototype = {
          });
       };
 
+      // Make sure to sort by month, otherwise unexpected results
+      // from the "fill in months" code may result.
+      summedEntries = _.sortBy(summedEntries, function(entry) {
+         return entry.getMonth();
+      });
+
       // Fill in missing months
       var filledSet = _.reduce(summedEntries, function(carry, entry) {
          var missingMonths = generateMissingMonths(getLastMonthListed(carry)+1, entry.getMonth()-1);
