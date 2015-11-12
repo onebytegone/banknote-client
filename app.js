@@ -28,19 +28,26 @@ var summaryConfig = [
    {
       'heading': 'Income Totals',
       'type': CategorizedController,
-      'source': 'income'
+      'source': 'income',
+      'options': {
+         'title': 'Income Totals',
+      }
    },
    {
-      'heading': 'Expenses',
       'type': CategorizedController,
-      'source': 'expenses'
+      'source': 'expenses',
+      'options': {
+         'title': 'Expenses',
+      }
    },
    {
-      'heading': 'Monthly Net',
       'type': DifferenceController,
       'sources': {
          'subtrahend': 'expenses',
          'minuend': 'income'
+      },
+      'options': {
+         'title': 'Monthly Net',
       }
    }
 ];
@@ -65,9 +72,7 @@ Banknote.addInitializer(function(options) {
             model = new AmountEntryCollection(data[source]);
          }
 
-         var controller = new settings.type({
-            title: settings.heading
-         });
+         var controller = new settings.type(settings.options);
          summaryContainer.affix(controller.render(model));
       });
    });
