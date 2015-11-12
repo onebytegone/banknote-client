@@ -1,38 +1,40 @@
 var _ = require('underscore'),
+    Backbone = require('backbone'),
     ControlBones = require('./ControlBones'),
     AmountEntry = require('../model/AmountEntry'),
-    AmountEntryCollection = require('../model/AmountEntryCollection'),
     ParticularsModel = require('../model/ParticularsModel'),
     StatementCollection = require('../model/StatementCollection'),
     StatementsByCategory = require('../model/operations/statements/StatementsByCategory'),
     TotalByMonth = require('../model/operations/entries/TotalByMonth'),
     EntryCollectionNegator = require('../model/operations/entries/EntryCollectionNegator'),
     LinearEntrySum = require('../model/operations/entries/LinearEntrySum'),
-    MonthlySummary = require('../view/table/MonthlySummary');
+    TableRowModel = require('../model/table/TableRowModel'),
+    TableView = require('../view/table/TableView'),
+    TableRow = require('../view/table/TableRow'),
+    AmountEntryCell = require('../view/table/cell/AmountEntryCell'),
+    TableMonthRow = require('../view/table/rows/TableMonthRow'),
+    SummaryBlock = require('../view/SummaryBlock');
 
 
 var DifferenceController = ControlBones.extend({
    title: 'Difference Table',
-   minuend: 'fieldnamehere',
-   subtrahend: 'fieldnamehere',
    editable: false,  // Editable is not supported by this type
 
-   render: function(data) {
-      // Create an AmountEntryCollection from the raw data
-      var minuendCollection = new AmountEntryCollection(_.map(data[this.minuend], function(note) {
-         return new AmountEntry(note);
-      }));
+   /**
+    * @param collections Array - Example:
+    * {
+    *    'minuend': AmountEntryCollection,
+    *    'subtrahend': AmountEntryCollection
+    * }
+    */
+   render: function(collections) {
+      var self = this;
 
       // Convert the individual AmountEntry items to a set of monthly
-      var minuendMonthy = (new TotalByMonth()).run(minuendCollection);
-
-      // Create an AmountEntryCollection from the raw data
-      var subtrahendCollection = new AmountEntryCollection(_.map(data[this.subtrahend], function(note) {
-         return new AmountEntry(note);
-      }));
+      var minuendMonthy = (new TotalByMonth()).run(collections.minuend);
 
       // Convert the individual AmountEntry items to a set of monthly
-      var subtrahendMonthy = (new TotalByMonth()).run(subtrahendCollection);
+      var subtrahendMonthy = (new TotalByMonth()).run(collections.subtrahend);
 
       // Create the negated version so addition later works as subtraction
       subtrahendMonthy = (new EntryCollectionNegator()).run(subtrahendMonthy);
@@ -40,12 +42,48 @@ var DifferenceController = ControlBones.extend({
       // Add the two collections together
       var differenceMonthly = (new LinearEntrySum()).run(minuendMonthy, subtrahendMonthy);
 
-      return new ParticularsModel({
-         name: this.title,
-         dataset: differenceMonthly,
-         displayType: MonthlySummary,
-         editable: false,
-         classes: 'shouldZero'
+      // Create table for the difference ouput
+      var table = new TableView({
+         collection: this._createTableCollection(differenceMonthly),
+         childViewOptions: {
+            prependCellType: null,
+            cellType: AmountEntryCell,
+            appendCellType: null
+         },
+         header: self._generateHeader()
+      });
+
+      // Assemble summary block
+      var summary = new SummaryBlock({
+         model: this._createSummaryModel()
+      });
+
+      summary.on('show', function() {
+         summary.content.show(table);
+      });
+
+      return summary;
+   },
+
+   _generateHeader: function() {
+      return new TableMonthRow();
+   },
+
+   /**
+    * @param collection StatementCollection
+    * @return Backbone.Collection
+    */
+   _createTableCollection: function(collection) {
+      return new Backbone.Collection(this._createRowModel(collection));
+   },
+
+   /**
+    * @param row Backbone.Collection
+    * @return TableRowModel
+    */
+   _createRowModel: function(row) {
+      return new TableRowModel({
+         members: row
       });
    }
 });
