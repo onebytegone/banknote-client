@@ -43,12 +43,22 @@ Banknote.addInitializer(function(options) {
    $.getJSON('demo.json', function(data) {
 
       _.each(summaryConfig, function(settings) {
-         var collection = new AmountEntryCollection(data[settings.source]);
+         var source = settings.source,
+             multiSource = settings.sources,
+             model;
+
+         if (multiSource) {
+            model = _.object(_.keys(multiSource), _.map(multiSource, function(sourceField) {
+               return new AmountEntryCollection(data[sourceField]);
+            }));
+         } else {
+            model = new AmountEntryCollection(data[source]);
+         }
 
          var controller = new settings.type({
             title: settings.heading
          });
-         summaryContainer.affix(controller.render(collection));
+         summaryContainer.affix(controller.render(model));
       });
    });
 });
