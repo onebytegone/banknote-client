@@ -11,6 +11,7 @@ var Backbone = require('backbone'),
     MainLayout = require('./src/view/MainLayout'),
     RegionModal = require('./src/common/modal/RegionModal.js'),
     CategorizedController = require('./src/controller/CategorizedController'),
+    DifferenceController = require('./src/controller/DifferenceController'),
     AffixedView = require('./src/view/AffixedView');
 require('./src/common/library/CurrencyInputStyler');
 
@@ -32,6 +33,14 @@ var summaryConfig = [
       'heading': 'Expenses',
       'type': CategorizedController,
       'source': 'expenses'
+   },
+   {
+      'heading': 'Monthly Net',
+      'type': DifferenceController,
+      'sources': {
+         'subtrahend': 'expenses',
+         'minuend': 'income'
+      }
    }
 ];
 
