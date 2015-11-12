@@ -12,7 +12,8 @@ var Backbone = require('backbone'),
     RegionModal = require('./src/common/modal/RegionModal.js'),
     CategorizedController = require('./src/controller/CategorizedController'),
     DifferenceController = require('./src/controller/DifferenceController'),
-    AffixedView = require('./src/view/AffixedView');
+    AffixedView = require('./src/view/AffixedView'),
+    AmountEntryCollection = require('./src/model/AmountEntryCollection');
 require('./src/common/library/CurrencyInputStyler');
 
 
