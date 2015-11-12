@@ -35,6 +35,23 @@ var summaryConfig = [
    },
    {
       'type': CategorizedController,
+      'source': 'routing',
+      'options': {
+         'title': 'Routing',
+      }
+   },
+   {
+      'type': DifferenceController,
+      'sources': {
+         'minuend': 'income',
+         'subtrahend': 'routing'
+      },
+      'options': {
+         'title': 'Unrouted Income',
+      }
+   },
+   {
+      'type': CategorizedController,
       'source': 'expenses',
       'options': {
          'title': 'Expenses',
