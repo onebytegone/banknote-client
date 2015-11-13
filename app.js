@@ -48,6 +48,7 @@ var summaryConfig = [
       },
       'options': {
          'title': 'Unrouted Income',
+         'classes': 'shouldZero'
       }
    },
    {
