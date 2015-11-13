@@ -12,6 +12,9 @@ var SummaryBlock = Marionette.LayoutView.extend({
    template: '#template-summaryblock',
    regions: {
       "content": ".content",
+   },
+   className: function() {
+      return this.model.get('classes');
    }
 });
 

@@ -11,7 +11,9 @@ ControlBones = function(options) {
    });
 };
 
-ControlBones.prototype = {};
+ControlBones.prototype = {
+   classes: ''
+};
 
 /**
  * This is called to render the view using
@@ -27,7 +29,8 @@ ControlBones.prototype.render = function() {
     */
 ControlBones.prototype._createSummaryModel = function() {
       return new Backbone.Model({
-         'header': this.title
+         'header': this.title,
+         'classes': this.classes
       });
    };
 
