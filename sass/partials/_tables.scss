@@ -22,9 +22,10 @@ table {
    }
 }
 
-
 .shouldZero {
-   td:not(.zero) {
-      background-color: $color-didntzero-background;
+   tbody {
+      td:not(.zero) {
+         background-color: $color-didntzero-background;
+      }
    }
 }
