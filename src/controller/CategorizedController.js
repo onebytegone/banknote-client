@@ -24,6 +24,7 @@ var Backbone = require('backbone'),
 
 var CategorizedController = ControlBones.extend({
    title: 'Categorized Table',
+   hasSummary: true,
 
    /**
     * @param collection AmountEntryCollection
@@ -42,7 +43,7 @@ var CategorizedController = ControlBones.extend({
          childViewOptions: {
             prependCellType: StatementLabelCell,
             cellType: AmountEntryCell,
-            appendCellType: StatementSumCell
+            appendCellType: this.hasSummary ? StatementSumCell : null
          },
          header: self._generateHeader()
       });
@@ -57,9 +58,9 @@ var CategorizedController = ControlBones.extend({
    _generateHeader: function() {
       return new TableMonthRow({
          prependedModel: new Backbone.Model(),
-         appendedModel: new Backbone.Model({
+         appendedModel: this.hasSummary ? new Backbone.Model({
             'text': 'Yearly'
-         })
+         }) : null
       });
    },
 

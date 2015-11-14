@@ -21,6 +21,7 @@ var layout = [
       'source': 'routing',
       'options': {
          'title': 'Routing',
+         'hasSummary': false
       }
    },
    {
