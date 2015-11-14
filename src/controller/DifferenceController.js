@@ -5,22 +5,20 @@
  * Copyright 2015 Ethan Smith
  */
 
-var _ = require('underscore'),
-    Backbone = require('backbone'),
+var Backbone = require('backbone'),
     ControlBones = require('./ControlBones'),
-    AmountEntry = require('../model/AmountEntry'),
-    ParticularsModel = require('../model/ParticularsModel'),
-    StatementCollection = require('../model/StatementCollection'),
-    StatementsByCategory = require('../model/operations/statements/StatementsByCategory'),
-    TotalByMonth = require('../model/operations/entries/TotalByMonth'),
+
+    // Model
     EntryCollectionNegator = require('../model/operations/entries/EntryCollectionNegator'),
     LinearEntrySum = require('../model/operations/entries/LinearEntrySum'),
+    TotalByMonth = require('../model/operations/entries/TotalByMonth'),
     TableRowModel = require('../model/table/TableRowModel'),
+
+    // View
+    SummaryBlock = require('../view/SummaryBlock'),
     TableView = require('../view/table/TableView'),
-    TableRow = require('../view/table/TableRow'),
-    AmountEntryCell = require('../view/table/cell/AmountEntryCell'),
     TableMonthRow = require('../view/table/rows/TableMonthRow'),
-    SummaryBlock = require('../view/SummaryBlock');
+    AmountEntryCell = require('../view/table/cell/AmountEntryCell');
 
 
 var DifferenceController = ControlBones.extend({
