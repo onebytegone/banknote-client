@@ -18,8 +18,16 @@ table {
          border-radius: 1px;
       }
    }
-   td.rowLabel {
-      font-weight: bold;
+}
+
+thead {
+   font-weight: bold;
+}
+
+
+td {
+   &.statementLabel {
+      color: $color-row-label-text;
    }
 }
 
