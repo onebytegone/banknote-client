@@ -1,18 +1,18 @@
-var _ = require('underscore'),
-    Backbone = require('backbone'),
+var Backbone = require('backbone'),
     ControlBones = require('./ControlBones'),
-    TableView = require('../view/table/TableView'),
-    TableRow = require('../view/table/TableRow'),
+
+    // Model
+    StatementsByCategory = require('../model/operations/statements/StatementsByCategory'),
+    TotalByMonth = require('../model/operations/entries/TotalByMonth'),
     TableRowModel = require('../model/table/TableRowModel'),
+
+    // Views
+    SummaryBlock = require('../view/SummaryBlock'),
+    TableView = require('../view/table/TableView'),
+    TableMonthRow = require('../view/table/rows/TableMonthRow'),
     StatementLabelCell = require('../view/table/cell/StatementLabelCell'),
     AmountEntryCell = require('../view/table/cell/AmountEntryCell'),
-    StatementSumCell = require('../view/table/cell/StatementSumCell'),
-    TableMonthRow = require('../view/table/rows/TableMonthRow'),
-    SummaryBlock = require('../view/SummaryBlock'),
-    AmountEntry = require('../model/AmountEntry'),
-    AmountEntryCollection = require('../model/AmountEntryCollection'),
-    StatementsByCategory = require('../model/operations/statements/StatementsByCategory'),
-    TotalByMonth = require('../model/operations/entries/TotalByMonth');
+    StatementSumCell = require('../view/table/cell/StatementSumCell');
 
 var CategorizedController = ControlBones.extend({
    title: 'Categorized Table',
