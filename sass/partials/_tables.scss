@@ -1,6 +1,8 @@
 table {
+   width: 100%;
    td {
       border: 0 !important;  // Override bootstrap
+      padding: 6px;
    }
    &.editable {
       td {
@@ -17,7 +19,6 @@ table {
       }
    }
    td.rowLabel {
-      padding: 8px !important;  // Override bootstrap
       font-weight: bold;
    }
 }
