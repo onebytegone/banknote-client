@@ -8,10 +8,9 @@ var Backbone = require('backbone'),
     Marionette = require('backbone.marionette'),
     $ = require('jquery'),
     _ = require('underscore'),
+    layout = require('./src/layout.js'),
     MainLayout = require('./src/view/MainLayout'),
     RegionModal = require('./src/common/modal/RegionModal.js'),
-    CategorizedController = require('./src/controller/CategorizedController'),
-    DifferenceController = require('./src/controller/DifferenceController'),
     AffixedView = require('./src/view/AffixedView'),
     AmountEntryCollection = require('./src/model/AmountEntryCollection');
 require('./src/common/library/CurrencyInputStyler');
@@ -24,52 +23,6 @@ Banknote.addRegions({
    modal: RegionModal
 });
 
-var summaryConfig = [
-   {
-      'heading': 'Income Totals',
-      'type': CategorizedController,
-      'source': 'income',
-      'options': {
-         'title': 'Income Totals',
-      }
-   },
-   {
-      'type': CategorizedController,
-      'source': 'routing',
-      'options': {
-         'title': 'Routing',
-      }
-   },
-   {
-      'type': DifferenceController,
-      'sources': {
-         'minuend': 'income',
-         'subtrahend': 'routing'
-      },
-      'options': {
-         'title': 'Unrouted Income',
-         'classes': 'shouldZero'
-      }
-   },
-   {
-      'type': CategorizedController,
-      'source': 'expenses',
-      'options': {
-         'title': 'Expenses',
-      }
-   },
-   {
-      'type': DifferenceController,
-      'sources': {
-         'subtrahend': 'expenses',
-         'minuend': 'income'
-      },
-      'options': {
-         'title': 'Monthly Net',
-      }
-   }
-];
-
 Banknote.addInitializer(function(options) {
 
    var summaryContainer = new AffixedView();
@@ -77,7 +30,7 @@ Banknote.addInitializer(function(options) {
 
    $.getJSON('demo.json', function(data) {
 
-      _.each(summaryConfig, function(settings) {
+      _.each(layout, function(settings) {
          var source = settings.source,
              multiSource = settings.sources,
              model;
