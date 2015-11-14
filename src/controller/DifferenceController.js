@@ -1,3 +1,10 @@
+/**
+ * Controls the creation of a table that shows the monthly amount
+ * difference between two AmountEntryCollections.
+ *
+ * Copyright 2015 Ethan Smith
+ */
+
 var _ = require('underscore'),
     Backbone = require('backbone'),
     ControlBones = require('./ControlBones'),
