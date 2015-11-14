@@ -1,3 +1,10 @@
+/**
+ * Controls the creation of a table that renders the entries by month
+ * by category with a yearly total for the category.
+ *
+ * Copyright 2015 Ethan Smith
+ */
+
 var Backbone = require('backbone'),
     ControlBones = require('./ControlBones'),
 
@@ -13,6 +20,7 @@ var Backbone = require('backbone'),
     StatementLabelCell = require('../view/table/cell/StatementLabelCell'),
     AmountEntryCell = require('../view/table/cell/AmountEntryCell'),
     StatementSumCell = require('../view/table/cell/StatementSumCell');
+
 
 var CategorizedController = ControlBones.extend({
    title: 'Categorized Table',
