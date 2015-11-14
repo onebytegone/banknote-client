@@ -4,13 +4,10 @@
  * Copyright 2015 Ethan Smith
  */
 
-var TableCell = require('../TableCell');
+var TextCell = require('./TextCell');
 
-var RowLabelCell = TableCell.extend({
-   className: 'rowLabel',
-   _renderContent: function() {
-      return this.model.get('text');
-   }
+var RowLabelCell = TextCell.extend({
+   className: 'rowLabel'
 });
 
 module.exports = RowLabelCell;
