@@ -19,11 +19,13 @@ var Backbone = require('backbone'),
     TableMonthRow = require('../view/table/rows/TableMonthRow'),
     StatementLabelCell = require('../view/table/cell/StatementLabelCell'),
     AmountEntryCell = require('../view/table/cell/AmountEntryCell'),
+    EditableAmountCell = require('../view/table/cell/EditableAmountCell'),
     StatementSumCell = require('../view/table/cell/StatementSumCell');
 
 
 var CategorizedController = ControlBones.extend({
    title: 'Categorized Table',
+   editable: false,
    hasSummary: true,
 
    /**
@@ -42,7 +44,7 @@ var CategorizedController = ControlBones.extend({
          collection: this._createTableCollection(categorized),
          childViewOptions: {
             prependCellType: StatementLabelCell,
-            cellType: AmountEntryCell,
+            cellType: this.editable ? EditableAmountCell : AmountEntryCell,
             appendCellType: this.hasSummary ? StatementSumCell : null
          },
          header: self._generateHeader()
