@@ -14,62 +14,6 @@
       <div class="jsElements"></div>
    </script>
 
-   <script type="text/template" id="template-particulars">
-      <div class="header"><%- name %><% if (hasAddButton) { %> <a href="#" class="add"><i class="fa fa-plus"></i></a><% } %></div>
-      <div class="jsRendered"></div>
-   </script>
-
-   <script type="text/template" id="template-listview">
-      <thead>
-         <tr>
-            <th>Date</th>
-            <th>Item</th>
-            <th>Amount</th>
-         </tr>
-      </thead>
-      <tbody>
-      </tbody>
-   </script>
-
-   <script type="text/template" id="template-listitem">
-      <td><%- date %></td>
-      <td><%- name %></td>
-      <td><%- amount.readable() %></td>
-   </script>
-
-   <script type="text/template" id="template-monthlytable">
-      <thead>
-         <tr>
-            <th></th>
-            <% _.each(months, function(month){ %>
-               <th><%- month %></th>
-            <% }); %>
-            <% if(shouldShowTotal()) { %>
-               <th>Total</th>
-            <% } %>
-         </tr>
-      </thead>
-      <tbody>
-      </tbody>
-   </script>
-
-   <script type="text/template" id="template-monthlysummary">
-      <thead>
-         <tr>
-            <% _.each(months, function(month){ %>
-               <th><%- month %></th>
-            <% }); %>
-         </tr>
-      </thead>
-      <tbody>
-         <tr class="output"></tr>
-      </tbody>
-   </script>
-
-   <script type="text/template" id="template-monthlysummaryrow">
-      <%- amount.readable() %>
-   </script>
-
    <script type="text/template" id="form-addentry">
       <form>
         <div class="form-group">
