@@ -8,9 +8,6 @@ var $ = require('jquery'),
     AmountEntryCell = require('./AmountEntryCell');
 
 var EditableAmountCell = AmountEntryCell.extend({
-   className: function() {
-      return this.model.get('amount').get() === 0 ? 'zero' : '';
-   },
    _renderContent: function() {
       var elem = $('<input />').attr({
          type: 'text',
