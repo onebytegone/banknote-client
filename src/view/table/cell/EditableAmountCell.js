@@ -11,7 +11,8 @@ var EditableAmountCell = AmountEntryCell.extend({
    _renderContent: function() {
       var elem = $('<input />').attr({
          type: 'text',
-         value: this.model.get('amount').readable()
+         value: this.model.get('amount').readable(),
+         class: 'jsCurrency'
       });
 
       return $('<div>').append(elem.clone()).html();
