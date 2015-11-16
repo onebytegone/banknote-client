@@ -14,6 +14,9 @@ var $ = require('jquery');
          val = '';
       }
 
+      // Remove zero value flag
+      elem.closest('.zero').removeClass('zero');
+
       elem.val(val);
    });
 
@@ -24,8 +27,11 @@ var $ = require('jquery');
       // Trim to float, e.g. 2112.123, then format to
       // 2 decimal places, e.g. 212.12, rounding as needed.
       val = parseFloat(val) || 0;
-      val = val.toFixed(2);
 
-      elem.val('$' + val);
+      if (val === 0) {
+         elem.addClass('zero');
+      }
+
+      elem.val('$' + val.toFixed(2));
    });
 })();
