@@ -24,9 +24,11 @@ Banknote.addRegions({
 });
 
 Banknote.addInitializer(function(options) {
+   var mainLayout = new MainLayout(),
+       summaryContainer = new AffixedView();
 
-   var summaryContainer = new AffixedView();
-   Banknote.central.show(summaryContainer);
+   Banknote.central.show(mainLayout);
+   mainLayout.elements.show(summaryContainer);
 
    $.getJSON('demo.json', function(data) {
 
