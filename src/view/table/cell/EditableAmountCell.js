@@ -8,6 +8,16 @@ var $ = require('jquery'),
     AmountEntryCell = require('./AmountEntryCell');
 
 var EditableAmountCell = AmountEntryCell.extend({
+
+   render: function() {
+      var self = this;
+      this._super();
+
+      this.$el.on('blur', 'input', function() {
+         self.trigger('editing:ended', $(this));
+      });
+   },
+
    _renderContent: function() {
       var elem = $('<input />').attr({
          type: 'text',
