@@ -23,7 +23,6 @@ var Backbone = require('backbone'),
 
 var DifferenceController = ControlBones.extend({
    title: 'Difference Table',
-   editable: false,  // Editable is not supported by this type
 
    /**
     * @param collections Array - Example:
