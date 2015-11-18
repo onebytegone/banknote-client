@@ -20,6 +20,12 @@ var TableView = Marionette.CompositeView.extend({
          this.options.header.render();
          this.$el.find('thead').append(this.options.header.$el);
       }
+   },
+   onAddChild: function(view) {
+      var self = this;
+      view.on('editing:ended', function(originalHash, updatedModel) {
+         self.trigger('editing:ended', originalHash, updatedModel);
+      });
    }
 });
 
