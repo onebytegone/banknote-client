@@ -43,9 +43,15 @@ var TableRow = Marionette.ItemView.extend({
          return;
       }
 
-      var cell = new type({
-         'model': model
+      var self = this,
+          cell = new type({
+             'model': model
+          });
+
+      cell.on('editing:ended', function(originalHash, updatedModel) {
+         self.trigger('editing:ended', originalHash, updatedModel);
       });
+
       cell.render();
       this.$el.append(cell.$el);
    }
