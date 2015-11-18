@@ -7,7 +7,8 @@
  */
 
 var Backbone = require('backbone'),
-    MoneyStack = require('moneystack');
+    MoneyStack = require('moneystack'),
+    crypto = require('crypto');
 
 var AmountEntry = Backbone.Model.extend({
    defaults: {
@@ -36,6 +37,10 @@ var AmountEntry = Backbone.Model.extend({
       }
 
       return new Date(dateStr).getMonth() + 1;
+   },
+
+   hash: function() {
+      return crypto.createHash('md5').update(String(this.get('amount').stored) + this.get('name') + this.get('date') + this.get('category')).digest("hex");
    }
 });
 
