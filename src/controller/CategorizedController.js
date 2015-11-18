@@ -50,6 +50,17 @@ var CategorizedController = ControlBones.extend({
          header: self._generateHeader()
       });
 
+      table.on('editing:ended', function(originalHash, updatedModel) {
+         var found = collection.findEntryWithHash(originalHash);
+         if (found) {
+            collection.remove(found);
+         }
+
+         collection.add(updatedModel);
+
+         self.trigger('collection:updated', collection);
+      });
+
       summary.on('show', function() {
          summary.content.show(table);
       });
