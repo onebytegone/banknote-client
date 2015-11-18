@@ -32,4 +32,13 @@ describe('AmountEntryCollection', function() {
       var output = basicList.sumEntries();
       expect(output.get()).to.be(15);
    });
+
+   it('should find entry based on hash', function() {
+      var toFind = basicList.at(3);
+      var found = basicList.findEntryWithHash(toFind.hash());
+      expect(found).to.be(toFind);
+
+      var notfound = basicList.findEntryWithHash('9999');
+      expect(notfound).to.be(undefined);
+   });
 });

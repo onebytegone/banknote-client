@@ -25,6 +25,20 @@ var AmountEntryCollection = Backbone.Collection.extend({
       }, new MoneyStack(0));
 
       return value;
+   },
+
+
+   /**
+    * Tries to find the child AmountEntry with the given
+    * hash. Returning undefined if not found.
+    *
+    * @param needleHash String
+    * @return AmountEntry or undefined
+    */
+   findEntryWithHash: function(needleHash) {
+      return this.find(function(item) {
+         return item.hash() === needleHash;
+      });
    }
 });
 
