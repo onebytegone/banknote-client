@@ -35,6 +35,10 @@ ControlBones.prototype._createSummaryModel = function() {
    };
 
 
+// Benefit from Backbone.Events
+_.extend(ControlBones.prototype, Backbone.Events);
+
+
 ControlBones.extend = function(prototypeAdditions) {
    var parent = this,
        child;
