@@ -12,7 +12,7 @@ var Backbone = require('backbone'),
 
 var AmountEntry = Backbone.Model.extend({
    defaults: {
-      amount: new MoneyStack(),
+      amount: 0,
       name: '',
       date: '',
       category: 'unknown'
