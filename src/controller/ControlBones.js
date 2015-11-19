@@ -12,28 +12,26 @@ ControlBones = function(options) {
 };
 
 ControlBones.prototype = {
-   classes: ''
-};
+   classes: '',
 
-/**
- * This is called to render the view using
- * the latest data from the model.
- */
-ControlBones.prototype.render = function() {
-   // noop
-};
-
+   /**
+    * This is called to render the view using
+    * the latest data from the model.
+    */
+   render: function() {
+      // Default to noop
+   },
 
    /**
     * @return Backbone.Model
     */
-ControlBones.prototype._createSummaryModel = function() {
+   _createSummaryModel: function() {
       return new Backbone.Model({
          'header': this.title,
          'classes': this.classes
       });
-   };
-
+   }
+};
 
 // Benefit from Backbone.Events
 _.extend(ControlBones.prototype, Backbone.Events);
