@@ -24,6 +24,15 @@ var AmountEntry = Backbone.Model.extend({
       }
    },
 
+   toJSON: function() {
+      var json = this._super();
+
+      // Use the numerical value rather than the MoneyStack object
+      json.amount = this.get('amount').get();
+
+      return json;
+   },
+
    getDateOfMonth: function () {
       return this.getMonth() + '/1';
    },
