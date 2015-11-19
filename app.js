@@ -25,6 +25,8 @@ Banknote.addRegions({
 
 
 var renderFromSourceIntoView = function(data, container) {
+   container.empty();
+
    _.each(layout, function(settings) {
       var source = settings.source,
           multiSource = settings.sources,
@@ -41,9 +43,15 @@ var renderFromSourceIntoView = function(data, container) {
       var controller = new settings.type(settings.options);
 
       controller.on('collection:updated', function(collection) {
-         console.log(collection);
-         // TODO: pass back updated collection and re-render layout
-         // TODO: regenerate json and output
+         if (source === undefined) {
+            throw 'Update event was called when we do not have a single source. Multisource updates are not supported at this time.';
+         }
+
+         // Update the source data with the updates
+         data[source] = collection.toJSON();
+
+         // Re-render using updated data
+         renderFromSourceIntoView(data, container);
       });
 
       container.affix(controller.render(model));
