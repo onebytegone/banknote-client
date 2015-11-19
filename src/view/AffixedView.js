@@ -24,6 +24,10 @@ var AffixedView = Marionette.ItemView.extend({
       Marionette.triggerMethodOn(view, 'show', view, this, options);
    },
 
+   empty: function() {
+      this.$el.empty();
+   },
+
    _renderView: function(view) {
       Marionette.triggerMethodOn(view, 'before:render', view);
       view.render();
