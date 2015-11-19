@@ -23,6 +23,33 @@ Banknote.addRegions({
    modal: RegionModal
 });
 
+
+var renderFromSourceIntoView = function(data, container) {
+   _.each(layout, function(settings) {
+      var source = settings.source,
+          multiSource = settings.sources,
+          model;
+
+      if (multiSource) {
+         model = _.object(_.keys(multiSource), _.map(multiSource, function(sourceField) {
+            return new AmountEntryCollection(data[sourceField]);
+         }));
+      } else {
+         model = new AmountEntryCollection(data[source]);
+      }
+
+      var controller = new settings.type(settings.options);
+
+      controller.on('collection:updated', function(collection) {
+         console.log(collection);
+         // TODO: pass back updated collection and re-render layout
+         // TODO: regenerate json and output
+      });
+
+      container.affix(controller.render(model));
+   });
+};
+
 Banknote.addInitializer(function(options) {
    var mainLayout = new MainLayout(),
        summaryContainer = new AffixedView();
@@ -31,23 +58,7 @@ Banknote.addInitializer(function(options) {
    mainLayout.elements.show(summaryContainer);
 
    $.getJSON('demo.json', function(data) {
-
-      _.each(layout, function(settings) {
-         var source = settings.source,
-             multiSource = settings.sources,
-             model;
-
-         if (multiSource) {
-            model = _.object(_.keys(multiSource), _.map(multiSource, function(sourceField) {
-               return new AmountEntryCollection(data[sourceField]);
-            }));
-         } else {
-            model = new AmountEntryCollection(data[source]);
-         }
-
-         var controller = new settings.type(settings.options);
-         summaryContainer.affix(controller.render(model));
-      });
+      renderFromSourceIntoView(data, summaryContainer);
    });
 });
 
