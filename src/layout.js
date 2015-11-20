@@ -52,6 +52,15 @@ var layout = [
       'options': {
          'title': 'Monthly Net',
       }
+   },
+   {
+      'type': CategorizedController,
+      'source': 'categorydraw',
+      'options': {
+         'title': 'Category draws',
+         'hasSummary': false,
+         'editable': true
+      }
    }
 ];
 
