@@ -3,7 +3,9 @@ var _ = require('underscore'),
     AmountEntryCollection = require('../../AmountEntryCollection'),
     StatementsByFilter = require('../statements/StatementsByFilter');
 
-var TotalByMonth = function() { };
+var TotalByMonth = function(monthDefaults) {
+   this.monthDefaults = monthDefaults || {};
+};
 
 TotalByMonth.prototype = {
    /**
@@ -15,15 +17,18 @@ TotalByMonth.prototype = {
     * @return AmountEntryCollection
     */
    run: function(entries) {
+      var self = this;
       var monthlyStatements = (new StatementsByFilter()).run(entries, function(entry) {
          return entry.getDateOfMonth();
       });
 
       var summedEntries = monthlyStatements.map(function(statement) {
-         return new AmountEntry({
+         var model = {
             'date': statement.get('key'),
             'amount': statement.get('entries').sumEntries()
-         });
+         };
+         _.defaults(model, self.monthDefaults);
+         return new AmountEntry(model);
       });
 
       var getLastMonthListed = function (entries) {
@@ -36,9 +41,11 @@ TotalByMonth.prototype = {
        */
       var generateMissingMonths = function (startingMonth, endingMonth) {
          return _.map(_.range(startingMonth, endingMonth+1), function (month) {
-            return new AmountEntry({
+            var model = {
                'date': month + '/1'
-            });
+            };
+            _.defaults(model, self.monthDefaults);
+            return new AmountEntry(model);
          });
       };
 
