@@ -1,5 +1,7 @@
 var _ = require('underscore'),
-    StatementsByFilter = require('./StatementsByFilter');
+    StatementsByFilter = require('./StatementsByFilter'),
+    AmountEntryCollection = require('../../AmountEntryCollection'),
+    Statement = require('../../Statement');
 
 var StatementsByCategory = function() { };
 
@@ -13,13 +15,30 @@ StatementsByCategory.prototype = {
     * @return StatementCollection
     */
    run: function(entries, categoryPreference) {
-      var shouldUsePreference = categoryPreference && categoryPreference.length > 0;
+      var shouldUsePreference = categoryPreference && categoryPreference.length > 0,
+          statements;
 
-      return (new StatementsByFilter()).run(entries, function(entry) {
+      statements = (new StatementsByFilter()).run(entries, function(entry) {
          // Only allow categories that are in the preference to be added
          var category = entry.get('category');
          return shouldUsePreference && _.indexOf(categoryPreference, category) === -1 ? false : category;
       });
+
+      if (shouldUsePreference) {
+         var categoriesPresent = statements.pluck('key'),
+             categoriesMissing = _.difference(categoryPreference, categoriesPresent);
+
+         // Fill in categories mentioned in categoryPreference
+         // but don't have any entries currently
+         _.each(categoriesMissing, function(categoryKey) {
+            statements.add(new Statement({
+               'key': categoryKey,
+               'entries': new AmountEntryCollection()
+            }));
+         });
+      }
+
+      return statements;
    }
 };
 
