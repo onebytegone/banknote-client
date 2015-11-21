@@ -32,7 +32,7 @@ var layout = [
       'type': DifferenceController,
       'sources': {
          'minuend': 'income',
-         'subtrahend': 'routing'
+         'subtrahend': 'incomerouting'
       },
       'options': {
          'title': 'Unrouted Income',
