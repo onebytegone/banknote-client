@@ -33,12 +33,18 @@
          "category": "bills"
       }
    ],
-   "routing": [
+   "incomerouting": [
       {
          "date": "1/1",
          "amount": 40,
-         "source": "supersavings",
-         "target": "food"
+         "source": "income",
+         "target": "supersavings"
+      },
+      {
+         "date": "4/1",
+         "amount": 40,
+         "source": "income",
+         "target": "supersavings"
       }
    ],
    "accounts": [
