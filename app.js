@@ -30,6 +30,7 @@ var renderFromSourceIntoView = function(data, container) {
    _.each(layout, function(settings) {
       var source = settings.source,
           multiSource = settings.sources,
+          supplementary = settings.supplementary,
           model;
 
       if (multiSource) {
@@ -38,6 +39,15 @@ var renderFromSourceIntoView = function(data, container) {
          }));
       } else {
          model = new AmountEntryCollection(data[source]);
+      }
+
+      // When `supplementary` is used, go and map the values to each of
+      // the requested fields. Since we don't know what type they are
+      // supposed to be, just copy the data across.
+      if (supplementary) {
+         supplementary = _.mapObject(supplementary, function (key) {
+            return data[key];
+         });
       }
 
       var controller = new settings.type(settings.options);
@@ -54,7 +64,7 @@ var renderFromSourceIntoView = function(data, container) {
          renderFromSourceIntoView(data, container);
       });
 
-      container.affix(controller.render(model));
+      container.affix(controller.render(model, supplementary));
    });
 };
 

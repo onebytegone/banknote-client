@@ -19,6 +19,9 @@ var layout = [
    {
       'type': CategorizedController,
       'source': 'incomerouting',
+      'supplementary': {
+         'categories': 'accounts'
+      },
       'options': {
          'title': 'Income Routing',
          'hasSummary': false,
