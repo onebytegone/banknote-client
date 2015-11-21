@@ -3,7 +3,12 @@ var _ = require('underscore'),
     AmountEntryCollection = require('../../AmountEntryCollection'),
     Statement = require('../../Statement');
 
-var StatementsByCategory = function() { };
+/**
+ * @param categoryField String - Field to use as the Statment key
+ */
+var StatementsByCategory = function(categoryField) {
+   this.field = categoryField || 'category';
+};
 
 StatementsByCategory.prototype = {
    /**
@@ -15,12 +20,13 @@ StatementsByCategory.prototype = {
     * @return StatementCollection
     */
    run: function(entries, categoryPreference) {
-      var shouldUsePreference = categoryPreference && categoryPreference.length > 0,
+      var self = this,
+          shouldUsePreference = categoryPreference && categoryPreference.length > 0,
           statements;
 
       statements = (new StatementsByFilter()).run(entries, function(entry) {
          // Only allow categories that are in the preference to be added
-         var category = entry.get('category');
+         var category = entry.get(self.field);
          return shouldUsePreference && _.indexOf(categoryPreference, category) === -1 ? false : category;
       });
 
