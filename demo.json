@@ -37,14 +37,12 @@
       {
          "date": "1/1",
          "amount": 40,
-         "source": "income",
-         "target": "supersavings"
+         "category": "supersavings"
       },
       {
          "date": "4/1",
          "amount": 40,
-         "source": "income",
-         "target": "supersavings"
+         "category": "supersavings"
       }
    ],
    "accounts": [
