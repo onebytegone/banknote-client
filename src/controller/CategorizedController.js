@@ -5,7 +5,8 @@
  * Copyright 2015 Ethan Smith
  */
 
-var Backbone = require('backbone'),
+var _ = require('underscore'),
+    Backbone = require('backbone'),
     ControlBones = require('./ControlBones'),
 
     // Model
@@ -32,9 +33,10 @@ var CategorizedController = ControlBones.extend({
     * @param collection AmountEntryCollection
     * @return SummaryBlock
     */
-   render: function(collection) {
+   render: function(collection, supplementary) {
       var self = this,
-          categorized = (new StatementsByCategory()).run(collection);
+          categoryPreference = supplementary ? _.pluck(supplementary.categories || [], 'key') : [],
+          categorized = (new StatementsByCategory()).run(collection, categoryPreference);
 
       var summary = new SummaryBlock({
          model: this._createSummaryModel()
@@ -92,7 +94,9 @@ var CategorizedController = ControlBones.extend({
    _createRowModel: function(row) {
       return new TableRowModel({
          prepended: row,
-         members: (new TotalByMonth()).run(row.get('entries')),
+         members: (new TotalByMonth({
+            'category': row.get('key')
+         })).run(row.get('entries')),
          appended: row
       });
    }
