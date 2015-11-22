@@ -58,9 +58,12 @@ var layout = [
    },
    {
       'type': CategorizedController,
-      'source': 'categorydraw',
+      'source': 'funddraw',
+      'supplementary': {
+         'categories': 'funds'
+      },
       'options': {
-         'title': 'Category draws',
+         'title': 'Fund Draws',
          'hasSummary': false,
          'editable': true
       }
