@@ -67,6 +67,17 @@ var layout = [
          'hasSummary': false,
          'editable': true
       }
+   },
+   {
+      'type': DifferenceController,
+      'sources': {
+         'minuend': 'income',
+         'subtrahend': 'funddraw'
+      },
+      'options': {
+         'title': 'Unassigned Funds',
+         'classes': 'shouldZero'
+      }
    }
 ];
 
