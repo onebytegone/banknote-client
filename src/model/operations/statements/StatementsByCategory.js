@@ -1,6 +1,7 @@
 var _ = require('underscore'),
     StatementsByFilter = require('./StatementsByFilter'),
     AmountEntryCollection = require('../../AmountEntryCollection'),
+    StatementCollection = require('../../StatementCollection'),
     Statement = require('../../Statement');
 
 /**
@@ -42,6 +43,13 @@ StatementsByCategory.prototype = {
                'entries': new AmountEntryCollection()
             }));
          });
+
+         var sorted = _.map(categoryPreference, function(category) {
+            return statements.findWhere({
+               'key': category
+            });
+         });
+         statements = new StatementCollection(sorted);
       }
 
       return statements;
