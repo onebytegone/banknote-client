@@ -1,3 +1,12 @@
+/**
+ * Totals the AmountEntries in the given AmountEntryCollection
+ * by month. Filling any missing months in with an AmountEntry
+ * whose amount is 0. The totaled entries are dated the first
+ * of the month, e.g. 3/1 for March
+ *
+ * Copyright 2015 Ethan Smith
+ */
+
 var _ = require('underscore'),
     AmountEntry = require('../../AmountEntry'),
     AmountEntryCollection = require('../../AmountEntryCollection'),
