@@ -49,7 +49,8 @@ var CategorizedController = ControlBones.extend({
             cellType: this.editable ? EditableAmountCell : AmountEntryCell,
             appendCellType: this.hasSummary ? StatementSumCell : null
          },
-         header: self._generateHeader()
+         header: self._generateHeader(),
+         className: this.editable ? 'editable' : ''
       });
 
       table.on('editing:ended', function(originalHash, updatedModel) {
