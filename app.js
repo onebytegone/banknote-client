@@ -31,7 +31,7 @@ Banknote.addRegions({
 });
 
 
-var loadContainerChildren = function(container, layoutConfig, data) {
+var loadContainerChildren = function(container, layoutConfig, data, depth) {
    _.each(layoutConfig, function(settings) {
       var source = settings.source,
           multiSource = settings.sources,
@@ -71,18 +71,18 @@ var loadContainerChildren = function(container, layoutConfig, data) {
       }
 
       if (typeof settings.type === 'function') {
-         var controller = createController(settings.type, settings.options, source);
+         var controller = createController(settings.type, settings.options, source, depth);
          container.affix(controller.render(model, supplementary));
       } else if (settings.type === 'bundle') {
-         var block = createBundle(settings.items, settings.options, data);
+         var block = createBundle(settings.items, settings.options, data, depth);
          container.affix(block);
       }
    });
 };
 
 
-var createController = function(type, options, dataSource) {
-   var controller = new type(options);
+var createController = function(type, options, dataSource, depth) {
+   var controller = new type(_.defaults(options, { nestDepth: depth }));
 
    controller.on('collection:updated', function(collection) {
       if (dataSource === undefined) {
@@ -100,15 +100,16 @@ var createController = function(type, options, dataSource) {
 };
 
 
-var createBundle = function(subItems, options, data) {
+var createBundle = function(subItems, options, data, depth) {
    var block = new SummaryBlock({
       model: new SummaryModel({
+         nestDepth: depth,
          header: options.title
       })
    }),
       childContainer = new AffixedView();
 
-   loadContainerChildren(childContainer, subItems, data);
+   loadContainerChildren(childContainer, subItems, data, depth + 1);
 
    block.on('show', function() {
       block.content.show(childContainer);
@@ -120,7 +121,7 @@ var createBundle = function(subItems, options, data) {
 
 var renderFromSourceIntoView = function(data, container) {
    container.empty();
-   loadContainerChildren(container, layout, data);
+   loadContainerChildren(container, layout, data, 0);
 };
 
 Banknote.addInitializer(function(options) {
