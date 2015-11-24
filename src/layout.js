@@ -55,18 +55,11 @@ var layout = [
       'type': DifferenceController,
       'sources': {
          'minuend': 'income',
-         'subtrahend': 'funddraw'
+         'subtrahend': 'fundrouting'
       },
       'options': {
          'title': 'Unassigned Funds',
          'classes': 'shouldZero'
-      }
-   },
-   {
-      'type': CategorizedController,
-      'source': 'expenses',
-      'options': {
-         'title': 'Expenses',
       }
    },
    {
@@ -79,6 +72,17 @@ var layout = [
          'title': 'Fund Draws',
          'hasSummary': false,
          'editable': true
+      }
+   },
+   {
+      'type': DifferenceController,
+      'sources': {
+         'minuend': 'expenses',
+         'subtrahend': 'funddraw'
+      },
+      'options': {
+         'title': 'Undrawn Expenses',
+         'classes': 'shouldZero'
       }
    },
    {
