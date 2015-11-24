@@ -8,11 +8,18 @@ var Backbone = require('backbone'),
     Marionette = require('backbone.marionette'),
     $ = require('jquery'),
     _ = require('underscore'),
+
+    // Config
     layout = require('./src/layout.js'),
+
+    // Model
+    AmountEntryCollection = require('./src/model/AmountEntryCollection'),
+
+    // View
     MainLayout = require('./src/view/MainLayout'),
-    RegionModal = require('./src/common/modal/RegionModal.js'),
     AffixedView = require('./src/view/AffixedView'),
-    AmountEntryCollection = require('./src/model/AmountEntryCollection');
+    RegionModal = require('./src/common/modal/RegionModal.js');
+
 require('./src/common/library/CurrencyInputStyler');
 
 
