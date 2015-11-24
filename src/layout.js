@@ -41,19 +41,32 @@ var layout = [
    },
    {
       'type': CategorizedController,
-      'source': 'expenses',
+      'source': 'fundrouting',
+      'supplementary': {
+         'categories': 'funds'
+      },
       'options': {
-         'title': 'Expenses',
+         'title': 'Fund Routing',
+         'hasSummary': false,
+         'editable': true
       }
    },
    {
       'type': DifferenceController,
       'sources': {
-         'subtrahend': 'expenses',
-         'minuend': 'income'
+         'minuend': 'income',
+         'subtrahend': 'funddraw'
       },
       'options': {
-         'title': 'Monthly Net',
+         'title': 'Unassigned Funds',
+         'classes': 'shouldZero'
+      }
+   },
+   {
+      'type': CategorizedController,
+      'source': 'expenses',
+      'options': {
+         'title': 'Expenses',
       }
    },
    {
@@ -71,12 +84,11 @@ var layout = [
    {
       'type': DifferenceController,
       'sources': {
-         'minuend': 'income',
-         'subtrahend': 'funddraw'
+         'subtrahend': 'expenses',
+         'minuend': 'income'
       },
       'options': {
-         'title': 'Unassigned Funds',
-         'classes': 'shouldZero'
+         'title': 'Monthly Net',
       }
    }
 ];
