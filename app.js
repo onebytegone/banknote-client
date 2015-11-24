@@ -31,6 +31,25 @@ Banknote.addRegions({
 });
 
 
+var createController = function(type, options, dataSource) {
+   var controller = new type(options);
+
+   controller.on('collection:updated', function(collection) {
+      if (dataSource === undefined) {
+         throw 'Update event was called when we do not have a single source. Multisource updates are not supported at this time.';
+      }
+
+      // Update the source data with the updates
+      data[dataSource] = collection.toJSON();
+
+      // Re-render using updated data
+      renderFromSourceIntoView(data, container);
+   });
+
+   return controller;
+};
+
+
 var renderFromSourceIntoView = function(data, container) {
    container.empty();
 
@@ -73,20 +92,7 @@ var renderFromSourceIntoView = function(data, container) {
       }
 
       if (typeof settings.type === 'function') {
-         var controller = new settings.type(settings.options);
-
-         controller.on('collection:updated', function(collection) {
-            if (source === undefined) {
-               throw 'Update event was called when we do not have a single source. Multisource updates are not supported at this time.';
-            }
-
-            // Update the source data with the updates
-            data[source] = collection.toJSON();
-
-            // Re-render using updated data
-            renderFromSourceIntoView(data, container);
-         });
-
+         var controller = createController(settings.type, settings.options, source);
          container.affix(controller.render(model, supplementary));
       }
    });
