@@ -1,5 +1,6 @@
 var _ = require('underscore'),
     Backbone = require('backbone'),
+    SummaryModel = require('../model/SummaryModel'),
     ControlBones;
 
 ControlBones = function(options) {
@@ -26,7 +27,7 @@ ControlBones.prototype = {
     * @return Backbone.Model
     */
    _createSummaryModel: function() {
-      return new Backbone.Model({
+      return new SummaryModel({
          'header': this.title,
          'classes': this.classes
       });
