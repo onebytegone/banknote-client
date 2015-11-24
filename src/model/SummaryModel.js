@@ -11,6 +11,12 @@ var SummaryModel = Backbone.Model.extend({
       nestDepth: 'depth0',
       header: 'SummaryModel Header',
       classes: ''
+   },
+
+   initialize: function(){
+      if (typeof this.get('nestDepth') !== 'string') {
+         this.set('nestDepth', SummaryModel.sanitizeNestDepth(this.get('nestDepth')));
+      }
    }
 });
 
