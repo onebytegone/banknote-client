@@ -8,11 +8,18 @@ var Backbone = require('backbone'),
     Marionette = require('backbone.marionette'),
     $ = require('jquery'),
     _ = require('underscore'),
+
+    // Config
     layout = require('./src/layout.js'),
+
+    // Model
+    AmountEntryCollection = require('./src/model/AmountEntryCollection'),
+
+    // View
     MainLayout = require('./src/view/MainLayout'),
-    RegionModal = require('./src/common/modal/RegionModal.js'),
     AffixedView = require('./src/view/AffixedView'),
-    AmountEntryCollection = require('./src/model/AmountEntryCollection');
+    RegionModal = require('./src/common/modal/RegionModal.js');
+
 require('./src/common/library/CurrencyInputStyler');
 
 
@@ -24,10 +31,8 @@ Banknote.addRegions({
 });
 
 
-var renderFromSourceIntoView = function(data, container) {
-   container.empty();
-
-   _.each(layout, function(settings) {
+var loadContainerChildren = function(container, layoutConfig, data, depth) {
+   _.each(layoutConfig, function(settings) {
       var source = settings.source,
           multiSource = settings.sources,
           preferredSource = settings.sources || source,
@@ -65,22 +70,58 @@ var renderFromSourceIntoView = function(data, container) {
          });
       }
 
-      var controller = new settings.type(settings.options);
-
-      controller.on('collection:updated', function(collection) {
-         if (source === undefined) {
-            throw 'Update event was called when we do not have a single source. Multisource updates are not supported at this time.';
-         }
-
-         // Update the source data with the updates
-         data[source] = collection.toJSON();
-
-         // Re-render using updated data
-         renderFromSourceIntoView(data, container);
-      });
-
-      container.affix(controller.render(model, supplementary));
+      if (typeof settings.type === 'function') {
+         var controller = createController(settings.type, settings.options, source, depth);
+         container.affix(controller.render(model, supplementary));
+      } else if (settings.type === 'bundle') {
+         var block = createBundle(settings.items, settings.options, data, depth);
+         container.affix(block);
+      }
    });
+};
+
+
+var createController = function(type, options, dataSource, depth) {
+   var controller = new type(_.defaults(options, { nestDepth: depth }));
+
+   controller.on('collection:updated', function(collection) {
+      if (dataSource === undefined) {
+         throw 'Update event was called when we do not have a single source. Multisource updates are not supported at this time.';
+      }
+
+      // Update the source data with the updates
+      data[dataSource] = collection.toJSON();
+
+      // Re-render using updated data
+      renderFromSourceIntoView(data, container);
+   });
+
+   return controller;
+};
+
+
+var createBundle = function(subItems, options, data, depth) {
+   var block = new SummaryBlock({
+      model: new SummaryModel({
+         nestDepth: depth,
+         header: options.title
+      })
+   }),
+      childContainer = new AffixedView();
+
+   loadContainerChildren(childContainer, subItems, data, depth + 1);
+
+   block.on('show', function() {
+      block.content.show(childContainer);
+   });
+
+   return block;
+};
+
+
+var renderFromSourceIntoView = function(data, container) {
+   container.empty();
+   loadContainerChildren(container, layout, data, 0);
 };
 
 Banknote.addInitializer(function(options) {
