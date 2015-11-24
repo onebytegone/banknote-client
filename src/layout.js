@@ -17,27 +17,35 @@ var layout = [
       }
    },
    {
-      'type': CategorizedController,
-      'source': 'incomerouting',
-      'supplementary': {
-         'categories': 'accounts'
-      },
+      'type': 'bundle',
       'options': {
-         'title': 'Income Routing',
-         'hasSummary': false,
-         'editable': true
-      }
-   },
-   {
-      'type': DifferenceController,
-      'sources': {
-         'minuend': 'income',
-         'subtrahend': 'incomerouting'
+         'title': 'Income Routing'
       },
-      'options': {
-         'title': 'Unrouted Income',
-         'classes': 'shouldZero'
-      }
+      'items': [
+         {
+            'type': CategorizedController,
+            'source': 'incomerouting',
+            'supplementary': {
+               'categories': 'accounts'
+            },
+            'options': {
+               'title': 'Distribution',
+               'hasSummary': false,
+               'editable': true
+            }
+         },
+         {
+            'type': DifferenceController,
+            'sources': {
+               'minuend': 'income',
+               'subtrahend': 'incomerouting'
+            },
+            'options': {
+               'title': 'Unrouted Income',
+               'classes': 'shouldZero'
+            }
+         }
+      ]
    },
    {
       'type': CategorizedController,
