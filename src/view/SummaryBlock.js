@@ -14,7 +14,7 @@ var SummaryBlock = Marionette.LayoutView.extend({
       "content": ".content",
    },
    className: function() {
-      return this.model.get('classes');
+      return (this.model.get('nestDepth') + ' ' + this.model.get('classes')).trim();
    }
 });
 
