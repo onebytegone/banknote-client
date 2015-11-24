@@ -74,7 +74,7 @@ var loadContainerChildren = function(container, layoutConfig, data) {
          var controller = createController(settings.type, settings.options, source);
          container.affix(controller.render(model, supplementary));
       } else if (settings.type === 'bundle') {
-         var block = createBundle(settings.items, settings.options);
+         var block = createBundle(settings.items, settings.options, data);
          container.affix(block);
       }
    });
@@ -100,11 +100,18 @@ var createController = function(type, options, dataSource) {
 };
 
 
-var createBundle = function(subItems, options) {
+var createBundle = function(subItems, options, data) {
    var block = new SummaryBlock({
       model: new SummaryModel({
          header: options.title
       })
+   }),
+      childContainer = new AffixedView();
+
+   loadContainerChildren(childContainer, subItems, data);
+
+   block.on('show', function() {
+      block.content.show(childContainer);
    });
 
    return block;
