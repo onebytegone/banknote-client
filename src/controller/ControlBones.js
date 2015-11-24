@@ -14,6 +14,7 @@ ControlBones = function(options) {
 
 ControlBones.prototype = {
    classes: '',
+   nestDepth: 0,
 
    /**
     * This is called to render the view using
@@ -28,6 +29,7 @@ ControlBones.prototype = {
     */
    _createSummaryModel: function() {
       return new SummaryModel({
+         'nestDepth': SummaryModel.sanitizeNestDepth(this.nestDepth),
          'header': this.title,
          'classes': this.classes
       });
