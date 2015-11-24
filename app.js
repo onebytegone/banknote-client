@@ -50,6 +50,17 @@ var createController = function(type, options, dataSource) {
 };
 
 
+var createBundle = function(subItems, options) {
+   var block = new SummaryBlock({
+      model: new SummaryModel({
+         header: options.title
+      })
+   });
+
+   return block;
+};
+
+
 var renderFromSourceIntoView = function(data, container) {
    container.empty();
 
@@ -94,6 +105,9 @@ var renderFromSourceIntoView = function(data, container) {
       if (typeof settings.type === 'function') {
          var controller = createController(settings.type, settings.options, source);
          container.affix(controller.render(model, supplementary));
+      } else if (settings.type === 'bundle') {
+         var block = createBundle(settings.items, settings.options);
+         container.affix(block);
       }
    });
 };
