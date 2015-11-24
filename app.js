@@ -31,40 +31,8 @@ Banknote.addRegions({
 });
 
 
-var createController = function(type, options, dataSource) {
-   var controller = new type(options);
-
-   controller.on('collection:updated', function(collection) {
-      if (dataSource === undefined) {
-         throw 'Update event was called when we do not have a single source. Multisource updates are not supported at this time.';
-      }
-
-      // Update the source data with the updates
-      data[dataSource] = collection.toJSON();
-
-      // Re-render using updated data
-      renderFromSourceIntoView(data, container);
-   });
-
-   return controller;
-};
-
-
-var createBundle = function(subItems, options) {
-   var block = new SummaryBlock({
-      model: new SummaryModel({
-         header: options.title
-      })
-   });
-
-   return block;
-};
-
-
-var renderFromSourceIntoView = function(data, container) {
-   container.empty();
-
-   _.each(layout, function(settings) {
+var loadContainerChildren = function(container, layoutConfig, data) {
+   _.each(layoutConfig, function(settings) {
       var source = settings.source,
           multiSource = settings.sources,
           preferredSource = settings.sources || source,
@@ -110,6 +78,42 @@ var renderFromSourceIntoView = function(data, container) {
          container.affix(block);
       }
    });
+};
+
+
+var createController = function(type, options, dataSource) {
+   var controller = new type(options);
+
+   controller.on('collection:updated', function(collection) {
+      if (dataSource === undefined) {
+         throw 'Update event was called when we do not have a single source. Multisource updates are not supported at this time.';
+      }
+
+      // Update the source data with the updates
+      data[dataSource] = collection.toJSON();
+
+      // Re-render using updated data
+      renderFromSourceIntoView(data, container);
+   });
+
+   return controller;
+};
+
+
+var createBundle = function(subItems, options) {
+   var block = new SummaryBlock({
+      model: new SummaryModel({
+         header: options.title
+      })
+   });
+
+   return block;
+};
+
+
+var renderFromSourceIntoView = function(data, container) {
+   container.empty();
+   loadContainerChildren(container, layout, data);
 };
 
 Banknote.addInitializer(function(options) {
