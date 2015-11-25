@@ -71,27 +71,35 @@ var layout = [
       }
    },
    {
-      'type': CategorizedController,
-      'source': 'funddraw',
-      'supplementary': {
-         'categories': 'funds'
-      },
+      'type': 'bundle',
       'options': {
-         'title': 'Fund Draws',
-         'hasSummary': false,
-         'editable': true
-      }
-   },
-   {
-      'type': DifferenceController,
-      'sources': {
-         'minuend': 'expenses',
-         'subtrahend': 'funddraw'
+         'title': 'Expense Routing'
       },
-      'options': {
-         'title': 'Undrawn Expenses',
-         'classes': 'shouldZero'
-      }
+      'items': [
+         {
+            'type': CategorizedController,
+            'source': 'funddraw',
+            'supplementary': {
+               'categories': 'funds'
+            },
+            'options': {
+               'title': 'Fund Draws',
+               'hasSummary': false,
+               'editable': true
+            }
+         },
+         {
+            'type': DifferenceController,
+            'sources': {
+               'minuend': 'expenses',
+               'subtrahend': 'funddraw'
+            },
+            'options': {
+               'title': 'Undrawn Expenses',
+               'classes': 'shouldZero'
+            }
+         }
+      ]
    },
    {
       'type': DifferenceController,
