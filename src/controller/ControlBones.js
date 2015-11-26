@@ -1,3 +1,11 @@
+/**
+ * This is the base class for the calculation controllers
+ * in banknote. This is not designed to be use by itself,
+ * but rather extended into something more functional.
+ *
+ * Copyright 2015 Ethan Smith
+ */
+
 var _ = require('underscore'),
     Backbone = require('backbone'),
     SummaryModel = require('../model/SummaryModel'),
