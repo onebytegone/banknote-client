@@ -71,32 +71,26 @@ var loadContainerChildren = function(container, layoutConfig, data, depth) {
       }
 
       if (typeof settings.type === 'function') {
-         var controller = createController(settings.type, settings.options, source, depth);
+         var controller = new settings.type(_.defaults(settings.options, { nestDepth: depth }));
+
+         controller.on('collection:updated', function(collection) {
+            if (source === undefined) {
+               throw 'Update event was called when we do not have a single source. Multisource updates are not supported at this time.';
+            }
+
+            // Update the source data with the updates
+            data[source] = collection.toJSON();
+
+            // Re-render using updated data
+            renderFromSourceIntoView(data, container);
+         });
+
          container.affix(controller.render(model, supplementary));
       } else if (settings.type === 'bundle') {
          var block = createBundle(settings.items, settings.options, data, depth);
          container.affix(block);
       }
    });
-};
-
-
-var createController = function(type, options, dataSource, depth) {
-   var controller = new type(_.defaults(options, { nestDepth: depth }));
-
-   controller.on('collection:updated', function(collection) {
-      if (dataSource === undefined) {
-         throw 'Update event was called when we do not have a single source. Multisource updates are not supported at this time.';
-      }
-
-      // Update the source data with the updates
-      data[dataSource] = collection.toJSON();
-
-      // Re-render using updated data
-      renderFromSourceIntoView(data, container);
-   });
-
-   return controller;
 };
 
 
