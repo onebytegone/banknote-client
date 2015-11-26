@@ -17,6 +17,10 @@ var EditableAmountCell = AmountEntryCell.extend({
          var originalHash = self.model.hash();
          self.model.get('amount').set($(this).val());
          self.trigger('bn:editing:ended', originalHash, self.model);
+
+         if (originalHash != self.model.hash()) {
+            self.trigger('bn:model:updated', originalHash, self.model);
+         }
       });
    },
 
