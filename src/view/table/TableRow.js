@@ -48,8 +48,11 @@ var TableRow = Marionette.ItemView.extend({
              'model': model
           });
 
-      cell.on('editing:ended', function(originalHash, updatedModel) {
-         self.trigger('editing:ended', originalHash, updatedModel);
+      // Bubble "bn:" events from the child view
+      cell.on("all", function(eventName){
+         if (eventName.indexOf('bn:') === 0) {
+            self.trigger.apply(self, arguments);
+         }
       });
 
       cell.render();

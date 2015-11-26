@@ -23,8 +23,12 @@ var TableView = Marionette.CompositeView.extend({
    },
    onAddChild: function(view) {
       var self = this;
-      view.on('editing:ended', function(originalHash, updatedModel) {
-         self.trigger('editing:ended', originalHash, updatedModel);
+
+      // Bubble "bn:" events from the child view
+      view.on("all", function(eventName){
+         if (eventName.indexOf('bn:') === 0) {
+            self.trigger.apply(self, arguments);
+         }
       });
    }
 });
