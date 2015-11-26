@@ -16,7 +16,7 @@ var EditableAmountCell = AmountEntryCell.extend({
       this.$el.on('blur', 'input', function() {
          var originalHash = self.model.hash();
          self.model.get('amount').set($(this).val());
-         self.trigger('editing:ended', originalHash, self.model);
+         self.trigger('bn:editing:ended', originalHash, self.model);
       });
    },
 
