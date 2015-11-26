@@ -53,7 +53,7 @@ var CategorizedController = ControlBones.extend({
          className: this.editable ? 'editable' : ''
       });
 
-      table.on('bn:editing:ended', function(originalHash, updatedModel) {
+      table.on('bn:model:updated', function(originalHash, updatedModel) {
          var found = collection.findEntryWithHash(originalHash);
          if (found) {
             collection.remove(found);
