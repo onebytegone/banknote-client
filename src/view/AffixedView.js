@@ -15,12 +15,21 @@ var AffixedView = Marionette.ItemView.extend({
     */
    affix: function(view, options) {
       this.triggerMethod('before:show', view, this, options);
+
+      this.affixOnShow(view, options);
+
+      this.triggerMethod('show', view, this, options);
+   },
+
+   /**
+    * @param view Marionette.View
+    */
+   affixOnShow: function(view, options) {
       Marionette.triggerMethodOn(view, 'before:show', view, this, options);
 
       this._renderView(view);
       this.$el.append(view.$el);
 
-      this.triggerMethod('show', view, this, options);
       Marionette.triggerMethodOn(view, 'show', view, this, options);
    },
 
