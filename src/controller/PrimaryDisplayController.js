@@ -7,7 +7,10 @@
 
 var _ = require('underscore'),
     Marionette = require('backbone.marionette'),
-    ControlBones = require('./ControlBones');
+    ControlBones = require('./ControlBones'),
+
+    // View
+    AffixedView = require('../view/AffixedView');
 
 var PrimaryDisplayController = function(options) {
    var self = this;
@@ -16,6 +19,9 @@ var PrimaryDisplayController = function(options) {
    _.each(options, function(value, key) {
       self[key] = value;
    });
+
+   this.view = new AffixedView();
+   this.data = {};
 };
 
 PrimaryDisplayController.prototype = {
@@ -25,7 +31,9 @@ PrimaryDisplayController.prototype = {
     * @return Marionette.ItemView
     */
    render: function(rawData) {
-      return new AffixedView();
+      this.data = rawData;
+
+      return this.view;
    }
 };
 
