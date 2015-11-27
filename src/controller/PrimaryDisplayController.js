@@ -25,7 +25,7 @@ PrimaryDisplayController.prototype = {
     * @return Marionette.ItemView
     */
    render: function(rawData) {
-      return new Marionette.ItemView();
+      return new AffixedView();
    }
 };
 
