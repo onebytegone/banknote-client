@@ -44,17 +44,27 @@ PrimaryDisplayController.prototype = {
       var self = this,
           subviews;
 
-      this.data = rawData;
+      this.view.empty();
 
+      this.data = rawData;
       subviews = this._assembleSubviews(Layout, 0);
 
-      this.view.on('show', function() {
+      this.view.once('show', function() {
          _.each(subviews, function (view) {
             self.view.affixOnShow(view);
          });
       });
 
       return this.view;
+   },
+
+
+   /**
+    * Reloads the view from the stored data
+    */
+   rerender: function() {
+      this.render(this.data);
+      this.view.trigger('show');
    },
 
 
@@ -111,7 +121,7 @@ PrimaryDisplayController.prototype = {
          block.content.show(container);
       });
 
-      container.on('show', function() {
+      container.once('show', function() {
          _.each(childViews, function (view) {
             container.affixOnShow(view);
          });
@@ -128,7 +138,8 @@ PrimaryDisplayController.prototype = {
     * @return Marionette.ItemView
     */
    _createSubview: function(controllerType, config, model, supplementaryFields, depth) {
-      var controller = new controllerType(_.defaults(config.options, { nestDepth: depth }));
+      var controller = new controllerType(_.defaults(config.options, { nestDepth: depth })),
+          self = this;
 
       controller.on('collection:updated', function(collection) {
          if (config.source === undefined) {
@@ -136,10 +147,9 @@ PrimaryDisplayController.prototype = {
          }
 
          // Update the source data with the updates
-         // this.data[config.source] = collection.toJSON();
+         self.data[config.source] = collection.toJSON();
 
-         // Re-render using updated data
-         // renderFromSourceIntoView(data, container);
+         self.rerender();
       });
 
       return controller.render(model, supplementaryFields);
