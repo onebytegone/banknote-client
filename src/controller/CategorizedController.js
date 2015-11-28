@@ -29,6 +29,10 @@ var CategorizedController = ControlBones.extend({
    editable: false,
    hasSummary: true,
 
+   // Views
+   summaryBlock: null,  // SummaryBlock
+   table: null,  // TableView
+
    /**
     * @param collection AmountEntryCollection
     * @return SummaryBlock
@@ -38,37 +42,43 @@ var CategorizedController = ControlBones.extend({
           categoryPreference = supplementary ? _.pluck(supplementary.categories || [], 'key') : [],
           categorized = (new StatementsByCategory()).run(collection, categoryPreference);
 
-      var summary = new SummaryBlock({
+      this.summaryBlock = new SummaryBlock({
          model: this._createSummaryModel()
       });
 
-      var table = new TableView({
+      this.table = new TableView({
          collection: this._createTableCollection(categorized),
          childViewOptions: {
             prependCellType: StatementLabelCell,
             cellType: this.editable ? EditableAmountCell : AmountEntryCell,
             appendCellType: this.hasSummary ? StatementSumCell : null
          },
-         header: self._generateHeader(),
+         header: this._generateHeader(),
          className: this.editable ? 'editable' : ''
       });
 
-      table.on('bn:model:updated', function(originalHash, updatedModel) {
-         var found = collection.findEntryWithHash(originalHash);
+      this.summaryBlock.on('show', function() {
+         self.summaryBlock.content.show(self.table);
+      });
+
+      this._bindEditableEvents(collection);
+
+      return this.summaryBlock;
+   },
+
+   _bindEditableEvents: function(model) {
+      var self = this;
+      this.table.on('bn:model:updated', function(originalHash, updatedModel) {
+         console.log('event');
+         var found = model.findEntryWithHash(originalHash);
          if (found) {
-            collection.remove(found);
+            model.remove(found);
          }
 
-         collection.add(updatedModel);
+         model.add(updatedModel);
 
-         self.trigger('collection:updated', collection);
+         self.trigger('collection:updated', model);
       });
-
-      summary.on('show', function() {
-         summary.content.show(table);
-      });
-
-      return summary;
    },
 
    _generateHeader: function() {
