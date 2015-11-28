@@ -9,7 +9,6 @@ var CategorizedController = require('./controller/CategorizedController'),
 
 var layout = [
    {
-      'heading': 'Income Totals',
       'type': CategorizedController,
       'source': 'income',
       'options': {
