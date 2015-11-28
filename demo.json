@@ -49,18 +49,26 @@
       {
          "name": "Super Savings",
          "key": "supersavings",
-         "type": "savings"
+         "type": "savings",
+         "starting": 32
       },
       {
          "name": "Chipper Checks",
          "key": "chipperchecks",
-         "type": "checking"
+         "type": "checking",
+         "starting": 10
       }
    ],
    "funds": [
       {
          "name": "Food",
-         "key": "food"
+         "key": "food",
+         "starting": 0
+      },
+      {
+         "name": "Utility",
+         "key": "utility",
+         "starting": 5
       }
    ],
    "categories": {
@@ -89,6 +97,28 @@
          }
       ]
    },
+   "fundrouting": [
+      {
+         "date": "7/1",
+         "amount": 24,
+         "category": "food"
+      },
+      {
+         "date": "4/1",
+         "amount": 82,
+         "category": "utility"
+      }
+   ],
    "funddraw": [
+      {
+         "date": "2/8",
+         "amount": 26,
+         "category": "utility"
+      },
+      {
+         "date": "7/4",
+         "amount": 5,
+         "category": "food"
+      }
    ]
 }
