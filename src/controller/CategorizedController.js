@@ -39,8 +39,7 @@ var CategorizedController = ControlBones.extend({
     */
    render: function(collection, supplementary) {
       var self = this,
-          categoryPreference = supplementary ? _.pluck(supplementary.categories || [], 'key') : [],
-          categorized = (new StatementsByCategory()).run(collection, categoryPreference);
+          categorized = this._generateModel(collection, supplementary);
 
       this.summaryBlock = new SummaryBlock({
          model: this._createSummaryModel()
@@ -64,6 +63,11 @@ var CategorizedController = ControlBones.extend({
       this._bindEditableEvents(collection);
 
       return this.summaryBlock;
+   },
+
+   _generateModel: function(source, supplementary) {
+      var categoryPreference = supplementary ? _.pluck(supplementary.categories || [], 'key') : [];
+      return (new StatementsByCategory()).run(source, categoryPreference);
    },
 
    _bindEditableEvents: function(model) {
