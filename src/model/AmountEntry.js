@@ -19,7 +19,7 @@ var AmountEntry = Backbone.Model.extend({
    },
 
    initialize: function(){
-      if (!(this.get('amount') instanceof MoneyStack)) {
+      if (typeof this.get('amount') !== 'object') {
          this.set('amount', new MoneyStack(this.get('amount')));
       }
    },
