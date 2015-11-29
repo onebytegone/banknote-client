@@ -19,4 +19,4 @@ grunt build-all
 
 ## License
 
-Banknote is released under the MIT license. See LICENSE.md for more information.
+Banknote is released under the MIT license. See [LICENSE.md](LICENSE.md) for more information.
