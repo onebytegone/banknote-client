@@ -1,3 +1,10 @@
+/**
+ * Converts a collection of `AmountEntry` into a StatementCollection
+ * based on the category for the entries.
+ *
+ * Copyright 2015 Ethan Smith
+ */
+
 var _ = require('underscore'),
     StatementsByFilter = require('./StatementsByFilter'),
     AmountEntryCollection = require('../../AmountEntryCollection'),
