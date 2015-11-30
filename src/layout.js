@@ -48,27 +48,35 @@ var layout = [
       ]
    },
    {
-      'type': CategorizedController,
-      'source': 'fundrouting',
-      'supplementary': {
-         'categories': 'funds'
-      },
+      'type': 'bundle',
       'options': {
-         'title': 'Fund Routing',
-         'hasSummary': false,
-         'editable': true
-      }
-   },
-   {
-      'type': DifferenceController,
-      'sources': {
-         'minuend': 'income',
-         'subtrahend': 'fundrouting'
+         'title': 'Fund Routing'
       },
-      'options': {
-         'title': 'Unassigned Funds',
-         'classes': 'shouldZero'
-      }
+      'items': [
+         {
+            'type': CategorizedController,
+            'source': 'fundrouting',
+            'supplementary': {
+               'categories': 'funds'
+            },
+            'options': {
+               'title': 'To Fund',
+               'hasSummary': false,
+               'editable': true
+            }
+         },
+         {
+            'type': DifferenceController,
+            'sources': {
+               'minuend': 'income',
+               'subtrahend': 'fundrouting'
+            },
+            'options': {
+               'title': 'Unassigned',
+               'classes': 'shouldZero'
+            }
+         }
+      ]
    },
    {
       'type': 'bundle',
