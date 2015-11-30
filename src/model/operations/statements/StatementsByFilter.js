@@ -1,3 +1,10 @@
+/**
+ * Converts a collection of `AmountEntry` into a StatementCollection
+ * based on a given filter function.
+ *
+ * Copyright 2015 Ethan Smith
+ */
+
 var _ = require('underscore'),
     StatementCollection = require('../../StatementCollection'),
     Statement = require('../../Statement'),
