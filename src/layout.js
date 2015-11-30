@@ -131,7 +131,40 @@ var layout = [
       'options': {
          'title': 'Monthly Net',
       }
-   }
+   },
+   {
+      'type': 'bundle',
+      'options': {
+         'title': 'Accounts'
+      },
+      'items': [
+         {
+            'type': ProgressiveValueController,
+            'sources': {
+               'minuend': 'incomerouting',
+               'subtrahend': 'expenses'
+            },
+            'supplementary': {
+               'categories': 'accounts'
+            },
+            'options': {
+               'title': 'Expected EOM Totals',
+            }
+         },
+         {
+            'type': CategorizedController,
+            'source': 'accounteom',
+            'supplementary': {
+               'categories': 'accounts'
+            },
+            'options': {
+               'title': 'Actual EOM Totals',
+               'hasSummary': false,
+               'editable': true
+            }
+         }
+      ]
+   },
 ];
 
 module.exports = layout;
