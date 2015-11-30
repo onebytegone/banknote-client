@@ -1,3 +1,11 @@
+/**
+ * Negates all the amounts for the given AmountEntryCollection.
+ * This is helpful for when you want to subtract one collection
+ * from another. ("Number + Negative number" is subtraction)
+ *
+ * Copyright 2015 Ethan Smith
+ */
+
 var _ = require('underscore'),
     AmountEntryCollection = require('../../AmountEntryCollection');
 
