@@ -5,7 +5,8 @@
  */
 
 var CategorizedController = require('./controller/CategorizedController'),
-    DifferenceController = require('./controller/DifferenceController');
+    DifferenceController = require('./controller/DifferenceController'),
+    ProgressiveValueController = require('./controller/ProgressiveValueController');
 
 var layout = [
    {
@@ -99,6 +100,19 @@ var layout = [
             }
          }
       ]
+   },
+   {
+      'type': ProgressiveValueController,
+      'sources': {
+         'minuend': 'fundrouting',
+         'subtrahend': 'funddraw'
+      },
+      'supplementary': {
+         'categories': 'funds'
+      },
+      'options': {
+         'title': 'Fund Status',
+      }
    },
    {
       'type': DifferenceController,
