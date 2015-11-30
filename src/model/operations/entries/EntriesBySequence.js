@@ -1,3 +1,10 @@
+/**
+ * Creates a new collection of `AmountEntry` using the provided
+ * modifier. This is simliar to the reduce function.
+ *
+ * Copyright 2015 Ethan Smith
+ */
+
 var _ = require('underscore'),
     AmountEntryCollection = require('../../AmountEntryCollection');
 
