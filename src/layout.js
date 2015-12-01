@@ -6,9 +6,22 @@
 
 var CategorizedController = require('./controller/CategorizedController'),
     DifferenceController = require('./controller/DifferenceController'),
-    ProgressiveValueController = require('./controller/ProgressiveValueController');
+    ProgressiveValueController = require('./controller/ProgressiveValueController'),
+    EntryListController = require('./controller/EntryListController');
 
 var layout = [
+   {
+      'type': EntryListController,
+      'source': 'income',
+      'options': {
+         'title': 'Income Entries',
+         'columns': {
+            'Date': 'date',
+            'Name': 'name',
+            'Value': 'value'
+         }
+      }
+   },
    {
       'type': CategorizedController,
       'source': 'income',
