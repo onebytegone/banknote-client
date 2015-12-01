@@ -30,6 +30,7 @@ var DifferenceController = ControlBones.extend({
     *    'minuend': AmountEntryCollection,
     *    'subtrahend': AmountEntryCollection
     * }
+    * @return SummaryBlock
     */
    render: function(collections) {
       var self = this;
