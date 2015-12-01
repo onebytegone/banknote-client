@@ -6,6 +6,9 @@ var _ = require('underscore'),
     Backbone = require('backbone'),
     ControlBones = require('./ControlBones'),
 
+    // Model
+    TableRowModel = require('../model/table/TableRowModel'),
+
     // Views
     SummaryBlock = require('../view/SummaryBlock'),
     TableView = require('../view/table/TableView'),
@@ -33,7 +36,7 @@ var EntryListController = ControlBones.extend({
       });
 
       this.table = new TableView({
-         collection: null,
+         collection: this._createTableCollection(collection),
          childViewOptions: {
             prependCellType: null,
             cellType: TextCell,
@@ -61,6 +64,37 @@ var EntryListController = ControlBones.extend({
                })
             )
          })
+      });
+   },
+
+   /**
+    * @param collection AmountEntryCollection
+    * @return Backbone.Collection
+    */
+   _createTableCollection: function(collection) {
+      return new Backbone.Collection(collection.map(this._createRowModel.bind(this)));
+   },
+
+   /**
+    * @param row AmountEntry
+    * @return TableRowModel
+    */
+   _createRowModel: function(row) {
+      var self = this,
+          columnModels;
+
+      columnModels = _.map(_.values(this.columns), function(column) {
+         return self._createModelForColumn(column, row);
+      });
+
+      return new TableRowModel({
+         members: new Backbone.Collection(columnModels)
+      });
+   },
+
+   _createModelForColumn: function(column, rowData) {
+      return new Backbone.Model({
+         'text': rowData.get(column)
       });
    }
 });
