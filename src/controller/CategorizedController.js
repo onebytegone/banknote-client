@@ -35,6 +35,7 @@ var CategorizedController = ControlBones.extend({
 
    /**
     * @param collection AmountEntryCollection
+    * @param supplementary { "key" : [ Mixed ] } - Used to provide extra fields from the data
     * @return SummaryBlock
     */
    render: function(collection, supplementary) {
