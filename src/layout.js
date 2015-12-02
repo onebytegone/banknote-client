@@ -18,7 +18,12 @@ var layout = [
          'columns': {
             'Date': 'date',
             'Name': 'name',
-            'Value': 'value'
+            'Value': {
+               'field': 'amount',
+               'parser': function(value) {
+                  return value.readable();
+               }
+            }
          }
       }
    },

@@ -93,8 +93,17 @@ var EntryListController = ControlBones.extend({
    },
 
    _createModelForColumn: function(column, rowData) {
+      var displayValue = '';
+
+      if (typeof column === 'string') {
+         displayValue = rowData.get(column);
+      } else {
+         var object = rowData.get(column.field);
+         displayValue = column.parser(object);
+      }
+
       return new Backbone.Model({
-         'text': rowData.get(column)
+         'text': displayValue
       });
    }
 });
