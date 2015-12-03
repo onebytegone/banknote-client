@@ -15,6 +15,7 @@ var layout = [
       'source': 'income',
       'options': {
          'title': 'Income Entries',
+         'classes': 'list halfwidth alignleft',
          'columns': {
             'Date': 'date',
             'Name': 'name',
