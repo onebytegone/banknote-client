@@ -1,0 +1,21 @@
+.summaryBlock {
+   // This is needed to clear the previous
+   // summaryBlock that might be floated
+   &:before {
+      content: "";
+      display: table;
+      clear: both;
+   }
+}
+
+.halfwidth {
+   width: 50%;
+}
+
+.alignleft {
+   float: left;
+}
+
+.alignright {
+   float: right;
+}
