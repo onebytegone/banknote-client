@@ -1,0 +1,10 @@
+
+// Source: http://blog.teamtreehouse.com/a-better-clearfix-with-sass
+// Usage: @extend %clearfix;
+%clearfix {
+   &:after {
+      content: "";
+      display: table;
+      clear: both;
+   }
+}
