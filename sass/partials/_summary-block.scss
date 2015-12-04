@@ -19,3 +19,11 @@
 .alignright {
    float: right;
 }
+
+.list {
+   .content {
+      height: 50vh;
+      max-height: 380px;
+      overflow-y: scroll;
+   }
+}
