@@ -29,6 +29,24 @@ var layout = [
       }
    },
    {
+      'type': EntryListController,
+      'source': 'expenses',
+      'options': {
+         'title': 'Expenses',
+         'classes': 'list halfwidth alignleft',
+         'columns': {
+            'Date': 'date',
+            'Name': 'name',
+            'Value': {
+               'field': 'amount',
+               'parser': function(value) {
+                  return value.readable();
+               }
+            }
+         }
+      }
+   },
+   {
       'type': CategorizedController,
       'source': 'income',
       'options': {
