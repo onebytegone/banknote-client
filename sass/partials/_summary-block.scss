@@ -32,5 +32,7 @@
       max-height: 380px;
       overflow-x: auto;
       overflow-y: scroll;
+      border-top: 1px dotted $color-list-content-border;
+      border-bottom: 1px dotted $color-list-content-border;
    }
 }
