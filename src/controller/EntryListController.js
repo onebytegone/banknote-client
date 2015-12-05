@@ -35,6 +35,12 @@ var EntryListController = ControlBones.extend({
          model: this._createSummaryModel()
       });
 
+      // Sort our collection
+      collection.comparator = function(model) {
+         return [model.get('date'), model.get('note'), model.get('amount').get()];
+      };
+      collection.sort();
+
       this.table = new TableView({
          collection: this._createTableCollection(collection),
          childViewOptions: {
