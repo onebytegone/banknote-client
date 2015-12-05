@@ -33,7 +33,7 @@ var layout = [
       'source': 'expenses',
       'options': {
          'title': 'Expenses',
-         'classes': 'list halfwidth alignleft',
+         'classes': 'list halfwidth alignright',
          'columns': {
             'Date': 'date',
             'Name': 'name',

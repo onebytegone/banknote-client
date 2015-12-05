@@ -14,10 +14,16 @@
 
 .alignleft {
    float: left;
+   .content {
+      margin-right: 0.5em;
+   }
 }
 
 .alignright {
    float: right;
+   .content {
+      margin-left: 0.5em;
+   }
 }
 
 .list {
