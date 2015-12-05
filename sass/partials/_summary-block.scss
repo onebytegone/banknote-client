@@ -30,6 +30,7 @@
    .content {
       height: 50vh;
       max-height: 380px;
+      overflow-x: auto;
       overflow-y: scroll;
    }
 }
