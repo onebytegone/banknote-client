@@ -1,4 +1,23 @@
 /**
+ * This renders a list of each AmounEntry in the given collection. The
+ * fields that are show can be controlled using the `column` option. For
+ * the below example, this will have a "Date", "Name", and "Value" columns.
+ * The values  from `date` and `name` will just be printed. Where as `amount`
+ * will be ran through the parser function and the resulting value printed.
+ *
+ * ```
+ * 'columns': {
+ *    'Date': 'date',
+ *    'Name': 'name',
+ *    'Value': {
+ *       'field': 'amount',
+ *       'parser': function(value) {
+ *          return value.readable();
+ *       }
+ *    }
+ * }
+ * ```
+ *
  * Copyright 2015 Ethan Smith
  */
 
