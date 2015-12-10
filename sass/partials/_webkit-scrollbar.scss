@@ -1,9 +1,12 @@
-
+/**
+ * Override the scrollbar styling for webkit browsers
+ */
 
 ::-webkit-scrollbar {
     -webkit-appearance: none;
     width: 8px;
 }
+
 ::-webkit-scrollbar-thumb {
     border-radius: 2px;
     background-color: $color-scroll-bar;
