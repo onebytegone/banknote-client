@@ -10,6 +10,7 @@
 
 var ToolbarItem = Marionette.ItemView.extend({
    template: '<div><a><i class="fa <%- icon %>"></i></a></div>',
+   className: 'toolbarItem',
    model: new Backbone.Model({
       'icon': 'fa-plus'
    })
