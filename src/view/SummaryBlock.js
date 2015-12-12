@@ -12,6 +12,7 @@ var SummaryBlock = Marionette.LayoutView.extend({
    template: '#template-summaryblock',
    regions: {
       "content": ".content",
+      "toolbar": ".toolbar",
    },
    className: function() {
       return ('summaryBlock ' + this.model.get('nestDepth') + ' ' + this.model.get('classes')).trim();
