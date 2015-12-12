@@ -1,8 +1,17 @@
+.depth0 {
+   margin-bottom: 1em;
+}
+
 .depth1 {
    margin-left: 2em;
    h1 {
       font-size: 1.7em;
       color: $color-depth1-header;
       font-weight: normal;
+   }
+   &:first-child {
+      h1 {
+         margin-top: 0.3em;
+      }
    }
 }
