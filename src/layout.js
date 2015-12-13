@@ -16,6 +16,7 @@ var layout = [
       'options': {
          'title': 'Income Entries',
          'classes': 'list halfwidth alignleft',
+         'editable': true,
          'columns': {
             'Date': 'date',
             'Name': 'name',
@@ -34,6 +35,7 @@ var layout = [
       'options': {
          'title': 'Expenses',
          'classes': 'list halfwidth alignright',
+         'editable': true,
          'columns': {
             'Date': 'date',
             'Name': 'name',

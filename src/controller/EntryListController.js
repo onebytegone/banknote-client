@@ -30,6 +30,7 @@ var _ = require('underscore'),
 
     // Views
     SummaryBlock = require('../view/SummaryBlock'),
+    ToolbarItem = require('../view/ToolbarItem'),
     TableView = require('../view/table/TableView'),
     TableRow = require('../view/table/TableRow'),
     TextCell = require('../view/table/cell/TextCell');
@@ -37,6 +38,7 @@ var _ = require('underscore'),
 var EntryListController = ControlBones.extend({
    title: 'Entry List',
    columns: { },
+   editable: false,  // Default to not being editable
 
    // Views
    summaryBlock: null,  // SummaryBlock
@@ -71,7 +73,11 @@ var EntryListController = ControlBones.extend({
       });
 
       this.summaryBlock.on('show', function() {
-        self.summaryBlock.content.show(self.table);
+         self.summaryBlock.content.show(self.table);
+
+         if (self.editable) {
+            self.summaryBlock.toolbar.show(new ToolbarItem());
+         }
       });
 
       return this.summaryBlock;
