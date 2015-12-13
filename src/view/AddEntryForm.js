@@ -15,6 +15,8 @@ var AddEntryForm = Marionette.ItemView.extend({
          var today = now.getFullYear() + '-' + month + '-' +  day;
          dateInput.val(today);
       }
+
+      this.$el.find("#addentry-amount").val(this.model.get('amount').readable());
    },
 
    submitAction: function () {
