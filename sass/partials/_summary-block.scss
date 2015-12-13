@@ -54,6 +54,10 @@
          cursor: pointer;
          vertical-align: middle;
          display: table-cell;
+         transition: all .025s ease-in-out;
+         &:hover {
+            transform: scale(1.3);
+         }
       }
    }
 }
