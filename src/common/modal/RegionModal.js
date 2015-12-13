@@ -30,7 +30,7 @@ var RegionModal = Marionette.Region.extend({
       };
 
       _.map(buttonSpecs, function(spec) {
-         var fullSpec = _.extend(baseButtonSpec, spec);
+         var fullSpec = _.defaults(spec, baseButtonSpec);
          buttons.addButton(
             fullSpec.label,
             fullSpec.classes,
