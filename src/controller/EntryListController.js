@@ -27,13 +27,15 @@ var _ = require('underscore'),
 
     // Model
     TableRowModel = require('../model/table/TableRowModel'),
+    AmountEntry = require('../model/AmountEntry'),
 
     // Views
     SummaryBlock = require('../view/SummaryBlock'),
     ToolbarItem = require('../view/ToolbarItem'),
     TableView = require('../view/table/TableView'),
     TableRow = require('../view/table/TableRow'),
-    TextCell = require('../view/table/cell/TextCell');
+    TextCell = require('../view/table/cell/TextCell'),
+    AddEntryForm = require('../view/AddEntryForm');
 
 var EntryListController = ControlBones.extend({
    title: 'Entry List',
@@ -76,7 +78,24 @@ var EntryListController = ControlBones.extend({
          self.summaryBlock.content.show(self.table);
 
          if (self.editable) {
-            self.summaryBlock.toolbar.show(new ToolbarItem());
+            var addItem = new ToolbarItem();
+            addItem.on('element:click', function() {
+               var view = new AddEntryForm({
+                  model : new AmountEntry()
+               });
+
+               Banknote.modal.present("Add to " + self.title, view, [
+                  {
+                     label: 'Close'
+                  },
+                  {
+                     label: 'Save',
+                     classes: 'btn-primary'
+                  }
+               ]);
+            });
+
+            self.summaryBlock.toolbar.show(addItem);
          }
       });
 
