@@ -25,7 +25,9 @@ var RegionModal = Marionette.Region.extend({
       baseButtonSpec = {
          label: 'Button',
          classes: 'btn-default',
-         data: {},
+         data: {
+            dismiss: 'modal'
+         },
          handler: function() {}
       };
 
