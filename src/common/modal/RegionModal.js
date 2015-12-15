@@ -18,23 +18,25 @@ var RegionModal = Marionette.Region.extend({
    },
 
    present: function(title, view, buttonSpecs) {
+      var layout = new RegionModalLayout(),
+          buttons = new ModalButtonView(),
+          baseButtonSpec;
 
-      var layout = new RegionModalLayout();
-      layout.model = new Backbone.Model({
-        'title': title
-      });
-      this.show(layout);
-      layout.getRegion('content').show(view);
-
-      var buttons = new ModalButtonView();
-
-      var baseButtonSpec = {
+      baseButtonSpec = {
          label: 'Button',
          classes: 'btn-default',
          data: {},
          handler: function() {}
       };
 
+      // Setup the layour and present `view` as the content region
+      layout.model = new Backbone.Model({
+        'title': title
+      });
+      this.show(layout);
+      layout.getRegion('content').show(view);
+
+      // Setup and show buttons
       _.each(buttonSpecs, function(spec) {
          var fullSpec = _.defaults(spec, baseButtonSpec);
          buttons.addButton(
@@ -44,7 +46,6 @@ var RegionModal = Marionette.Region.extend({
             fullSpec.handler
          );
       });
-
       layout.getRegion('buttons').show(buttons);
    }
 });
