@@ -1,3 +1,9 @@
+/**
+ * Adds a marionette region to a bootstrap modal
+ *
+ * Copyright 2015 Ethan Smith
+ */
+
 var Backbone = require('backbone'),
     Marionette = require('backbone.marionette'),
     RegionModalLayout = require('./RegionModalLayout.js'),
@@ -29,7 +35,7 @@ var RegionModal = Marionette.Region.extend({
          handler: function() {}
       };
 
-      _.map(buttonSpecs, function(spec) {
+      _.each(buttonSpecs, function(spec) {
          var fullSpec = _.defaults(spec, baseButtonSpec);
          buttons.addButton(
             fullSpec.label,
@@ -38,6 +44,7 @@ var RegionModal = Marionette.Region.extend({
             fullSpec.handler
          );
       });
+
       layout.getRegion('buttons').show(buttons);
    }
 });
