@@ -28,6 +28,7 @@ var _ = require('underscore'),
     // Model
     TableRowModel = require('../model/table/TableRowModel'),
     AmountEntry = require('../model/AmountEntry'),
+    MoneyStack = require('MoneyStack'),
 
     // Views
     SummaryBlock = require('../view/SummaryBlock'),
@@ -84,13 +85,20 @@ var EntryListController = ControlBones.extend({
                   model : new AmountEntry()
                });
 
+               view.on('on:submit', function(data) {
+                  data.amount = new MoneyStack(data.amount);
+                  collection.add(new AmountEntry(data));
+                  self.trigger('collection:updated', collection);
+               });
+
                Banknote.modal.present("Add to " + self.title, view, [
                   {
                      label: 'Close'
                   },
                   {
                      label: 'Save',
-                     classes: 'btn-primary'
+                     classes: 'btn-primary',
+                     handler: view.getSubmitAction()
                   }
                ]);
             });
