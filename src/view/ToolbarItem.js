@@ -13,7 +13,14 @@ var ToolbarItem = Marionette.ItemView.extend({
    className: 'toolbarItem',
    model: new Backbone.Model({
       'icon': 'fa-plus'
-   })
+   }),
+
+   onRender: function() {
+      var self = this;
+      this.$el.find('a').on('click', function() {
+         self.trigger('element:click', self);
+      });
+   }
 });
 
 module.exports = ToolbarItem;
