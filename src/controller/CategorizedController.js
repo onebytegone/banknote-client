@@ -74,7 +74,6 @@ var CategorizedController = ControlBones.extend({
    _bindEditableEvents: function(model) {
       var self = this;
       this.table.on('bn:model:updated', function(originalHash, updatedModel) {
-         console.log('event');
          var found = model.findEntryWithHash(originalHash);
          if (found) {
             model.remove(found);
