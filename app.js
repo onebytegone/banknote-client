@@ -36,6 +36,15 @@ Banknote.addInitializer(function(options) {
 
    Banknote.central.show(mainLayout);
 
+   welcomeScreen.on('click:newsheet', function() {
+      $.getJSON('demo.json', function(data) {
+         var controller = new PrimaryDisplayController(),
+             layoutView = controller.render(data);
+
+         mainLayout.elements.show(layoutView);
+      });
+   });
+
    // Present welcome screen
    mainLayout.elements.show(welcomeScreen);
 });
