@@ -17,6 +17,7 @@ var Backbone = require('backbone'),
 
     // View
     MainLayout = require('./src/view/MainLayout'),
+    WelcomeScreen = require('./src/view/WelcomeScreen'),
     RegionModal = require('./src/common/modal/RegionModal.js');
 
 require('./src/common/library/CurrencyInputStyler');
@@ -30,16 +31,13 @@ Banknote.addRegions({
 });
 
 Banknote.addInitializer(function(options) {
-   var mainLayout = new MainLayout();
+   var mainLayout = new MainLayout(),
+       welcomeScreen = new WelcomeScreen();
 
    Banknote.central.show(mainLayout);
 
-   $.getJSON('demo.json', function(data) {
-      var controller = new PrimaryDisplayController(),
-          layoutView = controller.render(data);
-
-      mainLayout.elements.show(layoutView);
-   });
+   // Present welcome screen
+   mainLayout.elements.show(welcomeScreen);
 });
 
 Banknote.start();
