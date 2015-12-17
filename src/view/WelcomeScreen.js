@@ -7,7 +7,13 @@ var Marionette = require('backbone.marionette');
 var WelcomeScreen = Marionette.ItemView.extend({
    template: '#template-welcomeScreen',
    tagName: 'div',
-   className: 'welcomeScreen'
+   className: 'welcomeScreen',
+   onRender: function (argument) {
+      var self = this;
+      this.$el.find('a.jsNewSheet').on('click', function() {
+         self.trigger('click:newsheet');
+      });
+   }
 });
 
 module.exports = WelcomeScreen;
