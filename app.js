@@ -18,7 +18,10 @@ var Backbone = require('backbone'),
     // View
     MainLayout = require('./src/view/MainLayout'),
     WelcomeScreen = require('./src/view/WelcomeScreen'),
-    RegionModal = require('./src/common/modal/RegionModal.js');
+    RegionModal = require('./src/common/modal/RegionModal.js'),
+
+    // Util
+    FileIO = require('./src/common/storage/FileIO.js');
 
 require('./src/common/library/CurrencyInputStyler');
 
@@ -43,6 +46,19 @@ Banknote.addInitializer(function(options) {
 
          mainLayout.elements.show(layoutView);
       });
+
+   });
+
+   welcomeScreen.on('select:file', function(file) {
+      console.log(file);
+      var fileIO = new FileIO();
+      fileIO.on('read:file', function(contents) {
+         var controller = new PrimaryDisplayController(),
+             layoutView = controller.render($.parseJSON(contents));
+
+         mainLayout.elements.show(layoutView);
+      });
+      fileIO.read(file);
    });
 
    // Present welcome screen
