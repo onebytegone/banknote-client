@@ -8,8 +8,10 @@
    }
 }
 
-.apptitle {
-   font-weight: normal;
+.appbanner {
+   h1 {
+      font-weight: normal;
+   }
    color: $color-apptitle;
    border-bottom: 1px dotted #ccc;
 }
