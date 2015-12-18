@@ -1,4 +1,6 @@
-var $ = require('jquery');
+var $ = require('jquery'),
+    _ = require('underscore'),
+    Backbone = require('backbone');
 
 var FileIO = function() {
 
@@ -33,5 +35,8 @@ FileIO.prototype = {
       windowURL.revokeObjectURL(url);
    }
 };
+
+// Benefit from Backbone.Events
+_.extend(FileIO.prototype, Backbone.Events);
 
 module.exports = FileIO;
