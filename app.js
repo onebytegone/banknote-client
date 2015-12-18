@@ -19,6 +19,7 @@ var Backbone = require('backbone'),
     MainLayout = require('./src/view/MainLayout'),
     WelcomeScreen = require('./src/view/WelcomeScreen'),
     RegionModal = require('./src/common/modal/RegionModal.js'),
+    ToolbarItem = require('./src/view/ToolbarItem'),
 
     // Util
     FileIO = require('./src/common/storage/FileIO.js');
@@ -35,9 +36,15 @@ Banknote.addRegions({
 
 Banknote.addInitializer(function(options) {
    var mainLayout = new MainLayout(),
-       welcomeScreen = new WelcomeScreen();
+       welcomeScreen = new WelcomeScreen(),
+       downloadSheetItem = new ToolbarItem({
+          model: new Backbone.Model({
+             'icon': 'fa-download'
+          })
+       });
 
    Banknote.central.show(mainLayout);
+   mainLayout.toolbar.show(downloadSheetItem);
 
    welcomeScreen.on('click:newsheet', function() {
       $.getJSON('demo.json', function(data) {
