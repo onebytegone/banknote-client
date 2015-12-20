@@ -55,6 +55,14 @@ PrimaryDisplayController.prototype = {
          });
       });
 
+      // TODO: This is not the correct place for this code
+      window.addEventListener("beforeunload", function (e) {
+         var confirmationMessage = 'You are about to loose all saved changes. Are you sure you want to continue?';
+
+         (e || window.event).returnValue = confirmationMessage; // Gecko + IE
+         return confirmationMessage; // Gecko + Webkit, Safari, Chrome etc.
+      });
+
       return this.view;
    },
 
