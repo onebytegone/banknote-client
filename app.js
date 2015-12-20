@@ -57,7 +57,6 @@ Banknote.addInitializer(function(options) {
    });
 
    welcomeScreen.on('select:file', function(file) {
-      console.log(file);
       var fileIO = new FileIO();
       fileIO.on('read:file', function(contents) {
          var controller = new PrimaryDisplayController(),
