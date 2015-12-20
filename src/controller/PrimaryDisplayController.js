@@ -67,6 +67,14 @@ PrimaryDisplayController.prototype = {
       this.view.trigger('show');
    },
 
+   /**
+    * Exports the current data to a sharable package
+    *
+    * @return { ... }
+    */
+   exportToData: function() {
+      return this.data;
+   },
 
    /**
     * @param layout Layout

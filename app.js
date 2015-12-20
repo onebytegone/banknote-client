@@ -41,15 +41,25 @@ Banknote.addInitializer(function(options) {
           model: new Backbone.Model({
              'icon': 'fa-download'
           })
-       });
+       }),
+       controller = new PrimaryDisplayController(),
+       openFile;
 
    Banknote.central.show(mainLayout);
    mainLayout.toolbar.show(downloadSheetItem);
 
+   downloadSheetItem.on('element:click', function() {
+      if (!openFile) {
+         return;
+      }
+
+      var fileIO = new FileIO();
+      fileIO.save(JSON.stringify(controller.exportToData()), openFile.name);
+   });
+
    welcomeScreen.on('click:newsheet', function() {
       $.getJSON('demo.json', function(data) {
-         var controller = new PrimaryDisplayController(),
-             layoutView = controller.render(data);
+         var layoutView = controller.render(data);
 
          mainLayout.elements.show(layoutView);
       });
@@ -59,12 +69,13 @@ Banknote.addInitializer(function(options) {
    welcomeScreen.on('select:file', function(file) {
       var fileIO = new FileIO();
       fileIO.on('read:file', function(contents) {
-         var controller = new PrimaryDisplayController(),
-             layoutView = controller.render($.parseJSON(contents));
+         var layoutView = controller.render($.parseJSON(contents));
 
          mainLayout.elements.show(layoutView);
       });
       fileIO.read(file);
+
+      openFile = file;
    });
 
    // Present welcome screen
