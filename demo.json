@@ -71,32 +71,6 @@
          "starting": 5
       }
    ],
-   "categories": {
-      "income": [
-         {
-            "name": "Paycheck",
-            "key": "paycheck",
-            "id": 0
-         },
-         {
-            "name": "Interest",
-            "key": "interest",
-            "id": 1
-         }
-      ],
-      "expenses": [
-         {
-            "name": "Miscellaneous",
-            "key": "misc",
-            "id": 0
-         },
-         {
-            "name": "Bills",
-            "key": "bills",
-            "id": 1
-         }
-      ]
-   },
    "fundrouting": [
       {
          "date": "7/1",
