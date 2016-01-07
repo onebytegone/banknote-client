@@ -22,6 +22,17 @@ var AmountEntry = Backbone.Model.extend({
       if (typeof this.get('amount') !== 'object') {
          this.set('amount', new MoneyStack(this.get('amount')));
       }
+
+      this.set('date', this.sanitizeDate(this.get('date')));
+   },
+
+   sanitizeDate: function(dateStr) {
+      var date = new Date(dateStr.replace('-', '/'));
+      if (!date.getTime()) {
+         return false;
+      }
+
+      return (date.getMonth() + 1) + '/' + date.getDate();
    },
 
    toJSON: function() {

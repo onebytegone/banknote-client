@@ -19,6 +19,10 @@ describe('AmountEntry', function() {
       expect(new AmountEntry({
          'date': '2015/6/2'
       }).getDateOfMonth()).to.be('6/1');
+
+      expect(new AmountEntry({
+         'date': '2016-01-01'
+      }).getDateOfMonth()).to.be('1/1');
    });
 
    it('should have the same hash if the values are identical', function() {
@@ -108,5 +112,47 @@ describe('AmountEntry', function() {
       });
 
       expect(a.hash()).to.not.be(b.hash());
+   });
+
+   describe('Date Sanitization', function() {
+      it('should use format of M/D', function() {
+         var entry = new AmountEntry();
+         expect(entry.sanitizeDate('1/1')).to.be('1/1');
+         expect(entry.sanitizeDate('01/01')).to.be('1/1');
+         expect(entry.sanitizeDate('5/10')).to.be('5/10');
+      });
+
+      it('should convert MM/DD/YYYY', function() {
+         var entry = new AmountEntry();
+         expect(entry.sanitizeDate('1/1/2016')).to.be('1/1');
+         expect(entry.sanitizeDate('5/8/2016')).to.be('5/8');
+      });
+
+      it('should convert MM-DD-YYYY', function() {
+         var entry = new AmountEntry();
+         expect(entry.sanitizeDate('1-1-2016')).to.be('1/1');
+         expect(entry.sanitizeDate('5-8-2016')).to.be('5/8');
+      });
+
+      it('should convert YYYY/MM/DD', function() {
+         var entry = new AmountEntry();
+         expect(entry.sanitizeDate('2016/1/1')).to.be('1/1');
+         expect(entry.sanitizeDate('2016/01/01')).to.be('1/1');
+         expect(entry.sanitizeDate('2016/5/8')).to.be('5/8');
+         expect(entry.sanitizeDate('2016/05/08')).to.be('5/8');
+      });
+
+      it('should convert YYYY-MM-DD', function() {
+         var entry = new AmountEntry();
+         expect(entry.sanitizeDate('2016-1-1')).to.be('1/1');
+         expect(entry.sanitizeDate('2016-01-01')).to.be('1/1');
+         expect(entry.sanitizeDate('2016-5-8')).to.be('5/8');
+         expect(entry.sanitizeDate('2016-05-08')).to.be('5/8');
+      });
+
+      it('returns false for invalid date', function() {
+         var entry = new AmountEntry();
+         expect(entry.sanitizeDate('abc')).to.be(false);
+      });
    });
 });
