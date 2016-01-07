@@ -4,7 +4,7 @@
   "description": "JS client for Banknote",
   "main": "index.js",
   "scripts": {
-    "test": "mocha ./tests/*"
+    "test": "find tests -name '*.test.js' | xargs ./node_modules/mocha/bin/mocha"
   },
   "repository": {
     "type": "git",
