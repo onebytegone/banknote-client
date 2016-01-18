@@ -25,7 +25,7 @@
     "crypto": "0.0.3",
     "font-awesome": "^4.4.0",
     "jquery": "^2.1.4",
-    "moneystack": "git+https://github.com/onebytegone/MoneyStack.git#0.0.1",
+    "moneystack": "git+https://github.com/onebytegone/MoneyStack.git#0.0.2",
     "underscore": "^1.8.3"
   },
   "devDependencies": {
