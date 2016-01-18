@@ -19,7 +19,10 @@ var EditableAmountCell = AmountEntryCell.extend({
          self.trigger('bn:editing:ended', originalHash, self.model);
 
          if (originalHash != self.model.hash()) {
-            self.trigger('bn:model:updated', originalHash, self.model);
+            // Only give the updated amount if we actually have a value, this
+            // prevents entries with a value of 0 or NaN in persisted data
+            var hasValidAmountSaved = self.model.get('amount').get();
+            self.trigger('bn:model:updated', originalHash, hasValidAmountSaved ? self.model : null);
          }
       });
    },

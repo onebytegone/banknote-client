@@ -79,7 +79,9 @@ var CategorizedController = ControlBones.extend({
             model.remove(found);
          }
 
-         model.add(updatedModel);
+         if (updatedModel) {
+            model.add(updatedModel);
+         }
 
          self.trigger('collection:updated', model);
       });
