@@ -174,6 +174,37 @@ var layout = [
    {
       'type': 'bundle',
       'options': {
+         'title': 'Account Routing'
+      },
+      'items': [
+         {
+            'type': CategorizedController,
+            'source': 'accountexpenditures',
+            'supplementary': {
+               'categories': 'accounts'
+            },
+            'options': {
+               'title': 'Account Expenditures',
+               'hasSummary': false,
+               'editable': true
+            }
+         },
+         {
+            'type': DifferenceController,
+            'sources': {
+               'minuend': 'expenses',
+               'subtrahend': 'accountexpenditures'
+            },
+            'options': {
+               'title': 'Routed Expenses',
+               'classes': 'shouldZero'
+            }
+         }
+      ]
+   },
+   {
+      'type': 'bundle',
+      'options': {
          'title': 'Accounts'
       },
       'items': [
@@ -181,7 +212,7 @@ var layout = [
             'type': ProgressiveValueController,
             'sources': {
                'minuend': 'incomerouting',
-               'subtrahend': 'expenses'
+               'subtrahend': 'accountexpenditures'
             },
             'supplementary': {
                'categories': 'accounts'
