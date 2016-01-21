@@ -93,9 +93,6 @@ module.exports = function(grunt) {
             options: {
                browserifyOptions: {
                   debug: true
-               },
-               alias: {
-                  'config': '<%= project.src.js %>/config.js'
                }
             },
             files: {
