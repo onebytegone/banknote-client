@@ -116,9 +116,29 @@ module.exports = function(grunt) {
       watch: {
          files: ['<%= project.src.sass %>/**/*.scss', '<%= jshint.files %>', '<%= project.src.root %>/index.html'],
          tasks: ['default']
+      },
+      exec: {
+         // Note: These will stash all uncommited files and will NOT keep staged changes.
+         stash: {
+            cmd: 'git add . && git stash'
+         },
+         stashpop: {
+            cmd: 'git stash pop && git reset'
+         }
+      },
+      clean: {
+         dist: [ '<%= project.dist.root %>' ]
+      },
+      'gh-pages': {
+         options: {
+            base: 'dist',
+            push: false  // Commit only, don't automatically push changes
+         },
+         src: ['**']
       }
    });
 
    grunt.registerTask('default', ['copy:app', 'sass:dist', 'newer:jshint', 'browserify', 'exorcise']);
-   grunt.registerTask('build-all', ['newer:copy:cssToSass', 'newer:copy:fonts', 'default']);
+   grunt.registerTask('build-all', ['clean:dist', 'newer:copy:cssToSass', 'newer:copy:fonts', 'default']);
+   grunt.registerTask('deploy', ['exec:stash', 'build-all', 'gh-pages', 'exec:stashpop']);
 };
