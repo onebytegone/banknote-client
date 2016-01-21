@@ -10,21 +10,21 @@ var Backbone = require('backbone'),
     _ = require('underscore'),
 
     // Config
-    layout = require('./src/layout.js'),
+    layout = require('./js/layout.js'),
 
     // Controller
-    PrimaryDisplayController = require('./src/controller/PrimaryDisplayController'),
+    PrimaryDisplayController = require('./js/controller/PrimaryDisplayController'),
 
     // View
-    MainLayout = require('./src/view/MainLayout'),
-    WelcomeScreen = require('./src/view/WelcomeScreen'),
-    RegionModal = require('./src/common/modal/RegionModal.js'),
-    ToolbarItem = require('./src/view/ToolbarItem'),
+    MainLayout = require('./js/view/MainLayout'),
+    WelcomeScreen = require('./js/view/WelcomeScreen'),
+    RegionModal = require('./js/common/modal/RegionModal.js'),
+    ToolbarItem = require('./js/view/ToolbarItem'),
 
     // Util
-    FileIO = require('./src/common/storage/FileIO.js');
+    FileIO = require('./js/common/storage/FileIO.js');
 
-require('./src/common/library/CurrencyInputStyler');
+require('./js/common/library/CurrencyInputStyler');
 
 
 var Banknote = new Marionette.Application();

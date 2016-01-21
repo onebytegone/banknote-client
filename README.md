@@ -11,7 +11,6 @@ It should be noted that because of the way javascript stores numbers, there is a
 To build the needed files, run:
 
 ```
-cp src/config.demo.js src/config.js
 npm install
 grunt build-all
 ```

@@ -8,9 +8,9 @@ module.exports = function(grunt) {
             node: 'node_modules'
          },
          src: {
-            root: '.',
+            root: './src',
             sass: '<%= project.src.root %>/sass',
-            js: '<%= project.src.root %>/src'
+            js: '<%= project.src.root %>/js'
          },
          dist: {
             root: 'dist',
@@ -20,6 +20,17 @@ module.exports = function(grunt) {
          }
       },
       copy: {
+         app: {
+            files: [
+               {
+                  expand: true,
+                  cwd: '<%= project.src.root %>',
+                  src: [ 'index.html', 'demo.json'],
+                  dest: '<%= project.dist.root %>',
+                  filter: 'isFile'
+               },
+            ]
+         },
          // Create .scss versions of npm package .css files
          cssToSass: {
             files: [
@@ -70,7 +81,7 @@ module.exports = function(grunt) {
          }
       },
       jshint: {
-         files: ['Gruntfile.js', 'app.js', '<%= project.src.js %>/**/*.js'],
+         files: ['Gruntfile.js', '<%= project.src.root %>/app.js', '<%= project.src.js %>/**/*.js'],
          options: {
             globals: {
                jQuery: true
@@ -82,17 +93,14 @@ module.exports = function(grunt) {
             options: {
                browserifyOptions: {
                   debug: true
-               },
-               alias: {
-                  'config': './src/config.js'
                }
             },
             files: {
               '<%= project.dist.js %>/bundle.js' : [
-                  'shim/marionette_shim.js',
-                  'shim/backbone-super_shim.js',
-                  'shim/bootstrap_shim.js',
-                  'app.js'
+                  '<%= project.src.root %>/shim/marionette_shim.js',
+                  '<%= project.src.root %>/shim/backbone-super_shim.js',
+                  '<%= project.src.root %>/shim/bootstrap_shim.js',
+                  '<%= project.src.root %>/app.js'
                ]
             }
          }
@@ -106,11 +114,31 @@ module.exports = function(grunt) {
          }
       },
       watch: {
-         files: ['<%= project.src.sass %>/**/*.scss', '<%= jshint.files %>', 'index.html'],
+         files: ['<%= project.src.sass %>/**/*.scss', '<%= jshint.files %>', '<%= project.src.root %>/index.html'],
          tasks: ['default']
+      },
+      exec: {
+         // Note: These will stash all uncommited files and will NOT keep staged changes.
+         stash: {
+            cmd: 'git add . && git stash'
+         },
+         stashpop: {
+            cmd: 'git stash pop && git reset'
+         }
+      },
+      clean: {
+         dist: [ '<%= project.dist.root %>' ]
+      },
+      'gh-pages': {
+         options: {
+            base: 'dist',
+            push: false  // Commit only, don't automatically push changes
+         },
+         src: ['**']
       }
    });
 
-   grunt.registerTask('default', ['sass:dist', 'newer:jshint', 'browserify', 'exorcise']);
-   grunt.registerTask('build-all', ['newer:copy:cssToSass', 'newer:copy:fonts', 'default']);
+   grunt.registerTask('default', ['copy:app', 'sass:dist', 'newer:jshint', 'browserify', 'exorcise']);
+   grunt.registerTask('build-all', ['clean:dist', 'newer:copy:cssToSass', 'newer:copy:fonts', 'default']);
+   grunt.registerTask('deploy', ['exec:stash', 'build-all', 'gh-pages', 'exec:stashpop']);
 };
