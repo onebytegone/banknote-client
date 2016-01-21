@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+   <title>Banknote</title>
+   <link rel="stylesheet" type="text/css" href="css/main.css">
+   <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+   <link rel="stylesheet" type="text/css" href="css/bootstrap-theme.css">
+</head>
+<body>
+   <div id="app">Javascript is needed for Banknote.</div>
+
+   <script type="text/template" id="template-main">
+      <div class="appbanner">
+         <div class="toolbar"></div>
+         <h1>Banknote</h1>
+      </div>
+      <div class="jsElements"></div>
+   </script>
+
+   <script type="text/template" id="template-welcomeScreen">
+      <h2>Open existing:</h2>
+      <div>
+         <input id="jsFileLoader" type="file" />
+      </div>
+      <h3>or <a href="#" class="jsNewSheet">Start new sheet</a></h3>
+   </script>
+
+   <script type="text/template" id="form-addentry">
+      <form>
+        <div class="form-group">
+          <label for="addentry-date">Date:</label>
+          <input id="addentry-date" class="form-control" name="date" type="date" value=""/>
+        </div>
+        <div class="form-group">
+          <label for="addentry-name">Name:</label>
+          <input id="addentry-name" class="form-control" name="name" type="text" value="<%- name %>"/>
+        </div>
+        <div class="form-group">
+          <label for="addentry-amount">Amount:</label>
+          <input id="addentry-amount" class="form-control" name="amount" type="text" value=""/>
+        </div>
+      </form>
+    </script>
+
+   <script id="modal-view-template" type="text/html">
+      <div class="modal-dialog" role="document">
+         <div class="modal-content">
+            <div class="modal-header">
+               <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+               <h4 class="modal-title"><%- title %></h4>
+            </div>
+            <div class="modal-body" id="content">
+               ...
+            </div>
+            <div class="modal-footer" id="buttons">
+               ...
+            </div>
+         </div>
+      </div>
+   </script>
+
+   <script type="text/template" id="template-tableview">
+      <thead></thead>
+      <tbody></tbody>
+   </script>
+
+   <script type="text/template" id="template-summaryblock">
+      <div class="banner">
+         <div class="toolbar"></div>
+        <<%- headingLevel %>><%- header %></<%- headingLevel %>>
+      </div>
+      <div class="content"></div>
+   </script>
+
+   <script src="js/bundle.js"></script>
+
+   <div id="modal" class="modal fade" role="dialog"></div>
+</body>
+</html>
